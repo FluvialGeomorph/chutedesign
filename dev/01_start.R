@@ -11,6 +11,10 @@
 #### CURRENT FILE: ON START SCRIPT #####
 ########################################
 
+usethis::use_github(
+  organisation = "FluvialGeomorph",
+  visibility = "public")
+
 ## Fill the DESCRIPTION ----
 ## Add meta data about your application and set some default {golem} options
 ##
@@ -19,9 +23,9 @@
 ## to change the name in the app_sys() function in app_config.R /!\
 ##
 golem::fill_desc(
-  pkg_name = "chutedesign", # The name of the golem package containing the app (typically lowercase, no underscore or periods)
-  pkg_title = "PKG_TITLE", # What the Package Does (One Line, Title Case, No Period)
-  pkg_description = "PKG_DESC.", # What the package does (one paragraph).
+  pkg_name = "chutedesign",
+  pkg_title = "Chute Design",
+  pkg_description = "A Shiny app to perform the calculations to design a chute.", # What the package does (one paragraph).
   authors = person(
     given = "AUTHOR_FIRST", # Your First Name
     family = "AUTHOR_LAST", # Your Last Name
