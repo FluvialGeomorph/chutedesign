@@ -3,39 +3,31 @@
 #' @param request Internal parameter for `{shiny}`.
 #'     DO NOT REMOVE.
 #' @import shiny
+#' @import bslib
 #' @noRd
 app_ui <- function(request) {
   tagList(
-    # Leave this function for adding external resources
     golem_add_external_resources(),
-    # Your application UI logic
-    fluidPage(
-      golem::golem_welcome_page() # Remove this line to start building your UI
-    )
+
+    page_navbar(
+      title = "Chute Design",
+
+      layout_sidebar(
+        sidebar = sidebar(
+          "Sidebar fields",
+          navset_card_tab(
+            nav_panel(
+              title = "Plot 1",
+              "Plot 1 content"
+            ),
+            nav_panel(
+              title = "Plot 2",
+              "Plot 2 content"
+            )
+          ) # End navset_card_tab
+        ) # End sidebar
+      ) # End layout_sidebar
+    ) # End page_navbar
   )
 }
 
-#' Add external Resources to the Application
-#'
-#' This function is internally used to add external
-#' resources inside the Shiny application.
-#'
-#' @import shiny
-#' @importFrom golem add_resource_path activate_js favicon bundle_resources
-#' @noRd
-golem_add_external_resources <- function() {
-  add_resource_path(
-    "www",
-    app_sys("app/www")
-  )
-
-  tags$head(
-    favicon(),
-    bundle_resources(
-      path = app_sys("app/www"),
-      app_title = "chutedesign"
-    )
-    # Add here other external resources
-    # for example, you can add shinyalert::useShinyalert()
-  )
-}
