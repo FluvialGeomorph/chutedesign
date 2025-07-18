@@ -1,12 +1,15 @@
 #' @title Create Scenario
 #' @description Create a scenario.
 #'
+#' @param width
 #' @param width_start numeric; Width of the chute
 #' @param width_end
 #' @param width_by
+#' @param slope
 #' @param slope_start
 #' @param slope_end
 #' @param slope_by
+#' @param particle_size
 #' @param particle_size_start
 #' @param particle_size_end
 #' @param particle_size_by
@@ -23,19 +26,22 @@
 #' @export
 #'
 create_scenario <- function(
-    width_start, width_end, width_by,
-    slope_start, slope_end, slope_by,
-    particle_size_start, particle_size_end, particle_size_by,
+    width, width_start, width_end, width_by,
+    slope, slope_start, slope_end, slope_by,
+    particle_size, particle_size_start, particle_size_end, particle_size_by,
     length, side_slope, total_discharge, stone_density,
     contingency, porosity, water_density, gravity) {
 
   scenario <- list(
+    width               = width,
     width_start         = width_start,
     width_end           = width_end,
     width_by            = width_by,
+    slope               = slope,
     slope_start         = slope_start,
     slope_end           = slope_end,
     slope_by            = slope_by,
+    particle_size       = particle_size,
     particle_size_start = particle_size_start,
     particle_size_end   = particle_size_end,
     particle_size_by    = particle_size_by,

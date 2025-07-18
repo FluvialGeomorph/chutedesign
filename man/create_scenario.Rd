@@ -5,12 +5,15 @@
 \title{Create Scenario}
 \usage{
 create_scenario(
+  width,
   width_start,
   width_end,
   width_by,
+  slope,
   slope_start,
   slope_end,
   slope_by,
+  particle_size,
   particle_size_start,
   particle_size_end,
   particle_size_by,

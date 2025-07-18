@@ -7,13 +7,16 @@
 app_server <- function(input, output, session) {
 
   observeEvent(input$calculate_dimensions, {
-    scenario <- create_senario(
+    scenario <- create_scenario(
+      width               = input$width,
       width_start         = input$width_start,
       width_end           = input$width_end,
       width_by            = input$width_by,
+      slope               = input$slope,
       slope_start         = input$slope_start,
       slope_end           = input$slope_end,
       slope_by            = input$slope_by,
+      particle_size       = input$particle_size,
       particle_size_start = input$particle_size_start,
       particle_size_end   = input$particle_size_end,
       particle_size_by    = input$particle_size_by,
@@ -26,6 +29,8 @@ app_server <- function(input, output, session) {
       water_density       = input$water_density,
       gravity             = input$gravity
     )
+    message("Scenario created")
+
 
   })
 

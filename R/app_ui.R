@@ -29,10 +29,11 @@ app_ui <- function(request) {
                 ),
                 class = "d-flex justify-content-between"
               ),
+              numericInput("width", "Width of Interest (m)", 50),
               fluidRow(
-                column(4, numericInput("width_start", "Start Width(m)", 0)),
-                column(4, numericInput("width_end", "End Width(m)", 100)),
-                column(4, numericInput("width_by", "by Width(m)", 10))
+                column(4, numericInput("width_start", "Start Width (m)", 0)),
+                column(4, numericInput("width_end", "End Width (m)", 100)),
+                column(4, numericInput("width_by", "by Width (m)", 10))
               ),
             ),
             card(
@@ -44,6 +45,7 @@ app_ui <- function(request) {
                 ),
                 class = "d-flex justify-content-between"
               ),
+              numericInput("slope", "Slope of Interest (m/m)", 0.1),
               fluidRow(
                 column(4, numericInput("slope_start", "Start Slope (m/m)", 0)),
                 column(4, numericInput("slope_end", "End Slope (m/m)", 1)),
@@ -59,6 +61,8 @@ app_ui <- function(request) {
                 ),
                 class = "d-flex justify-content-between"
               ),
+              numericInput("particle_size",
+                           "Particle Size of Interest (m)", 1.6),
               fluidRow(
                 column(4, numericInput("particle_size_start",
                                        "Start Particle Size (m)", 1)),
@@ -80,11 +84,15 @@ app_ui <- function(request) {
           navset_card_tab(
             nav_panel(
               title = "by Width",
-              "Plot 1 content"
+              "Plot 1"
             ),
             nav_panel(
               title = "by Slope",
-              "Plot 2 content"
+              "Plot 2"
+            ),
+            nav_panel(
+              title = "by Particle Size",
+              "Plot 3"
             )
           ) # End navset_card_tab
         ) # End layout_sidebar
