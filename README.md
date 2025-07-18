@@ -1,89 +1,63 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 <!-- rmarkdown::render(input="README.Rmd", output_file = "README.md", output_format = "md_document") -->
 
-# `{chutedesign}`
+# chutedesign
+
+## Package Status
 
 <!-- badges: start -->
+
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![packageversion](https://img.shields.io/badge/Package%20version-2025.07.18-orange.svg?style=flat-square)](commits/main)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2025--07--18-yellowgreen.svg)](/commits/main)
+[![Licence](https://img.shields.io/badge/licence-CC0-blue.svg)](http://choosealicense.com/licenses/cc0-1.0/)
 <!-- badges: end -->
 
-## Installation
+## Description
 
-You can install the development version of `{chutedesign}` like so:
+## Funding
 
-    # FILL THIS IN! HOW CAN PEOPLE INSTALL YOUR DEV PACKAGE?
+<img src="man/figures/chl.png" width=125 align="right" />
 
-## Run
+Funding for development and maintenance of FluvialGeomorph has been
+provided by the following US Army Corps of Engineers (USACE) programs:
 
-You can launch the application by running:
+-   [Flood and Coastal Risk
+    Management](https://www.erdc.usace.army.mil/Locations/CHL/Flood-Coastal-Risk-Management/)
+-   [Ecosystem Management and Restoration Research Program
+    (EMRRP)](https://emrrp.el.erdc.dren.mil)
+-   [Regional Sediment Management Program
+    (RSM)](https://rsm.usace.army.mil/)
+-   [Mississippi River Geomorphology and Potamology Program
+    (MRG&P)](https://www.mvd.usace.army.mil/Missions/Mississippi-River-Science-Technology/MS-River-Geomorphology-Potamology/)
+-   [Flood Risk Management Program
+    (FRM)](https://www.iwr.usace.army.mil/Missions/Flood-Risk-Management/Flood-Risk-Management-Program/)
+-   [Engineering With Nature (EWN)](https://ewn.el.erdc.dren.mil/)
 
-    chutedesign::run_app()
+<p float="left">
+<img src="man/figures/chl.png" height=75 />
+<img src="man/figures/EMRRP_logo_200.png" height=75 />
+<img src="man/figures/RSM_200.png" height=75 />
+<img src="man/figures/MRG&P_300.png" height=75 />
+<img src="man/figures/FRMP_200.png" height=75 />
+<img src="man/figures/SilverJackets_200.png" height=75 />
+<img src="man/figures/EWN_200.png" height=75 />
+</p>
 
-## About
+## Latest Updates
 
-You are reading the doc about version : 2025.07.18
+Check out the [NEWS](NEWS.md) for details on the latest updates.
 
-This README has been compiled on the
+## Authors
 
-    Sys.time()
+-   Christopher Haring, Fluvial Geomorphologist/Research Physical
+    Scientist, U.S. Army Corps of Engineers
+    <a itemprop="sameAs" content="https://orcid.org/0009-0004-3834-9811" href="https://orcid.org/0009-0004-3834-9811" target="orcid.widget" rel="me noopener noreferrer" style="vertical-align:top;"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" alt="ORCID iD icon" style="width:1em;margin-right:.5em;"/>https://orcid.org/0009-0004-3834-9811</a>
+-   Michael Dougherty, Geographer, U.S. Army Corps of Engineers
+    <a itemprop="sameAs" content="https://orcid.org/0000-0002-1465-5927" href="https://orcid.org/0000-0002-1465-5927" target="orcid.widget" rel="me noopener noreferrer" style="vertical-align:top;"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" style="width:1em;margin-right:.5em;" alt="ORCID iD icon">https://orcid.org/0000-0002-1465-5927</a>
 
-    ## [1] "2025-07-18 15:38:11 CDT"
+## Bug Reports
 
-Here are the tests results and package coverage:
-
-    devtools::check(quiet = TRUE)
-
-    ## ℹ Loading chutedesign
-    ## ✖ create_scenario.R:5: @param requires two parts: an argument name and a description.
-    ## ✖ create_scenario.R:6: @param requires two parts: an argument name and a description.
-    ## ✖ create_scenario.R:7: @param requires two parts: an argument name and a description.
-    ## ✖ create_scenario.R:8: @param requires two parts: an argument name and a description.
-    ## ✖ create_scenario.R:9: @param requires two parts: an argument name and a description.
-    ## ✖ create_scenario.R:10: @param requires two parts: an argument name and a
-    ##   description.
-    ## ✖ create_scenario.R:11: @param requires two parts: an argument name and a
-    ##   description.
-    ## ✖ create_scenario.R:12: @param requires two parts: an argument name and a
-    ##   description.
-    ## ✖ create_scenario.R:13: @param requires two parts: an argument name and a
-    ##   description.
-    ## ✖ create_scenario.R:14: @param requires two parts: an argument name and a
-    ##   description.
-    ## ✖ create_scenario.R:15: @param requires two parts: an argument name and a
-    ##   description.
-    ## ✖ create_scenario.R:16: @param requires two parts: an argument name and a
-    ##   description.
-    ## ✖ create_scenario.R:17: @param requires two parts: an argument name and a
-    ##   description.
-    ## ✖ create_scenario.R:18: @param requires two parts: an argument name and a
-    ##   description.
-    ## ✖ create_scenario.R:19: @param requires two parts: an argument name and a
-    ##   description.
-    ## ✖ create_scenario.R:22: @returns requires a value.
-
-    ## ── R CMD check results ─────────────────────────────────── chutedesign 2025.07.18 ────
-    ## Duration: 6s
-    ## 
-    ## ❯ checking package dependencies ... ERROR
-    ##   Namespace dependencies missing from DESCRIPTION Imports/Depends entries:
-    ##     'bsicons', 'bslib'
-    ##   
-    ##   See section 'The DESCRIPTION file' in the 'Writing R Extensions'
-    ##   manual.
-    ## 
-    ## 1 error ✖ | 0 warnings ✔ | 0 notes ✔
-
-    covr::package_coverage()
-
-    ## chutedesign Coverage: 80.39%
-
-    ## R/run_app.R: 0.00%
-
-    ## R/app_server.R: 9.52%
-
-    ## R/app_config.R: 100.00%
-
-    ## R/app_ui.R: 100.00%
-
-    ## R/create_scenario.R: 100.00%
-
-    ## R/golem_add_external_resources.R: 100.00%
+If you find any bugs using `chutedesign`, please open an
+[issue](https://github.com/FluvialGeomorph/chutedesign/issues).
