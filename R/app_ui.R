@@ -45,9 +45,9 @@ app_ui <- function(request) {
                 class = "d-flex justify-content-between"
               ),
               fluidRow(
-                column(4, numericInput("slope_start", "Start slope (m/m)", 0)),
-                column(4, numericInput("slope_end", "End slope (m/m)", 1)),
-                column(4, numericInput("slope_by", "by slope (m/m)", 0.01))
+                column(4, numericInput("slope_start", "Start Slope (m/m)", 0)),
+                column(4, numericInput("slope_end", "End Slope (m/m)", 1)),
+                column(4, numericInput("slope_by", "by Slope (m/m)", 0.01))
               ),
             ),
             card(
@@ -61,18 +61,17 @@ app_ui <- function(request) {
               ),
               fluidRow(
                 column(4, numericInput("particle_size_start",
-                                       "Start particle size (m)", 1)),
+                                       "Start Particle Size (m)", 1)),
                 column(4, numericInput("particle_size_end",
-                                       "End particle size (m)", 2)),
+                                       "End Particle Size (m)", 2)),
                 column(4, numericInput("particle_size_by",
-                                       "by particle size (m)", 0.1))
+                                       "by Particle Size (m)", 0.1))
               ),
             ),
             numericInput("length", "Length of Chute (m)", 2000),
             numericInput("side_slope", "Side Slope (h:v)", 2.5),
             numericInput("total_discharge", "Total Discharge (m^3/s)", 2000),
             numericInput("stone_density", "Stone Density (kg/m^3)", 2650),
-            numericInput("particle_size", "Particle Size (m)", 2.6),
             numericInput("contingency", "Contingency Factor on Quantity", 1.3),
             numericInput("porosity", "Bulk-Placed Porosity", 0.3),
             numericInput("water_density", "Water Density (kg/m^3)", 998),
