@@ -18,7 +18,7 @@ app_ui <- function(request) {
         title = "Design a Chute",
         layout_sidebar(
           sidebar = sidebar(
-            width = 450,
+            width = 500,
             actionButton("calculate_dimensions", "Calculate Dimensions"),
             card(
               card_header(
@@ -34,6 +34,22 @@ app_ui <- function(request) {
                 column(4, numericInput("width_start", "Start Width (m)", 0)),
                 column(4, numericInput("width_end", "End Width (m)", 100)),
                 column(4, numericInput("width_by", "by Width (m)", 10))
+              ),
+            ),
+            card(
+              card_header(
+                "Length of Chute",
+                tooltip(
+                  bs_icon("info-circle"),
+                  "Here are the instructions."
+                ),
+                class = "d-flex justify-content-between"
+              ),
+              numericInput("length", "Length of Interest (m)", 2000),
+              fluidRow(
+                column(4, numericInput("length_start", "Start Length (m)", 1000)),
+                column(4, numericInput("length_end", "End Length (m)", 5000)),
+                column(4, numericInput("length_by", "by Length (m)", 500))
               ),
             ),
             card(
@@ -72,7 +88,6 @@ app_ui <- function(request) {
                                        "by Particle Size (m)", 0.1))
               ),
             ),
-            numericInput("length", "Length of Chute (m)", 2000),
             numericInput("side_slope", "Side Slope (h:v)", 2.5),
             numericInput("total_discharge", "Total Discharge (m^3/s)", 2000),
             numericInput("stone_density", "Stone Density (kg/m^3)", 2650),
@@ -84,15 +99,19 @@ app_ui <- function(request) {
           navset_card_tab(
             nav_panel(
               title = "by Width",
-              "Plot 1"
+              "Plots go here"
+            ),
+            nav_panel(
+              title = "by Length",
+              "Plots go here"
             ),
             nav_panel(
               title = "by Slope",
-              "Plot 2"
+              "Plots go here"
             ),
             nav_panel(
               title = "by Particle Size",
-              "Plot 3"
+              "Plots go here"
             )
           ) # End navset_card_tab
         ) # End layout_sidebar

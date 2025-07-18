@@ -3,6 +3,10 @@ test_that("check scenario", {
   width_start         = 0
   width_end           = 100
   width_by            = 10
+  length              = 2000
+  length_start        = 1000
+  length_end          = 5000
+  length_by           = 500
   slope               = 0.1
   slope_start         = 0
   slope_end           = 1
@@ -11,7 +15,6 @@ test_that("check scenario", {
   particle_size_start = 1
   particle_size_end   = 2
   particle_size_by    = 0.1
-  length              = 2000
   side_slope          = 2.5
   total_discharge     = 2000
   stone_density       = 2650
@@ -25,6 +28,10 @@ test_that("check scenario", {
     width_start         = width_start,
     width_end           = width_end,
     width_by            = width_by,
+    length              = length,
+    length_start        = length_start,
+    length_end          = length_end,
+    length_by           = length_by,
     slope               = slope,
     slope_start         = slope_start,
     slope_end           = slope_end,
@@ -33,7 +40,6 @@ test_that("check scenario", {
     particle_size_start = particle_size_start,
     particle_size_end   = particle_size_end,
     particle_size_by    = particle_size_by,
-    length              = length,
     side_slope          = side_slope,
     total_discharge     = total_discharge,
     stone_density       = stone_density,
@@ -43,5 +49,5 @@ test_that("check scenario", {
     gravity             = gravity
   )
   expect_true(is.list(scenario))
-  expect_equal(length(scenario), 20)
+  expect_equal(length(scenario), 23)
 })
