@@ -5,6 +5,7 @@
 #' @import shiny
 #' @import bslib
 #' @import bsicons
+#' @importFrom rgl rglwidgetOutput
 #' @noRd
 app_ui <- function(request) {
   tagList(
@@ -88,7 +89,7 @@ app_ui <- function(request) {
                                        "by Particle Size (m)", 0.1))
               ),
             ),
-            numericInput("side_slope", "Side Slope (h:v)", 2.5),
+            numericInput("side_slope", "Side Slope (rise:run)", 2.5),
             numericInput("total_discharge", "Total Discharge (m^3/s)", 2000),
             numericInput("stone_density", "Stone Density (kg/m^3)", 2650),
             numericInput("contingency", "Contingency Factor on Quantity", 1.3),
@@ -101,7 +102,12 @@ app_ui <- function(request) {
             selected = "Intro",
             nav_panel(
               title = "Intro",
-              "Instructions go here."
+              "Getting Started
+              Instructions go here."
+            ),
+            nav_panel(
+              title = "Diagram",
+              rglwidgetOutput("channel_plot", width = "100%", height = "600px")
             ),
             nav_panel(
               title = "by Width",

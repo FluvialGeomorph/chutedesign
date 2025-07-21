@@ -4,6 +4,7 @@
 #'     DO NOT REMOVE.
 #' @import shiny
 #' @import bslib
+#' @importFrom rgl renderRglwidget
 #' @noRd
 app_server <- function(input, output, session) {
 
@@ -39,7 +40,18 @@ app_server <- function(input, output, session) {
     print(head(width_df))
     message("width_df created")
 
-    nav_select(id = "results", selected = "by Width", session)
+    output$channel_plot <- renderRglwidget({
+      draw_channel_3d(
+        width = input$width,
+        length = input$length,
+        slope = input$slope,
+        side_slope = input$side_slope,
+        depth = 6.5,
+        alpha = 0.5
+      )
+    })
+
+    nav_select(id = "results", selected = "Diagram", session)
 
   })
 
