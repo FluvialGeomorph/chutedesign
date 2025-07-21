@@ -97,21 +97,27 @@ app_ui <- function(request) {
             numericInput("gravity", "Gravitational Constant (N/m^3)", 9.787)
           ), # End sidebar
           navset_card_tab(
+            id = "results",
+            selected = "Intro",
+            nav_panel(
+              title = "Intro",
+              "Instructions go here."
+            ),
             nav_panel(
               title = "by Width",
-              "Plots go here"
+              "Plots go here."
             ),
             nav_panel(
               title = "by Length",
-              "Plots go here"
+              "Plots go here."
             ),
             nav_panel(
               title = "by Slope",
-              "Plots go here"
+              "Plots go here."
             ),
             nav_panel(
               title = "by Particle Size",
-              "Plots go here"
+              "Plots go here."
             )
           ) # End navset_card_tab
         ) # End layout_sidebar

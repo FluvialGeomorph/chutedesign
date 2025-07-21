@@ -3,6 +3,7 @@
 #' @param input,output,session Internal parameters for {shiny}.
 #'     DO NOT REMOVE.
 #' @import shiny
+#' @import bslib
 #' @noRd
 app_server <- function(input, output, session) {
 
@@ -37,6 +38,9 @@ app_server <- function(input, output, session) {
     width_df <- by_width_df(scenario)
     print(head(width_df))
     message("width_df created")
+
+    nav_select(id = "results", selected = "by Width", session)
+
   })
 
 }
