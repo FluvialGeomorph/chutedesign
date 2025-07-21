@@ -61,7 +61,7 @@ draw_channel_3d <- function(width = 4,
   # --- Axes and Labels ---
   axes3d()
   title3d("",
-          xlab = "Length (x)", ylab = "Width (y)", zlab = "Elevation (z)")
+          xlab = "Length (m)", ylab = "Width (m)", zlab = "Elevation (m)")
 
   rglwidget()
 }
