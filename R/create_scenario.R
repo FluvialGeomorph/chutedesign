@@ -1,31 +1,31 @@
 #' @title Create Scenario
 #' @description Create a scenario.
 #'
-#' @param width
-#' @param width_start numeric; Width of the chute
-#' @param width_end
-#' @param width_by
-#' @param length
-#' @param length_start
-#' @param length_end
-#' @param length_by
-#' @param slope
-#' @param slope_start
-#' @param slope_end
-#' @param slope_by
-#' @param particle_size
-#' @param particle_size_start
-#' @param particle_size_end
-#' @param particle_size_by
-#' @param side_slope
-#' @param total_discharge
-#' @param stone_density
-#' @param contingency
-#' @param porosity
-#' @param water_density
-#' @param gravity
+#' @param width               numeric; Width of chute.
+#' @param width_start         numeric; Width series start value.
+#' @param width_end           numeric; Width series end value.
+#' @param width_by            numeric; Width by value.
+#' @param length              numeric; Length of chute.
+#' @param length_start        numeric; Length series start value
+#' @param length_end          numeric; Length series end value.
+#' @param length_by           numeric; Length series by value.
+#' @param slope               numeric; Slope of chute.
+#' @param slope_start         numeric; Slope series start value.
+#' @param slope_end           numeric; Slope series end value.
+#' @param slope_by            numeric; Slope series by value.
+#' @param particle_size       numeric; Particle size.
+#' @param particle_size_start numeric; Particle size series start value.
+#' @param particle_size_end   numeric; Particle size series end value.
+#' @param particle_size_by    numeric; Particle size series by value.
+#' @param side_slope          numeric; Side slope of chute.
+#' @param total_discharge     numeric; Total discharge of chute.
+#' @param stone_density       numeric; Stone density.
+#' @param contingency         numeric; Contingency factor on quantities.
+#' @param porosity            numeric; Stone bulk-placed porosity.
+#' @param water_density       numeric; Water density.
+#' @param gravity             numeric; Gravity constant.
 #'
-#' @returns
+#' @returns a list representing the characteristics of the scenario
 #' @export
 #'
 create_scenario <- function(

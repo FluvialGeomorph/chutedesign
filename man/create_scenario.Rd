@@ -31,9 +31,54 @@ create_scenario(
 )
 }
 \arguments{
-\item{width_start}{numeric; Width of the chute}
+\item{width}{numeric; Width of chute.}
 
-\item{gravity}{}
+\item{width_start}{numeric; Width series start value.}
+
+\item{width_end}{numeric; Width series end value.}
+
+\item{width_by}{numeric; Width by value.}
+
+\item{length}{numeric; Length of chute.}
+
+\item{length_start}{numeric; Length series start value}
+
+\item{length_end}{numeric; Length series end value.}
+
+\item{length_by}{numeric; Length series by value.}
+
+\item{slope}{numeric; Slope of chute.}
+
+\item{slope_start}{numeric; Slope series start value.}
+
+\item{slope_end}{numeric; Slope series end value.}
+
+\item{slope_by}{numeric; Slope series by value.}
+
+\item{particle_size}{numeric; Particle size.}
+
+\item{particle_size_start}{numeric; Particle size series start value.}
+
+\item{particle_size_end}{numeric; Particle size series end value.}
+
+\item{particle_size_by}{numeric; Particle size series by value.}
+
+\item{side_slope}{numeric; Side slope of chute.}
+
+\item{total_discharge}{numeric; Total discharge of chute.}
+
+\item{stone_density}{numeric; Stone density.}
+
+\item{contingency}{numeric; Contingency factor on quantities.}
+
+\item{porosity}{numeric; Stone bulk-placed porosity.}
+
+\item{water_density}{numeric; Water density.}
+
+\item{gravity}{numeric; Gravity constant.}
+}
+\value{
+a list representing the characteristics of the scenario
 }
 \description{
 Create a scenario.
