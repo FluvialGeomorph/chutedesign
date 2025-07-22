@@ -3,10 +3,10 @@
 #'
 #' @param channel_df data.frame; A channel data frame where each row
 #'                   represents a channel.
-#' @returns
+#' @returns a data frame of channel dimensions
 #' @export
 #' @importFrom dplyr mutate %>%
-calc_channel <- function(channel_df) {
+channel_dimensions <- function(channel_df) {
   # Constants
   h2o_specific_weight <- 9787  # units: N/m^3
 

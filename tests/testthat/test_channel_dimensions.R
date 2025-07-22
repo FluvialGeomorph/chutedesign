@@ -51,6 +51,6 @@ test_that("check by_width_df", {
 
   channel_df <- by_width_df(scenario)
 
-  channel_dims <- calc_channel(channel_df)
+  width_dims <- channel_dimensions(channel_df)
   expect_s3_class(channel_dims, "data.frame")
 })
