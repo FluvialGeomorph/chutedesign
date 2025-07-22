@@ -50,7 +50,7 @@ test_that("check by_width_df", {
   )
 
   channel_df <- by_width_df(scenario)
-
-  width_dims <- channel_dimensions(channel_df)
-  expect_s3_class(width_dims, "data.frame")
+  channel_dims <- channel_dimensions(channel_df)
+  plot <- plot_stone_size_method(channel_dims)
+  expect_s3_class(plot, "ggplot")
 })

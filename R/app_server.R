@@ -6,7 +6,6 @@
 #' @import bslib
 #' @import dplyr
 #' @importFrom DT renderDT datatable formatRound
-#' @importFrom ggplot2 ggplot aes geom_line
 #' @importFrom rgl renderRglwidget
 #' @noRd
 app_server <- function(input, output, session) {
@@ -37,17 +36,14 @@ app_server <- function(input, output, session) {
       water_density       = input$water_density,
       gravity             = input$gravity
     )
-    print(head(scenario))
     message("Scenario created")
 
     # Create channel data frames
     width_df <- by_width_df(scenario)
-    print(head(width_df))
     message("width_df created")
 
     # Calculate channel dimensions
     width_dims <- channel_dimensions(width_df)
-    print(head(width_dims))
     message("width_dims created")
 
     calc_colnames <- width_dims %>%
@@ -56,8 +52,7 @@ app_server <- function(input, output, session) {
 
     # Result outputs
     output$width_stone_size <- renderPlot({
-      ggplot(width_dims, aes(x = width, y = stone_size_nrcs)) +
-        geom_line()
+      plot_stone_size_method(width_dims)
     })
 
     output$width_table <- renderDT(

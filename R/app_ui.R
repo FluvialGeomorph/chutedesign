@@ -31,11 +31,11 @@ app_ui <- function(request) {
                 ),
                 class = "d-flex justify-content-between"
               ),
-              numericInput("width", "Width of Interest (m)", 50),
+              numericInput("width", "Width of Interest (m)", 60),
               fluidRow(
-                column(4, numericInput("width_start", "Start Width (m)", 0)),
-                column(4, numericInput("width_end", "End Width (m)", 100)),
-                column(4, numericInput("width_by", "by Width (m)", 10))
+                column(4, numericInput("width_start", "Start Width (m)", 40)),
+                column(4, numericInput("width_end", "End Width (m)", 200)),
+                column(4, numericInput("width_by", "by Width (m)", 20))
               ),
             ),
             card(
@@ -50,7 +50,7 @@ app_ui <- function(request) {
               numericInput("length", "Length of Interest (m)", 2000),
               fluidRow(
                 column(4, numericInput("length_start", "Start Length (m)", 1000)),
-                column(4, numericInput("length_end", "End Length (m)", 5000)),
+                column(4, numericInput("length_end", "End Length (m)", 3000)),
                 column(4, numericInput("length_by", "by Length (m)", 500))
               ),
             ),
