@@ -4,6 +4,9 @@
 #'     DO NOT REMOVE.
 #' @import shiny
 #' @import bslib
+#' @import dplyr
+#' @importFrom DT renderDT datatable formatRound
+#' @importFrom ggplot2 ggplot aes geom_line
 #' @importFrom rgl renderRglwidget
 #' @noRd
 app_server <- function(input, output, session) {
@@ -36,9 +39,35 @@ app_server <- function(input, output, session) {
     )
     print(head(scenario))
     message("Scenario created")
+
+    # Create channel data frames
     width_df <- by_width_df(scenario)
     print(head(width_df))
     message("width_df created")
+
+    # Calculate channel dimensions
+    width_dims <- channel_dimensions(width_df)
+    print(head(width_dims))
+    message("width_dims created")
+
+    calc_colnames <- width_dims %>%
+      select(ncol(width_df):ncol(.)) %>%
+      colnames()
+
+    # Result outputs
+    output$width_stone_size <- renderPlot({
+      ggplot(width_dims, aes(x = width, y = stone_size_nrcs)) +
+        geom_line()
+    })
+
+    output$width_table <- renderDT(
+      datatable(width_dims) %>%
+        formatRound(columns = calc_colnames)
+    )
+
+    # Create diagram
+    diagram_dims <- width_dims %>%
+      filter(.data$width == input$width)
 
     output$channel_plot <- renderRglwidget({
       draw_channel_3d(
@@ -46,7 +75,7 @@ app_server <- function(input, output, session) {
         length = input$length,
         slope = input$slope,
         side_slope = input$side_slope,
-        depth = 6.5,
+        depth = diagram_dims$depth,
         alpha = 0.5
       )
     })

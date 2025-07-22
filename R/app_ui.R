@@ -5,6 +5,7 @@
 #' @import shiny
 #' @import bslib
 #' @import bsicons
+#' @importFrom DT DTOutput
 #' @importFrom rgl rglwidgetOutput
 #' @noRd
 app_ui <- function(request) {
@@ -62,7 +63,7 @@ app_ui <- function(request) {
                 ),
                 class = "d-flex justify-content-between"
               ),
-              numericInput("slope", "Slope of Interest (m/m)", 0.1),
+              numericInput("slope", "Slope of Interest (m/m)", 0.01),
               fluidRow(
                 column(4, numericInput("slope_start", "Start Slope (m/m)", 0)),
                 column(4, numericInput("slope_end", "End Slope (m/m)", 1)),
@@ -111,7 +112,18 @@ app_ui <- function(request) {
             ),
             nav_panel(
               title = "by Width",
-              "Plots go here."
+              accordion(
+                id = "by_width_results",
+                open = c("Plots", "Data"),
+                accordion_panel(
+                  title = "Plots",
+                  plotOutput("width_stone_size")
+                ),
+                accordion_panel(
+                  title = "Data",
+                  DTOutput("width_table")
+                )
+              )
             ),
             nav_panel(
               title = "by Length",
