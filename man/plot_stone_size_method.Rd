@@ -4,10 +4,13 @@
 \alias{plot_stone_size_method}
 \title{Plot Stone Size by Methods}
 \usage{
-plot_stone_size_method(channel_dims)
+plot_stone_size_method(channel_dims, x_axis)
 }
 \arguments{
 \item{channel_dims}{data frame; A channel dimensions data frame.}
+
+\item{x_axis}{character; The variable to use for the x-axis. One of
+"width", "slope"}
 }
 \value{
 a ggplot2 object
