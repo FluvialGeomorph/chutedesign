@@ -125,13 +125,24 @@ app_ui <- function(request) {
                 )
               )
             ),
-            nav_panel(
-              title = "by Length",
-              "Plots go here."
-            ),
+            # nav_panel(
+            #   title = "by Length",
+            #   "Plots go here."
+            # ),
             nav_panel(
               title = "by Slope",
-              "Plots go here."
+              accordion(
+                id = "by_slope_results",
+                open = c("Plots", "Data"),
+                accordion_panel(
+                  title = "Plots",
+                  plotOutput("slope_stone_size")
+                ),
+                accordion_panel(
+                  title = "Data",
+                  DTOutput("slope_table")
+                )
+              )
             ),
             nav_panel(
               title = "by Particle Size",

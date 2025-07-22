@@ -40,11 +40,11 @@ app_server <- function(input, output, session) {
 
     # Create channel data frames
     width_df <- by_width_df(scenario)
-    message("width_df created")
+    slope_df <- by_slope_df(scenario)
 
     # Calculate channel dimensions
     width_dims <- channel_dimensions(width_df)
-    message("width_dims created")
+    slope_dims <- channel_dimensions(slope_df)
 
     calc_colnames <- width_dims %>%
       select(ncol(width_df):ncol(.)) %>%
@@ -52,15 +52,34 @@ app_server <- function(input, output, session) {
 
     # Result outputs
     output$width_stone_size <- renderPlot({
-      plot_stone_size_method(width_dims)
+      plot_stone_size_method(width_dims, x_axis = "width")
     })
 
-    output$width_table <- renderDT(
-      datatable(width_dims) %>%
-        formatRound(columns = calc_colnames)
-    )
+    output$slope_stone_size <- renderPlot({
+      plot_stone_size_method(slope_dims, x_axis = "slope")
+    })
 
-    # Create diagram
+    output$width_table <- renderDT({
+      datatable(width_dims,
+                extensions = 'Buttons',
+                options = list(searching = FALSE,
+                               dom = 'Bfrtip',
+                               buttons = c('csv'))
+      ) %>%
+        formatRound(columns = calc_colnames)
+    })
+
+    output$slope_table <- renderDT({
+      datatable(slope_dims,
+                extensions = 'Buttons',
+                options = list(searching = FALSE,
+                               dom = 'Bfrtip',
+                               buttons = c('csv'))
+      ) %>%
+        formatRound(columns = calc_colnames)
+    })
+
+    # Chute diagram
     diagram_dims <- width_dims %>%
       filter(.data$width == input$width)
 
@@ -75,8 +94,8 @@ app_server <- function(input, output, session) {
       )
     })
 
-    nav_select(id = "results", selected = "Diagram", session)
-
+    nav_select(id = "results", selected = "by Width", session)
+    message("")
   })
 
 }
