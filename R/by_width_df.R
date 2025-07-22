@@ -1,8 +1,6 @@
 #' @title By Width Data Frame
 #' @description Create a data frame of a scenario that varies by chute width.
-#'
 #' @param scenario list; A scenario definition list.
-#'
 #' @returns a scenario data frame
 #' @export
 by_width_df <- function(scenario) {
