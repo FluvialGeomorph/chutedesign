@@ -1,28 +1,33 @@
 Package: chutedesign
 Title: Design a Chute
-Description: Assists USACE engineers to design a chute.
-Version: 2025.07.18
+Version: 2025.07.23
 Authors@R: c(
-    person("Michael", "Dougherty", 
-           email = "Michael.P.Dougherty@usace.army.mil", 
-           role = c("aut", "cre"),
+    person("Michael", "Dougherty", , "Michael.P.Dougherty@usace.army.mil", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-1465-5927")),
-    person("Christopher", "Haring",
-           email = "Christopher.P.Haring@usace.army.mil",
-           role = c("aut"))
-    )
-License: file LICENSE
-Encoding: UTF-8
-LazyData: true
-RoxygenNote: 7.3.2
+    person("Christopher", "Haring", , "Christopher.P.Haring@usace.army.mil", role = "aut")
+  )
+Description: Assists USACE engineers in making hydraulic calculations
+    required to design a chute.
+License: CC0
 URL: https://github.com/FluvialGeomorph/chutedesign
 BugReports: https://github.com/FluvialGeomorph/chutedesign/issues
 Imports: 
+    bsicons,
+    bslib,
     config,
+    dplyr,
+    DT,
+    ggplot2,
     golem,
-    shiny
+    rgl,
+    shiny,
+    stringr,
+    tidyr
 Suggests: 
     spelling,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
+Encoding: UTF-8
 Language: en-US
+LazyData: true
+RoxygenNote: 7.3.2

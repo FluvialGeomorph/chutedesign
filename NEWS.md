@@ -1,3 +1,4 @@
-# chutedesign (development version)
+# chutedesign 2025.07.23
 
-* Initial CRAN submission.
+* Deployed to https://connect.posit.cloud/fluvialgeomorph
+* Converted spreadsheet to Shiny app. 
