@@ -50,16 +50,27 @@ scenario <- create_scenario (
 
 test_that("check by_width_df", {
   width_df <- by_width_df(scenario)
-  width_dims <- channel_dimensions(width_df)
-  plot1 <- plot_stone_size_method(width_dims, x_axis = "width")
-  plot1
+  channel_dims <- channel_dimensions(width_df)
+  x_axis <- "width"
+  plot1 <- plot_stone_size_method(channel_dims, x_axis = x_axis)
+  #plot1
   expect_s3_class(plot1, "ggplot")
 })
 
 test_that("check by_slope_df", {
   slope_df <- by_slope_df(scenario)
-  slope_dims <- channel_dimensions(slope_df)
-  plot2 <- plot_stone_size_method(slope_dims, x_axis = "slope")
-  plot2
+  channel_dims <- channel_dimensions(slope_df)
+  x_axis = "slope"
+  plot2 <- plot_stone_size_method(channel_dims, x_axis = x_axis)
+  #plot2
   expect_s3_class(plot2, "ggplot")
+})
+
+test_that("check by_particle_size_df", {
+  particle_size_df <- by_particle_size_df(scenario)
+  channel_dims <- channel_dimensions(particle_size_df)
+  x_axis = "particle_size"
+  plot3 <- plot_stone_size_method(channel_dims, x_axis = x_axis)
+  #plot3
+  expect_s3_class(plot3, "ggplot")
 })
