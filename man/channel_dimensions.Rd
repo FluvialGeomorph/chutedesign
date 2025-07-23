@@ -7,12 +7,11 @@
 channel_dimensions(channel_df)
 }
 \arguments{
-\item{channel_df}{data.frame; A channel data frame where each row
-represents a channel.}
+\item{channel_df}{data.frame; Input data frame with required channel variables}
 }
 \value{
-a data frame of channel dimensions
+A data frame with derived channel dimensions and stone parameters
 }
 \description{
-Create a channel data frame.
+Compute hydraulic and stone sizing metrics for each channel
 }
