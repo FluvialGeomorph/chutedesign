@@ -70,7 +70,7 @@ app_server <- function(input, output, session) {
                                dom = 'Bfrtip',
                                buttons = c('csv'))
       ) %>%
-        formatRound(columns = calc_colnames)
+        formatRound(columns = calc_colnames, digits = 4)
     })
     output$slope_table <- renderDT({
       datatable(slope_dims,
@@ -79,7 +79,7 @@ app_server <- function(input, output, session) {
                                dom = 'Bfrtip',
                                buttons = c('csv'))
       ) %>%
-        formatRound(columns = calc_colnames)
+        formatRound(columns = calc_colnames, digits = 4)
     })
     output$particle_size_table <- renderDT({
       datatable(particle_size_dims,
@@ -88,7 +88,7 @@ app_server <- function(input, output, session) {
                                dom = 'Bfrtip',
                                buttons = c('csv'))
       ) %>%
-        formatRound(columns = calc_colnames)
+        formatRound(columns = calc_colnames, digits = 4)
     })
 
     # Chute diagram
