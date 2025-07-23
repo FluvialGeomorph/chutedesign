@@ -103,8 +103,26 @@ app_ui <- function(request) {
             selected = "Intro",
             nav_panel(
               title = "Intro",
-              "Getting Started
-              Instructions go here."
+              markdown("
+              # Getting Started
+
+              This app helps estimate the stone sizes required for chutes of various dimensions.
+
+              ## Define the Scenario
+
+              1. In the left sidebar, specify the design characteristics of the chute.
+              2. Click the `Calculate Dimensions` button.
+
+              ## Review the Results
+
+              Scenario results can be explored using the tabs across the top of the app.
+
+              * Diagram - View a wireframe diagram of the specified channel.
+              * by Width - View results of the scenario where chute widths are varied.
+              * by Slope - View results of the scenario where chute slopes are varied.
+              * by Particle Size - View results of the scenario where chute particle sizes are varied.
+
+              ")
             ),
             nav_panel(
               title = "Diagram",
