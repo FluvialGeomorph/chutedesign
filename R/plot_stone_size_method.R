@@ -44,4 +44,6 @@ plot_stone_size_method <- function(channel_dims, x_axis) {
     labs(title = "Stone Size by Methods",
          x = x_axis_label, y = "Stone Size (m)") +
     theme_light()
+
+  return(stone_plot)
 }
