@@ -39,24 +39,28 @@ app_server <- function(input, output, session) {
     message("Scenario created")
 
     # Create channel data frames
-    width_df <- by_width_df(scenario)
-    slope_df <- by_slope_df(scenario)
+    width_df         <- by_width_df(scenario)
+    slope_df         <- by_slope_df(scenario)
+    particle_size_df <- by_particle_size_df(scenario)
 
     # Calculate channel dimensions
-    width_dims <- channel_dimensions(width_df)
-    slope_dims <- channel_dimensions(slope_df)
+    width_dims         <- channel_dimensions(width_df)
+    slope_dims         <- channel_dimensions(slope_df)
+    particle_size_dims <- channel_dimensions(particle_size_df)
 
     calc_colnames <- width_dims %>%
-      select(ncol(width_df):ncol(.)) %>%
+      select((ncol(width_df) + 1):ncol(.)) %>%
       colnames()
 
     # Result outputs
     output$width_stone_size <- renderPlot({
       plot_stone_size_method(width_dims, x_axis = "width")
     })
-
     output$slope_stone_size <- renderPlot({
       plot_stone_size_method(slope_dims, x_axis = "slope")
+    })
+    output$particle_size_stone_size <- renderPlot({
+      plot_stone_size_method(particle_size_dims, x_axis = "particle_size")
     })
 
     output$width_table <- renderDT({
@@ -68,9 +72,17 @@ app_server <- function(input, output, session) {
       ) %>%
         formatRound(columns = calc_colnames)
     })
-
     output$slope_table <- renderDT({
       datatable(slope_dims,
+                extensions = 'Buttons',
+                options = list(searching = FALSE,
+                               dom = 'Bfrtip',
+                               buttons = c('csv'))
+      ) %>%
+        formatRound(columns = calc_colnames)
+    })
+    output$particle_size_table <- renderDT({
+      datatable(particle_size_dims,
                 extensions = 'Buttons',
                 options = list(searching = FALSE,
                                dom = 'Bfrtip',

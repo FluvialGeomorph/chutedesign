@@ -27,7 +27,7 @@ app_ui <- function(request) {
                 "Width of Chute",
                 tooltip(
                   bs_icon("info-circle"),
-                  "Here are the instructions."
+                  "Use these fields to configure the range of chute widths to be calculated."
                 ),
                 class = "d-flex justify-content-between"
               ),
@@ -43,7 +43,7 @@ app_ui <- function(request) {
                 "Length of Chute",
                 tooltip(
                   bs_icon("info-circle"),
-                  "Here are the instructions."
+                  "Use these fields to configure the range of chute lengths to be calculated."
                 ),
                 class = "d-flex justify-content-between"
               ),
@@ -59,7 +59,7 @@ app_ui <- function(request) {
                 "Slope of Chute",
                 tooltip(
                   bs_icon("info-circle"),
-                  "Here are the instructions."
+                  "Use these fields to configure the range of chute slopes to be calculated."
                 ),
                 class = "d-flex justify-content-between"
               ),
@@ -75,7 +75,7 @@ app_ui <- function(request) {
                 "Particle Size",
                 tooltip(
                   bs_icon("info-circle"),
-                  "Particle Size for Hydrauic Comps (m)"
+                  "Use these fields to configure the range of chute particle sizes to be calculated."
                 ),
                 class = "d-flex justify-content-between"
               ),
@@ -125,10 +125,6 @@ app_ui <- function(request) {
                 )
               )
             ),
-            # nav_panel(
-            #   title = "by Length",
-            #   "Plots go here."
-            # ),
             nav_panel(
               title = "by Slope",
               accordion(
@@ -146,7 +142,18 @@ app_ui <- function(request) {
             ),
             nav_panel(
               title = "by Particle Size",
-              "Plots go here."
+              accordion(
+                id = "by_particle_results",
+                open = c("Plots", "Data"),
+                accordion_panel(
+                  title = "Plots",
+                  plotOutput("particle_size_stone_size")
+                ),
+                accordion_panel(
+                  title = "Data",
+                  DTOutput("particle_size_table")
+                )
+              )
             )
           ) # End navset_card_tab
         ) # End layout_sidebar
