@@ -354,7 +354,7 @@
       "description": {
         "Package": "chutedesign",
         "Title": "Design a Chute",
-        "Version": "2025.07.23",
+        "Version": "2025.07.24",
         "Authors@R": "c(\nperson(\"Michael\", \"Dougherty\", , \"Michael.P.Dougherty@usace.army.mil\", role = c(\"aut\", \"cre\"),\ncomment = c(ORCID = \"0000-0002-1465-5927\")),\nperson(\"Christopher\", \"Haring\", , \"Christopher.P.Haring@usace.army.mil\", role = \"aut\")\n)",
         "Description": "Assists USACE engineers in making hydraulic calculations\nrequired to design a chute.",
         "License": "CC0",
@@ -2351,7 +2351,7 @@
       "checksum": "da61c347bf9a697a2a97d76de115cafb"
     },
     "DESCRIPTION": {
-      "checksum": "0e1bbd16ffe8ea221b1ad3c47ec1b397"
+      "checksum": "5ac3cbef0bce692b1270959d99d5d70c"
     },
     "inst/app/www/favicon.png": {
       "checksum": "4d047df9e09958186f454b6d046de6e3"
