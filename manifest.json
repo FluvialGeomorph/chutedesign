@@ -355,32 +355,18 @@
         "Package": "chutedesign",
         "Title": "Design a Chute",
         "Version": "2025.07.23",
-        "Authors@R": "c(\n    person(\"Michael\", \"Dougherty\", , \"Michael.P.Dougherty@usace.army.mil\", role = c(\"aut\", \"cre\"),\n           comment = c(ORCID = \"0000-0002-1465-5927\")),\n    person(\"Christopher\", \"Haring\", , \"Christopher.P.Haring@usace.army.mil\", role = \"aut\")\n  )",
-        "Description": "Assists USACE engineers in making hydraulic calculations\n    required to design a chute.",
+        "Authors@R": "c(\nperson(\"Michael\", \"Dougherty\", , \"Michael.P.Dougherty@usace.army.mil\", role = c(\"aut\", \"cre\"),\ncomment = c(ORCID = \"0000-0002-1465-5927\")),\nperson(\"Christopher\", \"Haring\", , \"Christopher.P.Haring@usace.army.mil\", role = \"aut\")\n)",
+        "Description": "Assists USACE engineers in making hydraulic calculations\nrequired to design a chute.",
         "License": "CC0",
         "URL": "https://github.com/FluvialGeomorph/chutedesign",
         "BugReports": "https://github.com/FluvialGeomorph/chutedesign/issues",
-        "Imports": "bsicons, bslib, config, dplyr, DT, ggplot2, golem, rgl, shiny,\nstringr, tidyr",
-        "Suggests": "spelling, testthat (>= 3.0.0)",
+        "Imports": "bsicons,\nbslib,\nconfig,\ndplyr,\nDT,\nggplot2,\ngolem,\nrgl,\nshiny,\nstringr,\ntidyr",
+        "Suggests": "spelling,\ntestthat (>= 3.0.0)",
         "Config/testthat/edition": "3",
         "Encoding": "UTF-8",
         "Language": "en-US",
-        "RoxygenNote": "7.3.2",
-        "RemoteType": "github",
-        "RemoteHost": "api.github.com",
-        "RemoteRepo": "chutedesign",
-        "RemoteUsername": "FluvialGeomorph",
-        "RemoteRef": "HEAD",
-        "RemoteSha": "ddef7935d4ccf0ae42bd644ce4ce2bf12eb74b65",
-        "GithubRepo": "chutedesign",
-        "GithubUsername": "FluvialGeomorph",
-        "GithubRef": "HEAD",
-        "GithubSHA1": "ddef7935d4ccf0ae42bd644ce4ce2bf12eb74b65",
-        "NeedsCompilation": "no",
-        "Packaged": "2025-07-23 22:21:25 UTC; B5PMMMPD",
-        "Author": "Michael Dougherty [aut, cre] (<https://orcid.org/0000-0002-1465-5927>),\n  Christopher Haring [aut]",
-        "Maintainer": "Michael Dougherty <Michael.P.Dougherty@usace.army.mil>",
-        "Built": "R 4.4.3; ; 2025-07-23 22:21:29 UTC; windows"
+        "LazyData": "true",
+        "RoxygenNote": "7.3.2"
       }
     },
     "cli": {
@@ -2377,7 +2363,7 @@
       "checksum": "9ba78bbf04ac90a5ea933b58ff659ee0"
     },
     "NAMESPACE": {
-      "checksum": "3ccee2b7c610490e300e8929deb54b1a"
+      "checksum": "7862cc6aaf981d7d01aca51e0f32161d"
     },
     "R/_disable_autoload.R": {
       "checksum": "9d8f7f20e88b559c046ec1f59fe82cba"
@@ -2386,10 +2372,10 @@
       "checksum": "a4bbbaf7d888ffdaf7d7d42afdec07a5"
     },
     "R/app_server.R": {
-      "checksum": "c0a54a65dc70ce7f88258b31358c7e16"
+      "checksum": "f269ab14a938025729aafef4f15391aa"
     },
     "R/app_ui.R": {
-      "checksum": "4aacbeb9dcc7f690fbb3db8a3fbaa1cb"
+      "checksum": "524a7bff3cbbe1e204c5f699232cd597"
     },
     "R/by_particle_size_df.R": {
       "checksum": "24e2b580591d533c489eaaf77af9a85d"
@@ -2401,7 +2387,7 @@
       "checksum": "f19e5fd280f0faf41f54eadc3d8385a2"
     },
     "R/channel_dimensions.R": {
-      "checksum": "deae07546d182ead7bf68cf321f58312"
+      "checksum": "5ace0105aa3779ee60128ab15957dbdf"
     },
     "R/create_scenario.R": {
       "checksum": "5a21a949f0350184df61e65bc85730c6"
@@ -2411,6 +2397,9 @@
     },
     "R/golem_add_external_resources.R": {
       "checksum": "b53507d644bd5d3fef3af85284a6af54"
+    },
+    "R/plot_channel_flow.R": {
+      "checksum": "8114b29b547b7e621f45dcd4e77e869e"
     },
     "R/plot_stone_size_method.R": {
       "checksum": "33ddd7298c871f97cd51f82a7b36aef5"
