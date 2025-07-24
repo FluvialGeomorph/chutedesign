@@ -51,10 +51,10 @@ channel_dimensions <- function(channel_df) {
       depth = normal_depth * 2,
       length_side_horz = depth * side_slope,
       length_left_bank = length_side_horz / cos(side_angle * (pi / 180)),
-      matress_thickness = adopted_stone_diameter * 2,
-      stone_vol_sqm = contingency * (matress_thickness * (length_left_bank + width) * length) * (1 - porosity),
-      stone_vol_cuyd = stone_vol_sqm * 1.308,
-      stone_vol_metric_ton = stone_vol_sqm * stone_density / 1000,
+      mattress_thickness = adopted_stone_diameter * 2,
+      stone_vol_m3 = contingency * (mattress_thickness * (length_left_bank + width) * length) * (1 - porosity),
+      stone_vol_cuyd = stone_vol_m3 * 1.308,
+      stone_vol_metric_ton = stone_vol_m3 * stone_density / 1000,
       stone_vol_us_ton = stone_vol_metric_ton * 1.102,
       number_stones = stone_vol_metric_ton / adopted_stone_weight_ton
     )
