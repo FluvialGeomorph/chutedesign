@@ -11,6 +11,9 @@
 app_server <- function(input, output, session) {
 
   observeEvent(input$calculate_dimensions, {
+    # Design Inputs
+
+    ## Create scenario
     scenario <- create_scenario(
       width               = input$width,
       width_start         = input$width_start,
@@ -36,14 +39,13 @@ app_server <- function(input, output, session) {
       water_density       = input$water_density,
       gravity             = input$gravity
     )
-    message("Scenario created")
 
-    # Create channel data frames
+    ## Create channel data frames
     width_df         <- by_width_df(scenario)
     slope_df         <- by_slope_df(scenario)
     particle_size_df <- by_particle_size_df(scenario)
 
-    # Calculate channel dimensions
+    ## Calculate channel dimensions
     width_dims         <- channel_dimensions(width_df)
     slope_dims         <- channel_dimensions(slope_df)
     particle_size_dims <- channel_dimensions(particle_size_df)
@@ -52,46 +54,9 @@ app_server <- function(input, output, session) {
       select((ncol(width_df) + 1):ncol(.)) %>%
       colnames()
 
-    # Result outputs
-    output$width_stone_size <- renderPlot({
-      plot_stone_size_method(width_dims, x_axis = "width")
-    })
-    output$slope_stone_size <- renderPlot({
-      plot_stone_size_method(slope_dims, x_axis = "slope")
-    })
-    output$particle_size_stone_size <- renderPlot({
-      plot_stone_size_method(particle_size_dims, x_axis = "particle_size")
-    })
+    # Result Outputs
 
-    output$width_table <- renderDT({
-      datatable(width_dims,
-                extensions = 'Buttons',
-                options = list(searching = FALSE,
-                               dom = 'Bfrtip',
-                               buttons = c('csv'))
-      ) %>%
-        formatRound(columns = calc_colnames, digits = 4)
-    })
-    output$slope_table <- renderDT({
-      datatable(slope_dims,
-                extensions = 'Buttons',
-                options = list(searching = FALSE,
-                               dom = 'Bfrtip',
-                               buttons = c('csv'))
-      ) %>%
-        formatRound(columns = calc_colnames, digits = 4)
-    })
-    output$particle_size_table <- renderDT({
-      datatable(particle_size_dims,
-                extensions = 'Buttons',
-                options = list(searching = FALSE,
-                               dom = 'Bfrtip',
-                               buttons = c('csv'))
-      ) %>%
-        formatRound(columns = calc_colnames, digits = 4)
-    })
-
-    # Chute diagram
+    ## Chute diagram
     diagram_dims <- width_dims %>%
       filter(.data$width == input$width)
 
@@ -106,8 +71,59 @@ app_server <- function(input, output, session) {
       )
     })
 
+    ## by Width
+    output$width_stone_size <- renderPlot({
+      plot_stone_size_method(width_dims, x_axis = "width")
+    })
+    output$width_channel_flow <- renderPlot({
+      plot_channel_flow(width_dims, x_axis = "width")
+    })
+    output$width_table <- renderDT({
+      datatable(width_dims,
+                extensions = 'Buttons',
+                options = list(searching = FALSE,
+                               dom = 'Bfrtip',
+                               buttons = c('csv'))
+      ) %>%
+        formatRound(columns = calc_colnames, digits = 4)
+    })
+
+    ## by Slope
+    output$slope_stone_size <- renderPlot({
+      plot_stone_size_method(slope_dims, x_axis = "slope")
+    })
+    output$slope_channel_flow <- renderPlot({
+      plot_channel_flow(slope_dims, x_axis = "slope")
+    })
+    output$slope_table <- renderDT({
+      datatable(slope_dims,
+                extensions = 'Buttons',
+                options = list(searching = FALSE,
+                               dom = 'Bfrtip',
+                               buttons = c('csv'))
+      ) %>%
+        formatRound(columns = calc_colnames, digits = 4)
+    })
+
+    ## by Particle Size
+    output$particle_size_stone_size <- renderPlot({
+      plot_stone_size_method(particle_size_dims, x_axis = "particle_size")
+    })
+    output$particle_size_channel_flow <- renderPlot({
+      plot_channel_flow(particle_size_dims, x_axis = "particle_size")
+    })
+    output$particle_size_table <- renderDT({
+      datatable(particle_size_dims,
+                extensions = 'Buttons',
+                options = list(searching = FALSE,
+                               dom = 'Bfrtip',
+                               buttons = c('csv'))
+      ) %>%
+        formatRound(columns = calc_colnames, digits = 4)
+    })
+
+    ## Navigate to results
     nav_select(id = "results", selected = "by Width", session)
-    message("")
   })
 
 }
