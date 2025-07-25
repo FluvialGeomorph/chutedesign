@@ -78,6 +78,9 @@ app_server <- function(input, output, session) {
     output$width_channel_flow <- renderPlot({
       plot_channel_flow(width_dims, x_axis = "width")
     })
+    output$width_stone_quants <- renderPlot({
+      plot_stone_quantities(width_dims, x_axis = "width")
+    })
     output$width_table <- renderDT({
       datatable(width_dims,
                 extensions = 'Buttons',
@@ -95,6 +98,9 @@ app_server <- function(input, output, session) {
     output$slope_channel_flow <- renderPlot({
       plot_channel_flow(slope_dims, x_axis = "slope")
     })
+    output$slope_stone_quants <- renderPlot({
+      plot_stone_quantities(slope_dims, x_axis = "slope")
+    })
     output$slope_table <- renderDT({
       datatable(slope_dims,
                 extensions = 'Buttons',
@@ -111,6 +117,9 @@ app_server <- function(input, output, session) {
     })
     output$particle_size_channel_flow <- renderPlot({
       plot_channel_flow(particle_size_dims, x_axis = "particle_size")
+    })
+    output$particle_size_stone_quants <- renderPlot({
+      plot_stone_quantities(particle_size_dims, x_axis = "particle_size")
     })
     output$particle_size_table <- renderDT({
       datatable(particle_size_dims,

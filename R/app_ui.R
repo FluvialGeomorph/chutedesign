@@ -136,7 +136,8 @@ app_ui <- function(request) {
                 accordion_panel(
                   title = "Plots",
                   plotOutput("width_stone_size"),
-                  plotOutput("width_channel_flow")
+                  plotOutput("width_channel_flow"),
+                  plotOutput("width_stone_quants")
                 ),
                 accordion_panel(
                   title = "Data",
@@ -152,7 +153,8 @@ app_ui <- function(request) {
                 accordion_panel(
                   title = "Plots",
                   plotOutput("slope_stone_size"),
-                  plotOutput("slope_channel_flow")
+                  plotOutput("slope_channel_flow"),
+                  plotOutput("slope_stone_quants")
                 ),
                 accordion_panel(
                   title = "Data",
@@ -168,7 +170,8 @@ app_ui <- function(request) {
                 accordion_panel(
                   title = "Plots",
                   plotOutput("particle_size_stone_size"),
-                  plotOutput("particle_size_channel_flow")
+                  plotOutput("particle_size_channel_flow"),
+                  plotOutput("particle_size_stone_quants")
                 ),
                 accordion_panel(
                   title = "Data",
