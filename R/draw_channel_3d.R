@@ -5,6 +5,7 @@
 #' @param slope       numeric; Slope of the channel.
 #' @param side_slope  numeric; Side slope of the channel (rise:run)
 #' @param depth       numeric; Depth of the water in the channel.
+#' @param flow_arrow  boolean; Display a flow direction arrow? default: FALSE
 #' @param alpha       numeric; Alpha coefficient of surface transparency.
 #' @returns an rglwidget
 #' @export

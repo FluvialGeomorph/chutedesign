@@ -25,6 +25,8 @@ draw_channel_3d(
 
 \item{depth}{numeric; Depth of the water in the channel.}
 
+\item{flow_arrow}{boolean; Display a flow direction arrow? default: FALSE}
+
 \item{alpha}{numeric; Alpha coefficient of surface transparency.}
 }
 \value{
