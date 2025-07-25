@@ -10,11 +10,15 @@
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![packageversion](https://img.shields.io/badge/Package%20version-2025.07.24-orange.svg?style=flat-square)](commits/main)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2025--07--24-yellowgreen.svg)](/commits/main)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2025--07--25-yellowgreen.svg)](/commits/main)
 [![Licence](https://img.shields.io/badge/licence-CC0-blue.svg)](http://choosealicense.com/licenses/cc0-1.0/)
 <!-- badges: end -->
 
 ## Description
+
+Assists USACE engineers in making hydraulic calculations required to
+design a chute. [Check it
+out!](https://fluvialgeomorph-chutedesign.share.connect.posit.cloud/)
 
 ## Funding
 

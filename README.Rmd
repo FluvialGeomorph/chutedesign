@@ -18,6 +18,7 @@ output: md_document
 
 ## Description
 
+Assists USACE engineers in making hydraulic calculations required to design a chute. [Check it out!](https://fluvialgeomorph-chutedesign.share.connect.posit.cloud/)
 
 ## Funding
 
