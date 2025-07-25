@@ -20,7 +20,7 @@ plot_channel_flow <- function(channel_dims, x_axis) {
 
   # Human-readable labels
   param_labels <- c(
-    unit_discharge = "Unit Discharge (m²/s)",
+    unit_discharge = "Unit Discharge (m\u00B2/s)",
     mannings_n = "Mannings's n",
     critical_depth = "Critical Depth (m)",
     critical_velocity = "Critical Velocity (m/s)",
@@ -28,9 +28,9 @@ plot_channel_flow <- function(channel_dims, x_axis) {
     normal_depth = "Normal Depth (m)",
     normal_velocity = "Normal Velocity (m/s)",
     froude = "Froude Number",
-    shear_stress = "Shear Stress (N/m²)",
-    avail_stream_power = "Avail. Stream Power (kW/m²)",
-    applied_stream_power = "Applied Stream Power  (kW/m²)")
+    shear_stress = "Shear Stress (N/m\u00B2)",
+    avail_stream_power = "Avail. Stream Power (kW/m\u00B2)",
+    applied_stream_power = "Applied Stream Power  (kW/m\u00B2)")
 
   # Select and pivot to long format
   flow_vars <- channel_dims %>%
