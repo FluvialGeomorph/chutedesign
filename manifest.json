@@ -354,33 +354,19 @@
       "description": {
         "Package": "chutedesign",
         "Title": "Design a Chute",
-        "Version": "2025.07.23",
-        "Authors@R": "c(\n    person(\"Michael\", \"Dougherty\", , \"Michael.P.Dougherty@usace.army.mil\", role = c(\"aut\", \"cre\"),\n           comment = c(ORCID = \"0000-0002-1465-5927\")),\n    person(\"Christopher\", \"Haring\", , \"Christopher.P.Haring@usace.army.mil\", role = \"aut\")\n  )",
-        "Description": "Assists USACE engineers in making hydraulic calculations\n    required to design a chute.",
+        "Version": "2025.07.25",
+        "Authors@R": "c(\nperson(\"Michael\", \"Dougherty\", , \"Michael.P.Dougherty@usace.army.mil\", role = c(\"aut\", \"cre\"),\ncomment = c(ORCID = \"0000-0002-1465-5927\")),\nperson(\"Christopher\", \"Haring\", , \"Christopher.P.Haring@usace.army.mil\", role = \"aut\")\n)",
+        "Description": "Assists USACE engineers in making hydraulic calculations\nrequired to design a chute.",
         "License": "CC0",
         "URL": "https://github.com/FluvialGeomorph/chutedesign",
         "BugReports": "https://github.com/FluvialGeomorph/chutedesign/issues",
-        "Imports": "bsicons, bslib, config, dplyr, DT, ggplot2, golem, rgl, shiny,\nstringr, tidyr",
-        "Suggests": "spelling, testthat (>= 3.0.0)",
+        "Imports": "bsicons,\nbslib,\nconfig,\ndplyr,\nDT,\nggplot2,\ngolem,\nrgl,\nshiny,\nstringr,\ntidyr",
+        "Suggests": "spelling,\ntestthat (>= 3.0.0)",
         "Config/testthat/edition": "3",
         "Encoding": "UTF-8",
         "Language": "en-US",
-        "RoxygenNote": "7.3.2",
-        "RemoteType": "github",
-        "RemoteHost": "api.github.com",
-        "RemoteRepo": "chutedesign",
-        "RemoteUsername": "FluvialGeomorph",
-        "RemoteRef": "HEAD",
-        "RemoteSha": "ddef7935d4ccf0ae42bd644ce4ce2bf12eb74b65",
-        "GithubRepo": "chutedesign",
-        "GithubUsername": "FluvialGeomorph",
-        "GithubRef": "HEAD",
-        "GithubSHA1": "ddef7935d4ccf0ae42bd644ce4ce2bf12eb74b65",
-        "NeedsCompilation": "no",
-        "Packaged": "2025-07-23 22:21:25 UTC; B5PMMMPD",
-        "Author": "Michael Dougherty [aut, cre] (<https://orcid.org/0000-0002-1465-5927>),\n  Christopher Haring [aut]",
-        "Maintainer": "Michael Dougherty <Michael.P.Dougherty@usace.army.mil>",
-        "Built": "R 4.4.3; ; 2025-07-23 22:21:29 UTC; windows"
+        "LazyData": "true",
+        "RoxygenNote": "7.3.2"
       }
     },
     "cli": {
@@ -1444,6 +1430,34 @@
         "Archs": "x64"
       }
     },
+    "paletteer": {
+      "Source": "CRAN",
+      "Repository": "https://cran.rstudio.com",
+      "description": {
+        "Package": "paletteer",
+        "Title": "Comprehensive Collection of Color Palettes",
+        "Version": "1.6.0",
+        "Author": "See AUTHORS file.",
+        "Maintainer": "Emil Hvitfeldt <emilhhvitfeldt@gmail.com>",
+        "Description": "The choices of color palettes in R can be quite\n    overwhelming with palettes spread over many packages with many\n    different API's. This packages aims to collect all color palettes\n    across the R ecosystem under the same package with a streamlined API.",
+        "License": "GPL-3",
+        "URL": "https://github.com/EmilHvitfeldt/paletteer",
+        "BugReports": "https://github.com/EmilHvitfeldt/paletteer/issues",
+        "Depends": "R (>= 2.10)",
+        "Imports": "prismatic, rematch2, rlang, rstudioapi",
+        "Suggests": "covr, ggplot2 (>= 3.3.0), ggthemes (>= 4.0.0), harrypotter\n(>= 2.1.0), knitr, oompaBase, palr, pals, rmarkdown, scico,\ntestthat (>= 2.1.0), vdiffr, viridisLite",
+        "Copyright": "See LICENSE.note file.",
+        "Config/testthat/edition": "3",
+        "Encoding": "UTF-8",
+        "LazyData": "true",
+        "RoxygenNote": "7.3.0",
+        "NeedsCompilation": "no",
+        "Packaged": "2024-01-21 02:33:27 UTC; emilhvitfeldt",
+        "Repository": "CRAN",
+        "Date/Publication": "2024-01-21 18:00:02 UTC",
+        "Built": "R 4.4.3; ; 2025-07-23 03:16:42 UTC; windows"
+      }
+    },
     "pillar": {
       "Source": "CRAN",
       "Repository": "https://cran.rstudio.com",
@@ -1570,6 +1584,33 @@
         "RemoteRepos": "https://cran.rstudio.com/",
         "RemotePkgPlatform": "i386+x86_64-w64-mingw32",
         "RemoteSha": "1.4.0"
+      }
+    },
+    "prismatic": {
+      "Source": "CRAN",
+      "Repository": "https://cran.rstudio.com",
+      "description": {
+        "Package": "prismatic",
+        "Title": "Color Manipulation Tools",
+        "Version": "1.1.2",
+        "Authors@R": "\n    person(\"Emil\", \"Hvitfeldt\", , \"emilhhvitfeldt@gmail.com\", role = c(\"aut\", \"cre\"),\n           comment = c(ORCID = \"0000-0002-0679-1945\"))",
+        "Description": "Manipulate and visualize colors in a intuitive,\n    low-dependency and functional way.",
+        "License": "MIT + file LICENSE",
+        "URL": "https://emilhvitfeldt.github.io/prismatic/,\nhttps://github.com/EmilHvitfeldt/prismatic",
+        "BugReports": "https://github.com/EmilHvitfeldt/prismatic/issues",
+        "Depends": "R (>= 3.2)",
+        "Imports": "graphics, farver (>= 2.0.1), grDevices",
+        "Suggests": "covr, cli, testthat (>= 3.0.0)",
+        "Encoding": "UTF-8",
+        "RoxygenNote": "7.3.1",
+        "Config/testthat/edition": "3",
+        "NeedsCompilation": "no",
+        "Packaged": "2024-04-10 22:54:31 UTC; emilhvitfeldt",
+        "Author": "Emil Hvitfeldt [aut, cre] (<https://orcid.org/0000-0002-0679-1945>)",
+        "Maintainer": "Emil Hvitfeldt <emilhhvitfeldt@gmail.com>",
+        "Repository": "CRAN",
+        "Date/Publication": "2024-04-10 23:10:03 UTC",
+        "Built": "R 4.4.3; ; 2025-07-23 01:34:28 UTC; windows"
       }
     },
     "processx": {
@@ -1739,6 +1780,32 @@
         "Archs": "x64"
       }
     },
+    "rematch2": {
+      "Source": "CRAN",
+      "Repository": "https://cran.rstudio.com",
+      "description": {
+        "Package": "rematch2",
+        "Title": "Tidy Output from Regular Expression Matching",
+        "Version": "2.1.2",
+        "Authors@R": "c(\n    person(\"Gábor\", \"Csárdi\", email = \"csardi.gabor@gmail.com\", role = c(\"aut\", \"cre\")),\n    person(\"Matthew\", \"Lincoln\", email = \"matthew.d.lincoln@gmail.com\", role = c(\"ctb\")))",
+        "Description": "Wrappers on 'regexpr' and 'gregexpr' to return the match\n    results in tidy data frames.",
+        "License": "MIT + file LICENSE",
+        "LazyData": "true",
+        "URL": "https://github.com/r-lib/rematch2#readme",
+        "BugReports": "https://github.com/r-lib/rematch2/issues",
+        "RoxygenNote": "7.1.0",
+        "Imports": "tibble",
+        "Suggests": "covr, testthat",
+        "Encoding": "UTF-8",
+        "NeedsCompilation": "no",
+        "Packaged": "2020-04-30 10:31:13 UTC; gaborcsardi",
+        "Author": "Gábor Csárdi [aut, cre],\n  Matthew Lincoln [ctb]",
+        "Maintainer": "Gábor Csárdi <csardi.gabor@gmail.com>",
+        "Repository": "CRAN",
+        "Date/Publication": "2020-05-01 06:50:02 UTC",
+        "Built": "R 4.4.2; ; 2025-01-11 02:54:39 UTC; windows"
+      }
+    },
     "rgl": {
       "Source": "CRAN",
       "Repository": "https://cran.rstudio.com",
@@ -1861,6 +1928,31 @@
         "Repository": "CRAN",
         "Date/Publication": "2025-07-12 09:00:02 UTC",
         "Built": "R 4.4.3; ; 2025-07-21 00:41:57 UTC; windows"
+      }
+    },
+    "rstudioapi": {
+      "Source": "CRAN",
+      "Repository": "https://cran.rstudio.com",
+      "description": {
+        "Package": "rstudioapi",
+        "Title": "Safely Access the RStudio API",
+        "Description": "Access the RStudio API (if available) and provide informative error\n    messages when it's not.",
+        "Version": "0.17.1",
+        "Authors@R": "c(\n    person(\"Kevin\", \"Ushey\", role = c(\"aut\", \"cre\"), email = \"kevin@rstudio.com\"),\n    person(\"JJ\", \"Allaire\", role = c(\"aut\"), email = \"jj@posit.co\"),\n    person(\"Hadley\", \"Wickham\", role = c(\"aut\"), email = \"hadley@posit.co\"),\n    person(\"Gary\", \"Ritchie\", role = c(\"aut\"), email = \"gary@posit.co\"),\n    person(family = \"RStudio\", role = \"cph\")\n    )",
+        "Maintainer": "Kevin Ushey <kevin@rstudio.com>",
+        "License": "MIT + file LICENSE",
+        "URL": "https://rstudio.github.io/rstudioapi/,\nhttps://github.com/rstudio/rstudioapi",
+        "BugReports": "https://github.com/rstudio/rstudioapi/issues",
+        "RoxygenNote": "7.3.2",
+        "Suggests": "testthat, knitr, rmarkdown, clipr, covr",
+        "VignetteBuilder": "knitr",
+        "Encoding": "UTF-8",
+        "NeedsCompilation": "no",
+        "Packaged": "2024-10-22 20:55:52 UTC; kevin",
+        "Author": "Kevin Ushey [aut, cre],\n  JJ Allaire [aut],\n  Hadley Wickham [aut],\n  Gary Ritchie [aut],\n  RStudio [cph]",
+        "Repository": "CRAN",
+        "Date/Publication": "2024-10-22 22:40:02 UTC",
+        "Built": "R 4.4.2; ; 2025-01-11 01:32:20 UTC; windows"
       }
     },
     "sass": {
@@ -2365,7 +2457,7 @@
       "checksum": "da61c347bf9a697a2a97d76de115cafb"
     },
     "DESCRIPTION": {
-      "checksum": "5ac3cbef0bce692b1270959d99d5d70c"
+      "checksum": "d6bd5dff86b2559ce68bd1602e1763d0"
     },
     "inst/app/www/favicon.png": {
       "checksum": "4d047df9e09958186f454b6d046de6e3"
@@ -2377,7 +2469,7 @@
       "checksum": "9ba78bbf04ac90a5ea933b58ff659ee0"
     },
     "NAMESPACE": {
-      "checksum": "7862cc6aaf981d7d01aca51e0f32161d"
+      "checksum": "22444c02338e4d54aae4418659fc20c4"
     },
     "R/_disable_autoload.R": {
       "checksum": "9d8f7f20e88b559c046ec1f59fe82cba"
@@ -2386,10 +2478,10 @@
       "checksum": "a4bbbaf7d888ffdaf7d7d42afdec07a5"
     },
     "R/app_server.R": {
-      "checksum": "f269ab14a938025729aafef4f15391aa"
+      "checksum": "65538d12e87cd79a5e577270622ec055"
     },
     "R/app_ui.R": {
-      "checksum": "524a7bff3cbbe1e204c5f699232cd597"
+      "checksum": "97e39c1e86b2575eff66b47e5909ff8b"
     },
     "R/by_particle_size_df.R": {
       "checksum": "24e2b580591d533c489eaaf77af9a85d"
@@ -2413,10 +2505,13 @@
       "checksum": "b53507d644bd5d3fef3af85284a6af54"
     },
     "R/plot_channel_flow.R": {
-      "checksum": "8114b29b547b7e621f45dcd4e77e869e"
+      "checksum": "60405dcfcfe6467288b635ac16344f8e"
+    },
+    "R/plot_stone_quantities.R": {
+      "checksum": "62f9839a4c21cf2625f349669592337d"
     },
     "R/plot_stone_size_method.R": {
-      "checksum": "33ddd7298c871f97cd51f82a7b36aef5"
+      "checksum": "259af1eccff637535ef25c2ed0428395"
     },
     "R/run_app.R": {
       "checksum": "4d19509f058abc65cfd23c7353a7c94c"
