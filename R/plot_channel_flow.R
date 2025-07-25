@@ -62,10 +62,10 @@ plot_channel_flow <- function(channel_dims, x_axis) {
 
   # Faceted plot
   flow_plot <- ggplot(flow_vars, aes(x = !!sym(x_axis), y = value)) +
-    geom_line(color = "steelblue", linewidth = 1) +
+    geom_line(color = "#386EC2FF", linewidth = 1) +
     facet_wrap(~parameter, scales = "free_y") +
     labs(
-      title = "Channel Flow Parameters",
+      title = "Hydraulic Parameters",
       x = x_axis_label,
       y = NULL
     ) +
