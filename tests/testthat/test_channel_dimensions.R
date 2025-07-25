@@ -27,6 +27,8 @@ test_that("check by_width_df plots", {
   channel_df <- by_width_df(scenario)
   width_dims <- channel_dimensions(channel_df)
   expect_s3_class(width_dims, "data.frame")
+  expect_equal(ncol(width_dims), 44)
+  expect_equal(nrow(width_dims), 9)
 })
 
 test_that("check by_slope_df plots", {
@@ -58,6 +60,8 @@ test_that("check by_slope_df plots", {
   channel_df <- by_slope_df(scenario)
   slope_dims <- channel_dimensions(channel_df)
   expect_s3_class(slope_dims, "data.frame")
+  expect_equal(ncol(slope_dims), 44)
+  expect_equal(nrow(slope_dims), 21)
 })
 
 test_that("check by_particle_size_df plots", {
@@ -89,4 +93,6 @@ test_that("check by_particle_size_df plots", {
   channel_df <- by_particle_size_df(scenario)
   particle_size_dims <- channel_dimensions(channel_df)
   expect_s3_class(particle_size_dims, "data.frame")
+  expect_equal(ncol(particle_size_dims), 44)
+  expect_equal(nrow(particle_size_dims), 21)
 })
