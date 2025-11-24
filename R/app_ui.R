@@ -19,6 +19,9 @@ app_ui <- function(request) {
       nav_panel(
         title = "Design a Chute",
         layout_sidebar(
+          border_radius = FALSE,
+          fillable = TRUE,
+          class = "p-0",
           sidebar = sidebar(
             width = 500,
             actionButton("calculate_dimensions", "Calculate Dimensions"),
@@ -103,35 +106,55 @@ app_ui <- function(request) {
             selected = "Intro",
             nav_panel(
               title = "Intro",
-              markdown("
-              # Getting Started
+              layout_sidebar(
+                border_radius = FALSE,
+                fillable = TRUE,
+                sidebar = sidebar(
+                  id = "intro_help",
+                  title = "Help",
+                  position = "right",
+                  width = "25pc",
+                  open = TRUE,
+                  markdown("
+                  * This help panel is is available on each page.
+                  * It contains guidance specific to each page.
+                  * It can be toggled open and closed using the arrow at the top of this panel. 
+                  ") 
+                ),
+                markdown("
+                # Getting Started
 
-              This app helps estimate the stone sizes required for chutes of various dimensions.
+                This app helps estimate the stone sizes required for chutes of various dimensions.
 
-              ## Define the Scenario
+                ## Define the Scenario
 
-              1. In the left sidebar, specify the design characteristics of the chute.
-              2. Click the `Calculate Dimensions` button.
-
-              ## Review the Results
-
-              Scenario results can be explored using the tabs across the top of the app.
-
-              * Diagram - View a wireframe diagram of the specified channel.
-              * by Width - View results of the scenario where chute widths are varied.
-              * by Slope - View results of the scenario where chute slopes are varied.
-              * by Particle Size - View results of the scenario where chute particle sizes are varied.
-
-              ")
+                1. In the left sidebar, specify the design characteristics of the chute.
+                2. Click the `Calculate Dimensions` button.
+                
+                ## Review the Results
+                
+                Scenario results can be explored using the tabs across the top of the app.
+                
+                * Diagram - View a wireframe diagram of the specified channel.
+                * by Width - View results of the scenario where chute widths are varied.
+                * by Slope - View results of the scenario where chute slopes are varied.
+                 * by Particle Size - View results of the scenario where chute particle sizes are varied.
+                ")
+              )
             ),
             nav_panel(
               title = "by Width",
               layout_sidebar(
+                border_radius = FALSE,
+                fillable = TRUE,
+                class = "p-0",
                 sidebar = sidebar(
+                  id = "by_width_help",
                   title = "Help",
                   position = "right",
+                  width = 300,
                   open = TRUE,
-                  "Help text goes here" 
+                  markdown("* Help text goes here") 
                 ),
                 accordion(
                   id = "by_width_results",
