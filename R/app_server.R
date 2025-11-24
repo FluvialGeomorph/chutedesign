@@ -56,21 +56,6 @@ app_server <- function(input, output, session) {
 
     # Result Outputs
 
-    ## Chute diagram
-    diagram_dims <- width_dims %>%
-      filter(.data$width == input$width)
-
-    output$channel_plot <- renderRglwidget({
-      draw_channel_3d(
-        width = input$width,
-        length = input$length,
-        slope = input$slope,
-        side_slope = input$side_slope,
-        depth = diagram_dims$depth,
-        alpha = 0.5
-      )
-    })
-
     ## by Width
     output$width_stone_size <- renderPlot({
       plot_stone_size_method(width_dims, x_axis = "width")

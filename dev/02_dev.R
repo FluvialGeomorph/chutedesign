@@ -40,6 +40,10 @@ golem::add_any_file("file.json")
 ## If you have data in your package
 usethis::use_data_raw(name = "my_dataset", open = FALSE)
 
+## Run application locally
+golem::document_and_reload()
+run_app()
+
 ## Tests ----
 ## Add one line by test you want to create
 usethis::use_test("app")

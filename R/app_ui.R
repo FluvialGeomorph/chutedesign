@@ -125,10 +125,6 @@ app_ui <- function(request) {
               ")
             ),
             nav_panel(
-              title = "Diagram",
-              rglwidgetOutput("channel_plot", width = "100%", height = "600px")
-            ),
-            nav_panel(
               title = "by Width",
               accordion(
                 id = "by_width_results",
