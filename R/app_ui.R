@@ -126,20 +126,28 @@ app_ui <- function(request) {
             ),
             nav_panel(
               title = "by Width",
-              accordion(
-                id = "by_width_results",
-                open = c("Plots", "Data"),
-                accordion_panel(
-                  title = "Plots",
-                  plotOutput("width_stone_size"),
-                  plotOutput("width_channel_flow"),
-                  plotOutput("width_stone_quants")
+              layout_sidebar(
+                sidebar = sidebar(
+                  title = "Help",
+                  position = "right",
+                  open = TRUE,
+                  "Help text goes here" 
                 ),
-                accordion_panel(
-                  title = "Data",
-                  DTOutput("width_table")
+                accordion(
+                  id = "by_width_results",
+                  open = c("Plots", "Data"),
+                  accordion_panel(
+                    title = "Plots",
+                    plotOutput("width_stone_size"),
+                    plotOutput("width_channel_flow"),
+                    plotOutput("width_stone_quants")
+                  ),
+                  accordion_panel(
+                    title = "Data",
+                    DTOutput("width_table")
+                  )
                 )
-              )
+              ),
             ),
             nav_panel(
               title = "by Slope",
