@@ -120,4 +120,13 @@ app_server <- function(input, output, session) {
     nav_select(id = "results", selected = "by Width", session)
   })
 
+  # Render help text
+  output$getting_started <- renderUI({
+    help_text <- filter(chutedesign::help_data, id == "getting_started")$text
+    markdown(help_text)
+  })
+  output$intro_sidebar <- renderUI({
+    help_text <- filter(chutedesign::help_data, id == "intro_sidebar")$text
+    markdown(help_text)
+  })
 }
