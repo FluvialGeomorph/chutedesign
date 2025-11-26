@@ -30,7 +30,7 @@ app_ui <- function(request) {
                 "Width of Chute",
                 tooltip(
                   bs_icon("info-circle"),
-                  "Use these fields to configure the range of chute widths to be calculated."
+                  uiOutput("width_parameters")
                 ),
                 class = "d-flex justify-content-between"
               ),
@@ -46,7 +46,7 @@ app_ui <- function(request) {
                 "Length of Chute",
                 tooltip(
                   bs_icon("info-circle"),
-                  "Use these fields to configure the range of chute lengths to be calculated."
+                  uiOutput("length_parameters")
                 ),
                 class = "d-flex justify-content-between"
               ),
@@ -62,7 +62,7 @@ app_ui <- function(request) {
                 "Slope of Chute",
                 tooltip(
                   bs_icon("info-circle"),
-                  "Use these fields to configure the range of chute slopes to be calculated."
+                  uiOutput("slope_parameters")
                 ),
                 class = "d-flex justify-content-between"
               ),
@@ -78,7 +78,7 @@ app_ui <- function(request) {
                 "Particle Size",
                 tooltip(
                   bs_icon("info-circle"),
-                  "Use these fields to configure the range of chute particle sizes to be calculated."
+                  uiOutput("particle_parameters")
                 ),
                 class = "d-flex justify-content-between"
               ),
@@ -93,13 +93,69 @@ app_ui <- function(request) {
                                        "by Particle Size (m)", 0.1))
               ),
             ),
-            numericInput("side_slope", "Side Slope (rise:run)", 2.5),
-            numericInput("total_discharge", "Total Discharge (m^3/s)", 2000),
-            numericInput("stone_density", "Stone Density (kg/m^3)", 2650),
-            numericInput("contingency", "Contingency Factor on Quantity", 1.3),
-            numericInput("porosity", "Bulk-Placed Porosity", 0.3),
-            numericInput("water_density", "Water Density (kg/m^3)", 998),
-            numericInput("gravity", "Gravitational Constant (N/m^3)", 9.787)
+            fluidRow(
+              column(11, numericInput("side_slope", "Side Slope (rise:run)", 2.5)),
+              column(1, 
+                tooltip(
+                  bs_icon("info-circle"),
+                  uiOutput("side_slope_parameter")
+                ) 
+              )
+            ),
+            fluidRow(
+              column(11, numericInput("total_discharge", "Total Discharge (m^3/s)", 2000)),
+              column(1, 
+                tooltip(
+                  bs_icon("info-circle"),
+                  uiOutput("discharge_parameter")
+                ) 
+              )
+            ),
+            fluidRow(
+              column(11, numericInput("stone_density", "Stone Density (kg/m^3)", 2650)),
+              column(1, 
+                tooltip(
+                  bs_icon("info-circle"),
+                  uiOutput("stone_density_parameter")
+                ) 
+              )
+            ),
+            fluidRow(
+              column(11, numericInput("contingency", "Contingency Factor on Quantity", 1.3)),
+              column(1, 
+                tooltip(
+                  bs_icon("info-circle"),
+                  uiOutput("contingency_parameter")
+                ) 
+              )
+            ),
+            fluidRow(
+              column(11, numericInput("porosity", "Bulk-Placed Porosity", 0.3)),
+              column(1, 
+                tooltip(
+                  bs_icon("info-circle"),
+                  uiOutput("porosity_parameter")
+                ) 
+              )
+            ),
+            fluidRow(
+              column(11, numericInput("water_density", "Water Density (kg/m^3)", 998)),
+              column(1, 
+                tooltip(
+                  bs_icon("info-circle"),
+                  uiOutput("water_density_parameter")
+                ) 
+              )
+            ),
+            fluidRow(
+              column(11, numericInput("gravity", "Gravitational Constant (N/m^3)", 9.787)),
+              column(1, 
+                tooltip(
+                  bs_icon("info-circle"),
+                  uiOutput("grav_constant_parameter")
+                ) 
+              )
+            )
           ), # End sidebar
           navset_card_tab(
             id = "results",
@@ -132,7 +188,7 @@ app_ui <- function(request) {
                   position = "right",
                   width = 300,
                   open = TRUE,
-                  markdown("* Help text goes here") 
+                  uiOutput("by_width_sidebar")
                 ),
                 accordion(
                   id = "by_width_results",
@@ -148,39 +204,65 @@ app_ui <- function(request) {
                     DTOutput("width_table")
                   )
                 )
-              ),
+              )
             ),
             nav_panel(
               title = "by Slope",
-              accordion(
-                id = "by_slope_results",
-                open = c("Plots", "Data"),
-                accordion_panel(
-                  title = "Plots",
-                  plotOutput("slope_stone_size"),
-                  plotOutput("slope_channel_flow"),
-                  plotOutput("slope_stone_quants")
+              layout_sidebar(
+                border_radius = FALSE,
+                fillable = TRUE,
+                class = "p-0",
+                sidebar = sidebar(
+                  id = "by_width_help",
+                  title = "Help",
+                  position = "right",
+                  width = 300,
+                  open = TRUE,
+                  uiOutput("by_slope_sidebar")
                 ),
-                accordion_panel(
-                  title = "Data",
-                  DTOutput("slope_table")
+                accordion(
+                  id = "by_slope_results",
+                  open = c("Plots", "Data"),
+                  accordion_panel(
+                    title = "Plots",
+                    plotOutput("slope_stone_size"),
+                    plotOutput("slope_channel_flow"),
+                    plotOutput("slope_stone_quants")
+                  ),
+                  accordion_panel(
+                    title = "Data",
+                    DTOutput("slope_table")
+                  )
                 )
               )
             ),
             nav_panel(
               title = "by Particle Size",
-              accordion(
-                id = "by_particle_results",
-                open = c("Plots", "Data"),
-                accordion_panel(
-                  title = "Plots",
-                  plotOutput("particle_size_stone_size"),
-                  plotOutput("particle_size_channel_flow"),
-                  plotOutput("particle_size_stone_quants")
+              layout_sidebar(
+                border_radius = FALSE,
+                fillable = TRUE,
+                class = "p-0",
+                sidebar = sidebar(
+                  id = "by_width_help",
+                  title = "Help",
+                  position = "right",
+                  width = 300,
+                  open = TRUE,
+                  uiOutput("by_particle_sidebar")
                 ),
-                accordion_panel(
-                  title = "Data",
-                  DTOutput("particle_size_table")
+                accordion(
+                  id = "by_particle_results",
+                  open = c("Plots", "Data"),
+                  accordion_panel(
+                    title = "Plots",
+                    plotOutput("particle_size_stone_size"),
+                    plotOutput("particle_size_channel_flow"),
+                    plotOutput("particle_size_stone_quants")
+                  ),
+                  accordion_panel(
+                    title = "Data",
+                    DTOutput("particle_size_table")
+                  )
                 )
               )
             )

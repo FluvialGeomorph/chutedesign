@@ -122,11 +122,54 @@ app_server <- function(input, output, session) {
 
   # Render help text
   output$getting_started <- renderUI({
-    help_text <- filter(chutedesign::help_data, id == "getting_started")$text
-    markdown(help_text)
+    markdown(filter(chutedesign::help_data, id == "getting_started")$text)
   })
   output$intro_sidebar <- renderUI({
-    help_text <- filter(chutedesign::help_data, id == "intro_sidebar")$text
-    markdown(help_text)
+    markdown(filter(chutedesign::help_data, id == "intro_sidebar")$text)
+  })
+  output$by_width_sidebar <- renderUI({
+    markdown(filter(chutedesign::help_data, id == "by_width_sidebar")$text)
+  })
+  output$by_length_sidebar <- renderUI({
+    markdown(filter(chutedesign::help_data, id == "by_length_sidebar")$text)
+  })
+  output$by_slope_sidebar <- renderUI({
+    markdown(filter(chutedesign::help_data, id == "by_slope_sidebar")$text)
+  })
+  output$by_particle_sidebar <- renderUI({
+    markdown(filter(chutedesign::help_data, id == "by_particle_sidebar")$text)
+  })
+  output$width_parameters <- renderUI({
+    markdown(filter(chutedesign::help_data, id == "width_parameters")$text)
+  })
+  output$length_parameters <- renderUI({
+    markdown(filter(chutedesign::help_data, id == "length_parameters")$text)
+  })
+  output$slope_parameters <- renderUI({
+    markdown(filter(chutedesign::help_data, id == "slope_parameters")$text)
+  })
+  output$particle_parameters <- renderUI({
+    markdown(filter(chutedesign::help_data, id == "particle_parameters")$text)
+  })
+  output$side_slope_parameter <- renderUI({
+    markdown(filter(chutedesign::help_data, id == "side_slope_parameter")$text)
+  })
+  output$discharge_parameter <- renderUI({
+    markdown(filter(chutedesign::help_data, id == "discharge_parameter")$text)
+  })
+  output$stone_density_parameter <- renderUI({
+    markdown(filter(chutedesign::help_data, id == "stone_density_parameter")$text)
+  })
+  output$contingency_parameter <- renderUI({
+    markdown(filter(chutedesign::help_data, id == "contingency_parameter")$text)
+  })
+  output$porosity_parameter <- renderUI({
+    markdown(filter(chutedesign::help_data, id == "porosity_parameter")$text)
+  })
+  output$water_density_parameter <- renderUI({
+    markdown(filter(chutedesign::help_data, id == "water_density_parameter")$text)
+  })
+  output$grav_constant_parameter <- renderUI({
+    markdown(filter(chutedesign::help_data, id == "grav_constant_parameter")$text)
   })
 }

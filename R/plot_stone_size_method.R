@@ -12,6 +12,7 @@
 #' @importFrom ggplot2 ggplot aes geom_line scale_color_brewer labs
 #'             theme_light
 #' @importFrom paletteer scale_color_paletteer_d
+#' @importFrom NatParksPalettes NatParksPalettes
 plot_stone_size_method <- function(channel_dims, x_axis) {
   # Validate x_axis
   valid_x_axes <- c("width", "slope", "particle_size")
