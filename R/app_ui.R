@@ -28,7 +28,7 @@ app_ui <- function(request) {
             card(
               card_header(
                 "Width of Chute",
-                tooltip(
+                popover(
                   bs_icon("info-circle"),
                   uiOutput("width_parameters")
                 ),
@@ -44,7 +44,7 @@ app_ui <- function(request) {
             card(
               card_header(
                 "Length of Chute",
-                tooltip(
+                popover(
                   bs_icon("info-circle"),
                   uiOutput("length_parameters")
                 ),
@@ -60,7 +60,7 @@ app_ui <- function(request) {
             card(
               card_header(
                 "Slope of Chute",
-                tooltip(
+                popover(
                   bs_icon("info-circle"),
                   uiOutput("slope_parameters")
                 ),
@@ -76,7 +76,7 @@ app_ui <- function(request) {
             card(
               card_header(
                 "Particle Size",
-                tooltip(
+                popover(
                   bs_icon("info-circle"),
                   uiOutput("particle_parameters")
                 ),
@@ -96,7 +96,7 @@ app_ui <- function(request) {
             fluidRow(
               column(11, numericInput("side_slope", "Side Slope (rise:run)", 2.5)),
               column(1, 
-                tooltip(
+                popover(
                   bs_icon("info-circle"),
                   uiOutput("side_slope_parameter")
                 ) 
@@ -105,7 +105,7 @@ app_ui <- function(request) {
             fluidRow(
               column(11, numericInput("total_discharge", "Total Discharge (m^3/s)", 2000)),
               column(1, 
-                tooltip(
+                popover(
                   bs_icon("info-circle"),
                   uiOutput("discharge_parameter")
                 ) 
@@ -114,7 +114,7 @@ app_ui <- function(request) {
             fluidRow(
               column(11, numericInput("stone_density", "Stone Density (kg/m^3)", 2650)),
               column(1, 
-                tooltip(
+                popover(
                   bs_icon("info-circle"),
                   uiOutput("stone_density_parameter")
                 ) 
@@ -123,7 +123,7 @@ app_ui <- function(request) {
             fluidRow(
               column(11, numericInput("contingency", "Contingency Factor on Quantity", 1.3)),
               column(1, 
-                tooltip(
+                popover(
                   bs_icon("info-circle"),
                   uiOutput("contingency_parameter")
                 ) 
@@ -132,7 +132,7 @@ app_ui <- function(request) {
             fluidRow(
               column(11, numericInput("porosity", "Bulk-Placed Porosity", 0.3)),
               column(1, 
-                tooltip(
+                popover(
                   bs_icon("info-circle"),
                   uiOutput("porosity_parameter")
                 ) 
@@ -141,7 +141,7 @@ app_ui <- function(request) {
             fluidRow(
               column(11, numericInput("water_density", "Water Density (kg/m^3)", 998)),
               column(1, 
-                tooltip(
+                popover(
                   bs_icon("info-circle"),
                   uiOutput("water_density_parameter")
                 ) 
@@ -150,7 +150,7 @@ app_ui <- function(request) {
             fluidRow(
               column(11, numericInput("gravity", "Gravitational Constant (N/m^3)", 9.787)),
               column(1, 
-                tooltip(
+                popover(
                   bs_icon("info-circle"),
                   uiOutput("grav_constant_parameter")
                 ) 
