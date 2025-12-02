@@ -30,7 +30,7 @@ app_ui <- function(request) {
                 "Width of Chute",
                 popover(
                   bs_icon("info-circle"),
-                  uiOutput("width_parameters")
+                  uiOutput("width_series")
                 ),
                 class = "d-flex justify-content-between"
               ),
@@ -46,7 +46,7 @@ app_ui <- function(request) {
                 "Length of Chute",
                 popover(
                   bs_icon("info-circle"),
-                  uiOutput("length_parameters")
+                  uiOutput("length_series")
                 ),
                 class = "d-flex justify-content-between"
               ),
@@ -62,7 +62,7 @@ app_ui <- function(request) {
                 "Slope of Chute",
                 popover(
                   bs_icon("info-circle"),
-                  uiOutput("slope_parameters")
+                  uiOutput("slope_series")
                 ),
                 class = "d-flex justify-content-between"
               ),
@@ -78,7 +78,7 @@ app_ui <- function(request) {
                 "Particle Size",
                 popover(
                   bs_icon("info-circle"),
-                  uiOutput("particle_parameters")
+                  uiOutput("particle_size_series")
                 ),
                 class = "d-flex justify-content-between"
               ),
@@ -98,7 +98,7 @@ app_ui <- function(request) {
               column(1, 
                 popover(
                   bs_icon("info-circle"),
-                  uiOutput("side_slope_parameter")
+                  uiOutput("side_slope")
                 ) 
               )
             ),
@@ -107,7 +107,7 @@ app_ui <- function(request) {
               column(1, 
                 popover(
                   bs_icon("info-circle"),
-                  uiOutput("discharge_parameter")
+                  uiOutput("total_discharge")
                 ) 
               )
             ),
@@ -116,7 +116,7 @@ app_ui <- function(request) {
               column(1, 
                 popover(
                   bs_icon("info-circle"),
-                  uiOutput("stone_density_parameter")
+                  uiOutput("stone_density")
                 ) 
               )
             ),
@@ -125,7 +125,7 @@ app_ui <- function(request) {
               column(1, 
                 popover(
                   bs_icon("info-circle"),
-                  uiOutput("contingency_parameter")
+                  uiOutput("contingency")
                 ) 
               )
             ),
@@ -134,7 +134,7 @@ app_ui <- function(request) {
               column(1, 
                 popover(
                   bs_icon("info-circle"),
-                  uiOutput("porosity_parameter")
+                  uiOutput("porosity")
                 ) 
               )
             ),
@@ -143,7 +143,7 @@ app_ui <- function(request) {
               column(1, 
                 popover(
                   bs_icon("info-circle"),
-                  uiOutput("water_density_parameter")
+                  uiOutput("water_density")
                 ) 
               )
             ),
@@ -152,7 +152,7 @@ app_ui <- function(request) {
               column(1, 
                 popover(
                   bs_icon("info-circle"),
-                  uiOutput("grav_constant_parameter")
+                  uiOutput("gravity")
                 ) 
               )
             )

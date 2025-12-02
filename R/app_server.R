@@ -122,54 +122,102 @@ app_server <- function(input, output, session) {
 
   # Render help text
   output$getting_started <- renderUI({
-    markdown(filter(chutedesign::help_data, id == "getting_started")$text)
+    markdown(filter(chutedesign::help_data, id == "getting_started")$sidebar)
   })
   output$intro_sidebar <- renderUI({
-    markdown(filter(chutedesign::help_data, id == "intro_sidebar")$text)
+    tagList(
+      markdown(filter(chutedesign::help_data, id == "tab_intro")$popover),
+      markdown(filter(chutedesign::help_data, id == "tab_intro")$sidebar)
+    )
   })
   output$by_width_sidebar <- renderUI({
-    markdown(filter(chutedesign::help_data, id == "by_width_sidebar")$text)
+    tagList(
+      markdown(filter(chutedesign::help_data, id == "tab_by_width")$popover),
+      markdown(filter(chutedesign::help_data, id == "tab_by_width")$sidebar)
+    )
   })
   output$by_length_sidebar <- renderUI({
-    markdown(filter(chutedesign::help_data, id == "by_length_sidebar")$text)
+    tagList(
+      markdown(filter(chutedesign::help_data, id == "tab_by_length")$popover),
+      markdown(filter(chutedesign::help_data, id == "tab_by_length")$sidebar)
+    )
   })
   output$by_slope_sidebar <- renderUI({
-    markdown(filter(chutedesign::help_data, id == "by_slope_sidebar")$text)
+    tagList(
+      markdown(filter(chutedesign::help_data, id == "tab_by_slope")$popover),
+      markdown(filter(chutedesign::help_data, id == "tab_by_slope")$sidebar)
+    )
   })
   output$by_particle_sidebar <- renderUI({
-    markdown(filter(chutedesign::help_data, id == "by_particle_sidebar")$text)
+    tagList(
+      markdown(filter(chutedesign::help_data, id == "tab_by_particle_size")$popover),
+      markdown(filter(chutedesign::help_data, id == "tab_by_particle_size")$sidebar)
+    )
   })
-  output$width_parameters <- renderUI({
-    markdown(filter(chutedesign::help_data, id == "width_parameters")$text)
+  output$width_series <- renderUI({
+    tagList(
+      markdown(filter(chutedesign::help_data, id == "width_series")$popover),
+      markdown(filter(chutedesign::help_data, id == "width_series")$sidebar) 
+    )
   })
-  output$length_parameters <- renderUI({
-    markdown(filter(chutedesign::help_data, id == "length_parameters")$text)
+  output$length_series <- renderUI({
+    tagList(
+      markdown(filter(chutedesign::help_data, id == "length_series")$popover),
+      markdown(filter(chutedesign::help_data, id == "length_series")$sidebar)
+    )
   })
-  output$slope_parameters <- renderUI({
-    markdown(filter(chutedesign::help_data, id == "slope_parameters")$text)
+  output$slope_series <- renderUI({
+    tagList(
+      markdown(filter(chutedesign::help_data, id == "slope_series")$popover),
+      markdown(filter(chutedesign::help_data, id == "slope_series")$sidebar)
+    )
   })
-  output$particle_parameters <- renderUI({
-    markdown(filter(chutedesign::help_data, id == "particle_parameters")$text)
+  output$particle_size_series <- renderUI({
+    tagList(
+      markdown(filter(chutedesign::help_data, id == "particle_size_series")$popover),
+      markdown(filter(chutedesign::help_data, id == "particle_size_series")$sidebar)
+    )
   })
-  output$side_slope_parameter <- renderUI({
-    markdown(filter(chutedesign::help_data, id == "side_slope_parameter")$text)
+  output$side_slope <- renderUI({
+    tagList(
+      markdown(filter(chutedesign::help_data, id == "side_slope")$popover),
+      markdown(filter(chutedesign::help_data, id == "side_slope")$sidebar)
+    )
   })
-  output$discharge_parameter <- renderUI({
-    markdown(filter(chutedesign::help_data, id == "discharge_parameter")$text)
+  output$total_discharge <- renderUI({
+    tagList(
+      markdown(filter(chutedesign::help_data, id == "total_discharge")$popover),
+      markdown(filter(chutedesign::help_data, id == "total_discharge")$sidebar)
+    )    
   })
-  output$stone_density_parameter <- renderUI({
-    markdown(filter(chutedesign::help_data, id == "stone_density_parameter")$text)
+  output$stone_density <- renderUI({
+    tagList(
+      markdown(filter(chutedesign::help_data, id == "stone_density")$popover),
+      markdown(filter(chutedesign::help_data, id == "stone_density")$sidebar)
+    )
   })
-  output$contingency_parameter <- renderUI({
-    markdown(filter(chutedesign::help_data, id == "contingency_parameter")$text)
+  output$contingency <- renderUI({
+    tagList(
+      markdown(filter(chutedesign::help_data, id == "contingency")$popover),
+      markdown(filter(chutedesign::help_data, id == "contingency")$sidebar)
+    )
   })
-  output$porosity_parameter <- renderUI({
-    markdown(filter(chutedesign::help_data, id == "porosity_parameter")$text)
+  output$porosity <- renderUI({
+    tagList(
+      markdown(filter(chutedesign::help_data, id == "porosity")$popover),
+      markdown(filter(chutedesign::help_data, id == "porosity")$sidebar)
+    )
   })
-  output$water_density_parameter <- renderUI({
-    markdown(filter(chutedesign::help_data, id == "water_density_parameter")$text)
+  output$water_density <- renderUI({
+    tagList(
+      markdown(filter(chutedesign::help_data, id == "water_density")$popover),
+      markdown(filter(chutedesign::help_data, id == "water_density")$sidebar)
+    )
   })
-  output$grav_constant_parameter <- renderUI({
-    markdown(filter(chutedesign::help_data, id == "grav_constant_parameter")$text)
+  output$gravity <- renderUI({
+    tagList(
+      markdown(filter(chutedesign::help_data, id == "gravity")$popover),
+      markdown(filter(chutedesign::help_data, id == "gravity")$sidebar)
+    )
   })
 }
