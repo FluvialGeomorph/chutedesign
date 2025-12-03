@@ -172,6 +172,7 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
   glue("Use 9.81 m/s^2 for site-level design unless a different value is required for specific analyses."),
   "right",
 
+
   # Outputs & intermediate variables from channel_dimensions()
   "stone_specific_weight", "Stone specific weight",
   glue("stone_specific_weight = stone_density * gravity (N/m^3). Converts density to unit weight."),
@@ -282,11 +283,12 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
 "),
   "right",
 
-# App tab documentation rows
+
+# App tab documentation
   "getting_started", "Intro tab - app overview",
   glue("Overview of the app, workflow, and key assumptions."),
   glue("# Getting Started
-  
+
     ## Purpose
     This app helps estimate the stone sizes required for chutes of various dimensions.
 
@@ -402,7 +404,140 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
 **Design guidance**
 - Use this tab to bound uncertainty from roughness assumptions and to prioritize field measurements. If stone sizing is insensitive to particle_size, focus measurement efforts elsewhere; if sensitive, invest in better roughness characterization.
 "),
-  "right"
+  "right",
+
+
+  # Plots
+  "plot_stone_size_method_plot", "Stone size methods plot",
+  glue("Line plot comparing stone-size estimates from each empirical method. Useful for comparing method sensitivity and trends with the x-axis variable."),
+  glue("
+**Function & inputs**
+- Produced by plot_stone_size_method(channel_dims, x_axis). `x_axis` may be one of: `width`, `slope`, `particle_size`.
+
+**What you see**
+- Each empirical method (NRCS, USACE, Abt-Johnson, Isbash, USBR, etc.) is shown as a separate colored line plotting its recommended stone size (m) vs the chosen x-axis.
+- The y-axis is stone size in meters; use a log scale externally if sizes span orders of magnitude.
+
+**How to interpret**
+- Compare method spread at each x value to understand epistemic uncertainty in empirical predictions.
+- Identify where particular methods diverge strongly — these ranges indicate areas where method choice matters most.
+- Use the plot to pick an adoption strategy: e.g., choose a conservative percentile across methods or apply an adoption multiplier to a selected method.
+
+**Practical tips**
+- Overlay the adopted stone diameter (from channel_dims$adopted_stone_diameter) in your own debug plots to see where the app's adoption rule sits relative to the methods.
+- When the spread is large, consider additional checks (e.g., hydraulic modeling or site-specific tests).
+"),
+  "right",
+
+  "plot_channel_flow_plot", "Hydraulic parameters faceted plot",
+  glue("Faceted plot of hydraulic variables (unit discharge, depths, velocities, Froude, shear, stream power) vs the chosen x-axis. Helps diagnose hydraulic drivers of stone-size changes."),
+  glue("
+**Function & inputs**
+- Produced by plot_channel_flow(channel_dims, x_axis). `x_axis` may be `width`, `slope`, or `particle_size`.
+
+**What you see**
+- A multi-panel (facet) plot showing: Unit Discharge, Manning's n, Critical Depth/Velocity/Slope, Normal Depth/Velocity, Froude number, Shear Stress, Available Stream Power, and Applied Stream Power. Each panel uses independent y-scales (scales = 'free_y').
+
+**How to interpret**
+- Use the faceted layout to identify which hydraulic variable(s) change in tandem with stone-size predictions.
+- Look for regime changes: where normal_depth approaches critical_depth or where Froude crosses 1.0 — these indicate transitions between subcritical and supercritical flows and may invalidate simple intuition.
+- Shear stress and stream power panels show the energy available to mobilize material; increases here often explain larger stone sizes.
+
+**Practical tips**
+- Inspect Manning's n panel when varying particle_size to confirm the expected roughness effect.
+- Use the shear and stream power panels to justify conservative choices for adopted stone diameter when energy metrics increase rapidly.
+"),
+  "left",
+
+  "plot_stone_quantities_plot", "Stone quantities & mass plot",
+  glue("Plot(s) showing mattress thickness, stone volume (m^3), and stone weight (kg / lbs / tons) vs the chosen x-axis. Useful for procurement and constructability checks."),
+  glue("
+**Typical content**
+- Visualizes the geometric and inventory outputs derived from adopted stone diameter and channel geometry:
+  - mattress_thickness (m),
+  - stone_vol_m3 (placed volume, m^3),
+  - adopted_stone_weight_kg / lbs / ton (per-stone mass),
+  - (optionally) total mass or number of stones required.
+
+**How to interpret**
+- Use these plots to translate hydraulic/design outputs into procurement and logistic metrics.
+- Rapid jumps in adopted stone weight or stone_vol_m3 across a small change in the x-axis often indicate a threshold effect: either the adopted diameter crossed into the next supplier gradation or hydraulic energy increased markedly.
+
+**Practical tips**
+- If adopted stone mass exceeds handling capabilities, consider design changes (reduce slope, increase width) or staged placement strategies.
+- Export tabular results for vendor quotations; plots are best used in combination with numeric tables for ordering.
+"),
+  "right",
+
+
+  # Channel-dimensions for scenario sweeps
+  "scenario_by_width_channel_dims", "Channel dimensions — by-width scenario outputs",
+  glue("Channel-dimensions dataframe produced when sweeping `width` (from by_width_df -> channel_dimensions). Contains hydraulics, method outputs, and volume/weight estimates for each width value."),
+  glue("
+**What this object is**
+- The channel_dimensions output produced by passing the by_width_df scenario to channel_dimensions(). Each row corresponds to a width value in the sweep and includes computed hydraulics (q, depths, velocities, Froude, shear, stream power), empirical stone-size estimates, adopted stone diameter and mass, and volume/quantity computations.
+
+**Key columns to inspect**
+- `width`, `unit_discharge`, `normal_depth`, `normal_velocity`, `froude`, `shear_stress`, `avail_stream_power`, `applied_stream_power`
+- `stone_size_nrcs`, `stone_size_usace`, `stone_size_abt_johnson`, `stone_size_isbash`, `stone_size_usbr`
+- `adopted_stone_diameter`, `adopted_stone_weight_kg`, `mattress_thickness`, `stone_vol_m3`, `length_left_bank`
+
+**How to interpret across the sweep**
+- Trace how q and velocity vary with width; these are the primary drivers of stone-size changes.
+- Look at both empirical-method spread and the adopted diameter. If the adopted diameter changes discontinuously with width, investigate the cause (e.g., method crossing or adoption multiplier).
+
+**Checks**
+- Verify unit consistency (m, m^3/s, kg/m^3).
+- Check Froude for regime changes: a flow regime transition may require additional hydraulic treatment beyond the app's scope.
+
+**Reporting**
+- Use summary tables and plots (stone size by method, hydraulic facets, quantities) to support design decisions and procurement estimates.
+"),
+  "left",
+
+  "scenario_by_slope_channel_dims", "Channel dimensions — by-slope scenario outputs",
+  glue("Channel-dimensions dataframe produced when sweeping `slope` (from by_slope_df -> channel_dimensions). Contains hydraulics, method outputs, and volume/weight estimates for each slope value."),
+  glue("
+**What this object is**
+- The channel_dimensions output produced by passing the by_slope_df scenario to channel_dimensions(). Each row corresponds to a slope value and contains the same set of hydraulic and material outputs as other scenario sweeps.
+
+**Key columns to inspect**
+- `slope`, `normal_velocity`, `shear_stress`, `avail_stream_power`, `applied_stream_power`, plus the stone-size method outputs and quantity columns.
+
+**How to interpret across the sweep**
+- Slope strongly affects velocity and shear; expect stone-size predictions to increase with slope in most empirical relations.
+- Examine non-linear responses where elevated slopes produce disproportionate jumps in predicted diameters or required volumes.
+
+**Checks**
+- For high slopes, confirm the mattress_thickness and adopted_stone_weight do not exceed practical placement/handling limits.
+- If normal_depth nears critical_depth, or if Froude increases above 1, consider separate hydraulic analysis (hydraulic jumps, controls).
+
+**Reporting**
+- Use slope-sweep outputs to evaluate feasibility and to set conservative design choices when supplier or handling limits constrain stone selection.
+"),
+  "left",
+
+  "scenario_by_particle_size_channel_dims", "Channel dimensions — by-particle_size scenario outputs",
+  glue("Channel-dimensions dataframe produced when sweeping `particle_size` (from by_particle_size_df -> channel_dimensions). Used to evaluate roughness and gradation effects."),
+  glue("
+**What this object is**
+- The channel_dimensions output produced by passing by_particle_size_df into channel_dimensions(). Each row corresponds to a particle_size value (used to estimate Manning's n) and includes hydraulic variables, stone-sizing method outputs, and quantities.
+
+**Key columns to inspect**
+- `particle_size`, `mannings_n`, `normal_depth`, `normal_velocity`, `stone_size_*` method outputs, and `stone_vol_m3`.
+
+**How to interpret across the sweep**
+- Changes in particle_size map to changes in estimated Mannings n; larger reference particle_size typically produces greater roughness estimates, deeper normal_depth, and lower velocities for fixed q — which can reduce predicted stone sizes.
+- Use this sweep to bound uncertainty from roughness assumptions and to prioritize field measurements.
+
+**Checks**
+- If stone sizing is sensitive to particle_size, plan additional field roughness characterization (e.g., pebble counts, substrate logs).
+- Confirm that changes in depth/velocity do not produce unintended regime transitions.
+
+**Reporting**
+- Present roughness sensitivity results alongside hydraulic and quantity outputs so decision-makers understand whether more site characterization is warranted.
+"),
+  "left"
 
 )
 

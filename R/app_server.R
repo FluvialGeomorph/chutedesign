@@ -220,4 +220,44 @@ app_server <- function(input, output, session) {
       markdown(filter(chutedesign::help_data, id == "gravity")$sidebar)
     )
   })
+
+  # Help entries for plot outputs
+  output$plot_stone_size_method_plot <- renderUI({
+    tagList(
+      markdown(filter(chutedesign::help_data, id == "plot_stone_size_method_plot")$popover),
+      markdown(filter(chutedesign::help_data, id == "plot_stone_size_method_plot")$sidebar)
+    )
+  })
+  output$plot_channel_flow_plot <- renderUI({
+    tagList(
+      markdown(filter(chutedesign::help_data, id == "plot_channel_flow_plot")$popover),
+      markdown(filter(chutedesign::help_data, id == "plot_channel_flow_plot")$sidebar)
+    )
+  })
+  output$plot_stone_quantities_plot <- renderUI({
+    tagList(
+      markdown(filter(chutedesign::help_data, id == "plot_stone_quantities_plot")$popover),
+      markdown(filter(chutedesign::help_data, id == "plot_stone_quantities_plot")$sidebar)
+    )
+  })
+
+  # Help entries for scenario/channel_dimensions outputs
+  output$scenario_by_width_channel_dims <- renderUI({
+    tagList(
+      markdown(filter(chutedesign::help_data, id == "scenario_by_width_channel_dims")$popover),
+      markdown(filter(chutedesign::help_data, id == "scenario_by_width_channel_dims")$sidebar)
+    )
+  })
+  output$scenario_by_slope_channel_dims <- renderUI({
+    tagList(
+      markdown(filter(chutedesign::help_data, id == "scenario_by_slope_channel_dims")$popover),
+      markdown(filter(chutedesign::help_data, id == "scenario_by_slope_channel_dims")$sidebar)
+    )
+  })
+  output$scenario_by_particle_size_channel_dims <- renderUI({
+    tagList(
+      markdown(filter(chutedesign::help_data, id == "scenario_by_particle_size_channel_dims")$popover),
+      markdown(filter(chutedesign::help_data, id == "scenario_by_particle_size_channel_dims")$sidebar)
+    )
+  })
 }
