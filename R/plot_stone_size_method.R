@@ -3,7 +3,7 @@
 #'              methods.
 #' @param channel_dims data frame; A channel dimensions data frame.
 #' @param x_axis       character; The variable to use for the x-axis. One of
-#'                     "width", "slope", "particle_size"
+#'                     "width", "length", "slope", "particle_size"
 #' @returns a ggplot2 object
 #' @export
 #' @importFrom tidyr pivot_longer starts_with
@@ -15,7 +15,7 @@
 #' @importFrom NatParksPalettes NatParksPalettes
 plot_stone_size_method <- function(channel_dims, x_axis) {
   # Validate x_axis
-  valid_x_axes <- c("width", "slope", "particle_size")
+  valid_x_axes <- c("width", "length", "slope", "particle_size")
   if (!(x_axis %in% valid_x_axes)) {
     stop("x_axis must be one of: ", paste(valid_x_axes, collapse = ", "))
   }
@@ -34,6 +34,7 @@ plot_stone_size_method <- function(channel_dims, x_axis) {
   # Determine x_axis
   x_axis_label <- switch(x_axis,
                          width         = "Width (m)",
+                         length        = "Length (m)",
                          slope         = "Slope",
                          particle_size = "Particle Size (m)")
 

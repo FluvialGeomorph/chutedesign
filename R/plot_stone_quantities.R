@@ -3,7 +3,7 @@
 #'              dimensions data frame.
 #' @param channel_dims data frame; A channel dimensions data frame.
 #' @param x_axis       character; The variable to use for the x-axis. One of
-#'                     "width", "slope", "particle_size"
+#'                     "width", "length", "slope", "particle_size"
 #' @returns a ggplot object
 #' @export
 #' @importFrom dplyr %>% mutate
@@ -14,7 +14,7 @@
 #' @importFrom stringr str_to_title
 plot_stone_quantities <- function(channel_dims, x_axis) {
   # Validate x_axis
-  valid_x_axes <- c("width", "slope", "particle_size")
+  valid_x_axes <- c("width", "length", "slope", "particle_size")
   if (!(x_axis %in% valid_x_axes)) {
     stop("x_axis must be one of: ", paste(valid_x_axes, collapse = ", "))
   }
@@ -47,6 +47,7 @@ plot_stone_quantities <- function(channel_dims, x_axis) {
   # Determine x_axis labels
   x_axis_label <- switch(x_axis,
                          width         = "Width (m)",
+                         length        = "Length (m)",
                          slope         = "Slope",
                          particle_size = "Particle Size (m)")
 
