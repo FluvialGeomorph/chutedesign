@@ -194,14 +194,31 @@ app_ui <- function(request) {
                   id = "by_width_results",
                   open = c("Plots", "Data"),
                   accordion_panel(
+                    id = "by_width_results",
                     title = "Plots",
-                    plotOutput("width_stone_size"),
-                    plotOutput("width_channel_flow"),
-                    plotOutput("width_stone_quants")
+                    help_overlay(
+                      main    = plotOutput("width_stone_size"),
+                      help_ui = popover(bs_icon("info-circle"), 
+                                        uiOutput("plot_stone_size_method_plot"))
+                    ),
+                    help_overlay(
+                      main    = plotOutput("width_channel_flow"),
+                      help_ui = popover(bs_icon("info-circle"), 
+                                        uiOutput("plot_channel_flow_plot"))
+                    ),
+                    help_overlay(
+                      main    = plotOutput("width_stone_quants"),
+                      help_ui = popover(bs_icon("info-circle"), 
+                                        uiOutput("plot_stone_quantities_plot"))
+                    )
                   ),
                   accordion_panel(
                     title = "Data",
-                    DTOutput("width_table")
+                    help_overlay(
+                      main    = DTOutput("width_table"),
+                      help_ui = popover(bs_icon("info-circle"), 
+                                        uiOutput("scenario_by_width_channel_dims"))
+                    )
                   )
                 )
               )
@@ -224,14 +241,31 @@ app_ui <- function(request) {
                   id = "by_slope_results",
                   open = c("Plots", "Data"),
                   accordion_panel(
+                    id = "by_slope_results",
                     title = "Plots",
-                    plotOutput("slope_stone_size"),
-                    plotOutput("slope_channel_flow"),
-                    plotOutput("slope_stone_quants")
+                    help_overlay(
+                      main    = plotOutput("slope_stone_size"),
+                      help_ui = popover(bs_icon("info-circle"), 
+                                        uiOutput("plot_stone_size_method_plot"))
+                    ),
+                    help_overlay(
+                      main    = plotOutput("slope_channel_flow"),
+                      help_ui = popover(bs_icon("info-circle"), 
+                                        uiOutput("plot_channel_flow_plot"))
+                    ),
+                    help_overlay(
+                      main    = plotOutput("slope_stone_quants"),
+                      help_ui = popover(bs_icon("info-circle"), 
+                                        uiOutput("plot_stone_quantities_plot"))
+                    )
                   ),
                   accordion_panel(
                     title = "Data",
-                    DTOutput("slope_table")
+                    help_overlay(
+                      main    = DTOutput("slope_table"),
+                      help_ui = popover(bs_icon("info-circle"), 
+                                        uiOutput("scenario_by_slope_channel_dims"))
+                    )
                   )
                 )
               )
@@ -251,17 +285,34 @@ app_ui <- function(request) {
                   uiOutput("by_particle_sidebar")
                 ),
                 accordion(
-                  id = "by_particle_results",
+                  id = "by_particle_size_results",
                   open = c("Plots", "Data"),
                   accordion_panel(
+                    id = "by_particle_size_results",
                     title = "Plots",
-                    plotOutput("particle_size_stone_size"),
-                    plotOutput("particle_size_channel_flow"),
-                    plotOutput("particle_size_stone_quants")
+                    help_overlay(
+                      main    = plotOutput("particle_size_stone_size"),
+                      help_ui = popover(bs_icon("info-circle"), 
+                                        uiOutput("plot_stone_size_method_plot"))
+                    ),
+                    help_overlay(
+                      main    = plotOutput("particle_size_channel_flow"),
+                      help_ui = popover(bs_icon("info-circle"), 
+                                        uiOutput("plot_channel_flow_plot"))
+                    ),
+                    help_overlay(
+                      main    = plotOutput("particle_size_stone_quants"),
+                      help_ui = popover(bs_icon("info-circle"), 
+                                        uiOutput("plot_stone_quantities_plot"))
+                    )
                   ),
                   accordion_panel(
                     title = "Data",
-                    DTOutput("particle_size_table")
+                    help_overlay(
+                      main    = DTOutput("particle_size_table"),
+                      help_ui = popover(bs_icon("info-circle"), 
+                                        uiOutput("scenario_by_particle_channel_dims"))
+                    )
                   )
                 )
               )
