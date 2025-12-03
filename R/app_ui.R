@@ -224,6 +224,48 @@ app_ui <- function(request) {
               )
             ),
             nav_panel(
+              title = "by Length",
+              layout_sidebar(
+                border_radius = FALSE,
+                fillable = TRUE,
+                class = "p-0",
+                sidebar = sidebar(
+                  id = "by_length_help",
+                  title = "Help",
+                  position = "right",
+                  width = 300,
+                  open = TRUE,
+                  uiOutput("by_length_sidebar")
+                ),
+                accordion(
+                  id = "by_length_results",
+                  open = c("Plots", "Data"),
+                  accordion_panel(
+                    title = "Plots",
+                    help_overlay(
+                      main    = plotOutput("length_stone_size"),
+                      help_ui = popover(bs_icon("info-circle"), uiOutput("plot_stone_size_method_plot"))
+                    ),
+                    help_overlay(
+                      main    = plotOutput("length_channel_flow"),
+                      help_ui = popover(bs_icon("info-circle"), uiOutput("plot_channel_flow_plot"))
+                    ),
+                    help_overlay(
+                      main    = plotOutput("length_stone_quants"),
+                      help_ui = popover(bs_icon("info-circle"), uiOutput("plot_stone_quantities_plot"))
+                    )
+                  ),
+                  accordion_panel(
+                    title = "Data",
+                    help_overlay(
+                      main    = DTOutput("length_table"),
+                      help_ui = popover(bs_icon("info-circle"), uiOutput("scenario_by_length_channel_dims"))
+                    )
+                  )
+                )
+              )
+            ),
+            nav_panel(
               title = "by Slope",
               layout_sidebar(
                 border_radius = FALSE,

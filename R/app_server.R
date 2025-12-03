@@ -42,11 +42,13 @@ app_server <- function(input, output, session) {
 
     ## Create channel data frames
     width_df         <- by_width_df(scenario)
+    length_df        <- by_length_df(scenario)
     slope_df         <- by_slope_df(scenario)
     particle_size_df <- by_particle_size_df(scenario)
 
     ## Calculate channel dimensions
     width_dims         <- channel_dimensions(width_df)
+    length_dims        <- channel_dimensions(length_df)
     slope_dims         <- channel_dimensions(slope_df)
     particle_size_dims <- channel_dimensions(particle_size_df)
 
@@ -68,6 +70,26 @@ app_server <- function(input, output, session) {
     })
     output$width_table <- renderDT({
       datatable(width_dims,
+                extensions = 'Buttons',
+                options = list(searching = FALSE,
+                               dom = 'Bfrtip',
+                               buttons = c('csv'))
+      ) %>%
+        formatRound(columns = calc_colnames, digits = 4)
+    })
+
+    ## by Length
+    output$length_stone_size <- renderPlot({
+      plot_stone_size_method(length_dims, x_axis = "length")
+    })
+    output$length_channel_flow <- renderPlot({
+      plot_channel_flow(length_dims, x_axis = "length")
+    })
+    output$length_stone_quants <- renderPlot({
+      plot_stone_quantities(length_dims, x_axis = "length")
+    })
+    output$length_table <- renderDT({
+      datatable(length_dims,
                 extensions = 'Buttons',
                 options = list(searching = FALSE,
                                dom = 'Bfrtip',
