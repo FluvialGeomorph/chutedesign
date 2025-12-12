@@ -44,6 +44,39 @@ usethis::use_data_raw(name = "create_help_data.R", open = TRUE)
 golem::document_and_reload()
 run_app()
 
+## Install Positron Extensions
+download.file(
+  url = "https://open-vsx.org/api/posit/shiny/1.3.2/file/posit.shiny-1.3.2.vsix", 
+  destfile = "posit-shiny.vsix", 
+  method = "curl", 
+  mode = "wb", 
+  extra = "-L"
+)
+
+download.file(
+  url = "https://open-vsx.org/api/kv9898/positron-r-package-manager/0.2.4/file/kv9898.positron-r-package-manager-0.2.4.vsix", 
+  destfile = "positron-r-package.vsix", 
+  method = "curl", 
+  mode = "wb", 
+  extra = "-L"
+)
+
+download.file(
+  url = "https://open-vsx.org/api/kv9898/positron-r-tester/0.0.2/file/kv9898.positron-r-tester-0.0.2.vsix", 
+  destfile = "positron-r-tester.vsix", 
+  method = "curl", 
+  mode = "wb", 
+  extra = "-L"
+)
+
+download.file(
+  url = "https://open-vsx.org/api/code-inspect/vscode-flowr/0.6.3/file/code-inspect.vscode-flowr-0.6.3.vsix", 
+  destfile = "positron-r-flowr.vsix", 
+  method = "curl", 
+  mode = "wb", 
+  extra = "-L"
+)
+
 ## Tests ----
 ## Add one line by test you want to create
 #usethis::use_test("app")
