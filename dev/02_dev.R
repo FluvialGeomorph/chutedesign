@@ -85,6 +85,19 @@ download.file(
   extra = "-L"
 )
 
+download.file(
+  url = "https://open-vsx.org/vscode/asset/quarto/quarto/1.127.0/Microsoft.VisualStudio.Services.VSIXPackage", 
+  destfile = "quarto.vsix", 
+  method = "curl", 
+  mode = "wb", 
+  extra = "-L"
+)
+
+# Configure Certificates
+# Install `InstallRoot` to get needed DoD certs
+# Tell git to use these certs
+# git config --global http.sslBackend "schannel"
+
 # Convert repo to text for submission to LLMs
 # https://genai.mil/
 
