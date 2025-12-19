@@ -77,6 +77,20 @@ download.file(
   extra = "-L"
 )
 
+download.file(
+  url = "https://github.gallery.vsassets.io/_apis/public/gallery/publisher/github/extension/copilot/1.388.0/assetbyname/Microsoft.VisualStudio.Services.VSIXPackage", 
+  destfile = "github-copilot.vsix", 
+  method = "curl", 
+  mode = "wb", 
+  extra = "-L"
+)
+
+# Convert repo to text for submission to LLMs
+# https://genai.mil/
+
+# https://repo2txt.com/
+# https://huggingface.co/spaces/multimodalart/repo2txt
+
 ## Tests ----
 ## Add one line by test you want to create
 #usethis::use_test("app")
