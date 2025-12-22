@@ -6,10 +6,10 @@
 #' @importFrom dplyr mutate %>%
 channel_dimensions <- function(channel_df) {
   # Constants
-  h2o_specific_weight <- 9787           # N/m^3
+  h2o_specific_weight <- 9787            # N/m^3
   ft_per_m <- 3.2808
   ft_per_m2 <- ft_per_m^2
-  g <- unique(channel_df$gravity)       # user-provided gravity (m/s^2)
+  g <- unique(channel_df$gravity)        # user-provided gravity (m/s^2)
   wd <- unique(channel_df$water_density) # user-provided water density (kg/m^3)
 
   channel_dims <- channel_df %>%
@@ -17,9 +17,6 @@ channel_dimensions <- function(channel_df) {
       # Constants
       stone_specific_weight = stone_density * g,
       specific_gravity = stone_specific_weight / h2o_specific_weight,
-
-      # Chute Parameters
-      side_angle = atan(1 / side_slope) * (180 / pi),
 
       # Channel Flow Parameters
       unit_discharge = total_discharge / width,
@@ -34,24 +31,28 @@ channel_dimensions <- function(channel_df) {
       avail_stream_power = (h2o_specific_weight * unit_discharge * slope) / 1000,
       applied_stream_power = (7.853 * wd * (shear_stress / wd)^(3/2)) / 1000,
 
-      # Stone size methods
-      stone_size_nrcs = (12 * (0.233 * unit_discharge * ft_per_m2 * slope^0.58)^0.529) / (12 * ft_per_m),
-      stone_size_usace = (1.95 * slope^0.555 * unit_discharge^(2/3)) / g^(1/3),
-      stone_size_abt_johnson = (((unit_discharge * ft_per_m2)^0.56) * slope^0.43 * 5.23) / (12 * ft_per_m),
-      stone_size_isbash = (((1.2^2) * 2 * g * ft_per_m * ((stone_specific_weight - h2o_specific_weight) / h2o_specific_weight)) / (normal_velocity * ft_per_m)) * (1 / ft_per_m),
-      stone_size_usbr = 0.0122 * (ft_per_m * normal_velocity)^2.06 * 0.3048,
+      # Stone size by method
+      stone_size_nrcs = compute_stone_size("nrcs", unit_discharge, slope, NA, NA, NA, g),
+      stone_size_usace = compute_stone_size("usace", unit_discharge, slope, NA, NA, NA, g),
+      stone_size_abt_johnson = compute_stone_size("abt_johnson", unit_discharge, slope, NA, NA, NA, g),
+      stone_size_isbash = compute_stone_size("isbash", NA, NA, normal_velocity, stone_specific_weight, 
+                                             h2o_specific_weight, g),
+      stone_size_usbr = compute_stone_size("usbr", NA, NA, normal_velocity, NA, NA),
 
-      # Adopted stone and dimensions
+      # Adopted stone dimensions
       adopted_stone_diameter = stone_size_nrcs * 1.3,
       adopted_stone_weight_kg = (adopted_stone_diameter^3 * pi * stone_specific_weight) / (6 * g),
       adopted_stone_weight_lbs = adopted_stone_weight_kg * 2.205,
       adopted_stone_weight_ton = adopted_stone_weight_lbs / 2000,
 
-      # Geometry and volume
+      # Channel Geometry
+      side_angle = atan(1 / side_slope) * (180 / pi),
       depth = normal_depth * 2,
       length_side_horz = depth * side_slope,
       length_left_bank = length_side_horz / cos(side_angle * (pi / 180)),
       mattress_thickness = adopted_stone_diameter * 2,
+
+      # Stone Quantities
       stone_vol_m3 = contingency * (mattress_thickness * (length_left_bank + width) * length) * (1 - porosity),
       stone_vol_cuyd = stone_vol_m3 * 1.308,
       stone_vol_metric_ton = stone_vol_m3 * stone_density / 1000,
