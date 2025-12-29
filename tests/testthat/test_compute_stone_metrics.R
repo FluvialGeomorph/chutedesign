@@ -28,6 +28,30 @@ test_that("compute_stone_metrics calculates stone sizes per method", {
   channel_dimensions <- compute_channel_dimensions(channel_df)
   stone_metrics <- compute_stone_metrics(channel_dimensions)
   
+  # Validate essential columns exist
   expect_true("method" %in% colnames(stone_metrics))
-  expect_equal(sort(unique(stone_metrics$method)), c("nrcs", "usace", "abt_johnson", "isbash", "usbr"))
+  expect_true("stone_diameter" %in% colnames(stone_metrics))
+  expect_true("stone_vol_m3" %in% colnames(stone_metrics))
+
+  # Validate stone size metrics across all methods
+  expected_methods <- c("nrcs", "usace", "abt_johnson", "isbash", "usbr")
+  expect_equal(sort(unique(stone_metrics$method)), sort(expected_methods))
+
+  # Specific numerical validations
+  expect_gt(stone_metrics$stone_diameter[1], 0)
+  expect_gt(stone_metrics$stone_weight_kg[1], 0)
+
+  # Test missing inputs
+  invalid_dimensions <- channel_dimensions %>% dplyr::select(-unit_discharge)
+  expect_error(compute_stone_metrics(invalid_dimensions), "object 'unit_discharge' not found")
+
+  # Edge case: invalid stone_density or porosity
+  invalid_density <- channel_dimensions %>% dplyr::mutate(stone_density = 0)
+  stone_metrics_invalid_density <- compute_stone_metrics(invalid_density)
+  expect_equal(stone_metrics_invalid_density$stone_weight_kg, 
+               rep(0, length(stone_metrics_invalid_density$stone_weight_kg)))
+  
+  invalid_porosity <- channel_dimensions %>% dplyr::mutate(porosity = -1)
+  stone_metrics_invalid_porosity <- compute_stone_metrics(invalid_porosity)
+  expect_true(all(stone_metrics_invalid_porosity$stone_vol_m3 > stone_metrics$stone_vol_m3))
 })
