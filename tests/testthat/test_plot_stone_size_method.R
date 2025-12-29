@@ -25,10 +25,11 @@ test_that("check by_width_df", {
     gravity             = 9.787
   )
   width_df <- by_width_df(scenario)
-  channel_dims <- channel_dimensions(width_df)
+  channel_dimensions <- compute_channel_dimensions(width_df)
+  stone_metrics <- compute_stone_metrics(channel_dimensions)
   x_axis <- "width"
-  plot1 <- plot_stone_size_method(channel_dims, x_axis = x_axis)
-  #plot1
+  plot1 <- plot_stone_size_method(stone_metrics, x_axis)
+  plot1
   expect_s3_class(plot1, "ggplot")
 })
 
@@ -59,11 +60,12 @@ test_that("check by_length_df", {
     gravity             = 9.787
   )
   length_df <- by_length_df(scenario)
-  channel_dims <- channel_dimensions(length_df)
+  channel_dimensions <- compute_channel_dimensions(length_df)
+  stone_metrics <- compute_stone_metrics(channel_dimensions)
   x_axis <- "length"
-  plot1 <- plot_stone_size_method(channel_dims, x_axis = x_axis)
-  #plot1
-  expect_s3_class(plot1, "ggplot")
+  plot2 <- plot_stone_size_method(stone_metrics, x_axis)
+  #plot2
+  expect_s3_class(plot2, "ggplot")
 })
 
 test_that("check by_slope_df", {
@@ -93,11 +95,12 @@ test_that("check by_slope_df", {
     gravity             = 9.787
   )
   slope_df <- by_slope_df(scenario)
-  channel_dims <- channel_dimensions(slope_df)
+  channel_dimensions <- compute_channel_dimensions(slope_df)
+  stone_metrics <- compute_stone_metrics(channel_dimensions)
   x_axis = "slope"
-  plot2 <- plot_stone_size_method(channel_dims, x_axis = x_axis)
-  #plot2
-  expect_s3_class(plot2, "ggplot")
+  plot3 <- plot_stone_size_method(stone_metrics, x_axis)
+  #plot3
+  expect_s3_class(plot3, "ggplot")
 })
 
 test_that("check by_particle_size_df", {
@@ -127,9 +130,10 @@ test_that("check by_particle_size_df", {
     gravity             = 9.787
   )
   particle_size_df <- by_particle_size_df(scenario)
-  channel_dims <- channel_dimensions(particle_size_df)
+  channel_dimensions <- compute_channel_dimensions(particle_size_df)
+  stone_metrics <- compute_stone_metrics(channel_dimensions)
   x_axis = "particle_size"
-  plot3 <- plot_stone_size_method(channel_dims, x_axis = x_axis)
-  #plot3
-  expect_s3_class(plot3, "ggplot")
+  plot4 <- plot_stone_size_method(stone_metrics, x_axis)
+  #plot4
+  expect_s3_class(plot4, "ggplot")
 })
