@@ -17,5 +17,5 @@ a ggplot object
 }
 \description{
 Create a plot of channel flow variables from a channel
-             dimensions data frame.
+dimensions data frame.
 }

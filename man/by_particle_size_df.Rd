@@ -14,5 +14,5 @@ a scenario data frame
 }
 \description{
 Create a data frame of a scenario that varies by chute
-             particle size.
+particle size.
 }

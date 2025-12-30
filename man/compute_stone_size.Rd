@@ -36,3 +36,18 @@ numeric; The calculated stone size (m).
 \description{
 Calculate stone sizes using specified methods.
 }
+\details{
+\strong{Isbash Method Equation:}
+The "Isbash" formula estimates the stone size required to resist motion
+under given hydraulic conditions:
+#' \deqn{
+d = \frac{(1.2 \cdot v_c)^2}{2g \cdot (SG - 1)}
+}
+#' where:
+\itemize{
+\item \(d\): Stone diameter (m)
+\item \(v_c\): Critical velocity for stone motion (m/s)
+\item \(SG\): Specific gravity = \(\frac{\text{stone\_specific\_weight}}{\text{h2o\_specific\_weight}}\)
+\item \(g\): Gravitational acceleration (m/s²).
+}
+}

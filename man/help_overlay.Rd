@@ -7,10 +7,10 @@
 help_overlay(main, help_ui, top = "0.3rem", right = "0.3rem", z = 1000)
 }
 \arguments{
-\item{main}{UI tag representing the main output to display, e.g. `plotOutput("id")`}
+\item{main}{UI tag representing the main output to display, e.g. \code{plotOutput("id")}}
 
 \item{help_ui}{UI tag representing the help popover/content to overlay, e.g.
-`popover(bs_icon("info-circle"), uiOutput("help_id"))`}
+\code{popover(bs_icon("info-circle"), uiOutput("help_id"))}}
 
 \item{top}{CSS offset from the top of the wrapper (e.g. \"0.5rem\"). Default: \"0.5rem\".}
 
@@ -19,12 +19,12 @@ help_overlay(main, help_ui, top = "0.3rem", right = "0.3rem", z = 1000)
 \item{z}{Integer z-index for the overlay to ensure it sits above the main output. Default: 1000.}
 }
 \value{
-An HTML tag (div) wrapping `main` with an absolutely-positioned help UI.
+An HTML tag (div) wrapping \code{main} with an absolutely-positioned help UI.
 }
 \description{
 Wraps any Shiny output (plotOutput, DTOutput, rglwidgetOutput, etc.)
 in a relative-positioned container and absolutely positions a help UI
-(typically a `popover(bs_icon(...), uiOutput(...))`) in the upper-right corner.
+(typically a \code{popover(bs_icon(...), uiOutput(...))}) in the upper-right corner.
 
 This preserves the wrapped output at full width (no column narrowing)
 and avoids hard-coded widths/heights, so it is suitable for responsive

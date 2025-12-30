@@ -10,8 +10,8 @@ by_length_df(scenario)
 \item{scenario}{list; A scenario definition list created by create_scenario().}
 }
 \value{
-A data.frame where each row is a scenario with a different `length`
-  value and identical values for the other parameters.
+A data.frame where each row is a scenario with a different \code{length}
+value and identical values for the other parameters.
 }
 \description{
 Create a data frame of a scenario that varies by chute length.
