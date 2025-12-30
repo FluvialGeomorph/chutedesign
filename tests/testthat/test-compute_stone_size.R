@@ -38,18 +38,18 @@ test_that("compute_stone_size calculates using Abt-Johnson method correctly", {
   expect_equal(result, expected, tolerance = 1e-6)
 })
 
-test_that("compute_stone_size calculates using Isbash method correctly", {
+test_that("Isbash method correctly calculates stone size", {
   result <- compute_stone_size(
     method = "isbash",
     unit_discharge = NA,
     slope = NA,
-    normal_velocity = 1.5,
-    stone_specific_weight = 2600 * 9.81, # N/m^3
-    h2o_specific_weight = 1000 * 9.81,  # N/m^3
-    g = 9.81
+    normal_velocity = 2.5,  # Critical velocity (m/s)
+    stone_specific_weight = 2650 * 9.81,  # convert kg/m^3 to N/m³
+    h2o_specific_weight = 1000 * 9.81,   # convert kg/m^3 to N/m³
+    g = 9.81  # m/s²
   )
-  expected <- (((1.2^2) * 2 * 9.81 * ((2600 * 9.81 - 1000 * 9.81) /
-                                       (1000 * 9.81))) / 1.5)
+  # Expected output based on manual computation
+  expected <- (1.2 * 2.5)^2 / (2 * 9.81 * (2650 / 1000 - 1))
   expect_equal(result, expected, tolerance = 1e-6)
 })
 
