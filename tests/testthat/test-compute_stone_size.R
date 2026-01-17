@@ -43,9 +43,9 @@ test_that("Isbash method correctly calculates stone size", {
     method = "isbash",
     unit_discharge = NA,
     slope = NA,
-    normal_velocity = 2.5,  # Critical velocity (m/s)
-    stone_specific_weight = 2650 * 9.81,  # convert kg/m^3 to N/m³
-    h2o_specific_weight = 1000 * 9.81,   # convert kg/m^3 to N/m³
+    normal_velocity = 2.5,  # proxy for Critical Velocity (m/s)
+    stone_specific_weight = 2650,  # kg/m^3
+    h2o_specific_weight = 1000,   # kg/m^3
     g = 9.81  # m/s²
   )
   # Expected output based on manual computation

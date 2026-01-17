@@ -37,17 +37,32 @@ numeric; The calculated stone size (m).
 Calculate stone sizes using specified methods.
 }
 \details{
-\strong{Isbash Method Equation:}
-The "Isbash" formula estimates the stone size required to resist motion
-under given hydraulic conditions:
-#' \deqn{
-d = \frac{(1.2 \cdot v_c)^2}{2g \cdot (SG - 1)}
-}
-#' where:
+The following methods provide approaches for estimating the stone size
+required to resist motion under given hydraulic conditions. These methods
+have been extensively documented in several publications:
 \itemize{
-\item \(d\): Stone diameter (m)
-\item \(v_c\): Critical velocity for stone motion (m/s)
-\item \(SG\): Specific gravity = \(\frac{\text{stone\_specific\_weight}}{\text{h2o\_specific\_weight}}\)
-\item \(g\): Gravitational acceleration (m/s²).
+\item \emph{Stone Sizing Criteria}, Natural Resources Conservation Service,
+National Engineering Handbook 210 H Part 654 - Stream Restoration Design,
+\href{https://directives.nrcs.usda.gov//sites/default/files2/1720623369/Technical\%20Supplement\%2014\%20C\%20-\%20Stone\%20Sizing\%20Criteria.pdf}{Technical Supplement 14 C},
+August 2007.
+\item \emph{Riprap Design Criteria, Recommended Specifications, and Quality Control},
+National Cooperative Highway Research Program,
+\href{https://onlinepubs.trb.org/onlinepubs/nchrp/nchrp_rpt_568.pdf}{NCHRP Report 568},
+2006.
+\item \emph{Hydraulic Design of Flood Control Channels}, US Army Corps of Engineers,
+\href{https://www.publications.usace.army.mil/Portals/76/Publications/EngineerManuals/EM_1110-2-1601.pdf}{Engineering Manual 1110-2-1601},
+30 June 1994.
+}
+
+\strong{Isbash Method Equation:}
+\deqn{
+  d = \frac{(1.2 \cdot v_c)^2}{2g \cdot (SG - 1)}
+}
+where:
+\itemize{
+\item \eqn{d}: Stone diameter (m)
+\item \eqn{v_c}: Critical velocity for stone motion (m/s)
+\item \eqn{SG}: Specific gravity = \eqn{(\frac{\text{stone\_specific\_weight}}{\text{h2o\_specific\_weight}})}
+\item \eqn{g}: Gravitational acceleration (m/s²).
 }
 }

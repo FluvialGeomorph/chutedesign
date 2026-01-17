@@ -11,17 +11,31 @@
 #' @returns numeric; The calculated stone size (m).
 #' 
 #' @details
+#' The following methods provide approaches for estimating the stone size 
+#' required to resist motion under given hydraulic conditions. These methods 
+#' have been extensively documented in several publications:
+#' 
+#' - *Stone Sizing Criteria*, Natural Resources Conservation Service, 
+#'   National Engineering Handbook 210 H Part 654 - Stream Restoration Design, 
+#'   [Technical Supplement 14 C](https://directives.nrcs.usda.gov//sites/default/files2/1720623369/Technical%20Supplement%2014%20C%20-%20Stone%20Sizing%20Criteria.pdf), 
+#'   August 2007.
+#' - *Riprap Design Criteria, Recommended Specifications, and Quality Control*, 
+#'   National Cooperative Highway Research Program, 
+#'   [NCHRP Report 568](https://onlinepubs.trb.org/onlinepubs/nchrp/nchrp_rpt_568.pdf), 
+#'   2006.
+#' - *Hydraulic Design of Flood Control Channels*, US Army Corps of Engineers,
+#'   [Engineering Manual 1110-2-1601](https://www.publications.usace.army.mil/Portals/76/Publications/EngineerManuals/EM_1110-2-1601.pdf), 
+#'   30 June 1994.
+#' 
 #' **Isbash Method Equation:**
-#' The "Isbash" formula estimates the stone size required to resist motion 
-#' under given hydraulic conditions:
-#' #' \deqn{
-#' d = \frac{(1.2 \cdot v_c)^2}{2g \cdot (SG - 1)}
+#' \deqn{
+#'   d = \frac{(1.2 \cdot v_c)^2}{2g \cdot (SG - 1)}
 #' }
-#' #' where:
-#' - \(d\): Stone diameter (m)
-#' - \(v_c\): Critical velocity for stone motion (m/s)
-#' - \(SG\): Specific gravity = \(\frac{\text{stone\_specific\_weight}}{\text{h2o\_specific\_weight}}\)
-#' - \(g\): Gravitational acceleration (m/s²).
+#'  where:
+#'   - \eqn{d}: Stone diameter (m)
+#'   - \eqn{v_c}: Critical velocity for stone motion (m/s)
+#'   - \eqn{SG}: Specific gravity = \eqn{(\frac{\text{stone\_specific\_weight}}{\text{h2o\_specific\_weight}})}
+#'   - \eqn{g}: Gravitational acceleration (m/s²).
 #' 
 #' @export
 compute_stone_size <- function(method,
