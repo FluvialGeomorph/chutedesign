@@ -1,0 +1,24 @@
+---
+title: "stone_sizing_methods"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{stone_sizing_methods}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup}
+library(chutedesign)
+```
+
+# Handbooks
+
+* 
+
+```{r}
+library(flow)
+```
+
+```{r}
+#flow_view(chutedesign::)
+```
