@@ -45,51 +45,61 @@ golem::document_and_reload()
 run_app()
 
 ## Install Positron Extensions
+latest_version_url <- "https://open-vsx.org/api/posit/shiny/1.3.2/file/posit.shiny-1.3.2.vsix"
+latest_version_filename <- basename(file.path(latest_version_url))
+
+downloaded_vsix <- tempfile(latest_version_filename, fileext = ".vsix")
+  
 download.file(
-  url = "https://open-vsx.org/api/posit/shiny/1.3.2/file/posit.shiny-1.3.2.vsix", 
-  destfile = "posit-shiny.vsix", 
-  method = "curl", 
-  mode = "wb", 
+  url = latest_version_url,
+  destfile = downloaded_vsix,
+  method = "curl",
+  mode = "wb",
+  extra = "-L"
+)
+
+system(
+  paste("positron --install-extension", shQuote(downloaded_vsix))
+)
+
+
+download.file(
+  url = "https://open-vsx.org/api/kv9898/positron-r-package-manager/0.2.4/file/kv9898.positron-r-package-manager-0.2.4.vsix",
+  destfile = "positron-r-package.vsix",
+  method = "curl",
+  mode = "wb",
   extra = "-L"
 )
 
 download.file(
-  url = "https://open-vsx.org/api/kv9898/positron-r-package-manager/0.2.4/file/kv9898.positron-r-package-manager-0.2.4.vsix", 
-  destfile = "positron-r-package.vsix", 
-  method = "curl", 
-  mode = "wb", 
+  url = "https://open-vsx.org/api/kv9898/positron-r-tester/0.0.2/file/kv9898.positron-r-tester-0.0.2.vsix",
+  destfile = "positron-r-tester.vsix",
+  method = "curl",
+  mode = "wb",
   extra = "-L"
 )
 
 download.file(
-  url = "https://open-vsx.org/api/kv9898/positron-r-tester/0.0.2/file/kv9898.positron-r-tester-0.0.2.vsix", 
-  destfile = "positron-r-tester.vsix", 
-  method = "curl", 
-  mode = "wb", 
+  url = "https://open-vsx.org/api/code-inspect/vscode-flowr/0.6.3/file/code-inspect.vscode-flowr-0.6.3.vsix",
+  destfile = "positron-r-flowr.vsix",
+  method = "curl",
+  mode = "wb",
   extra = "-L"
 )
 
 download.file(
-  url = "https://open-vsx.org/api/code-inspect/vscode-flowr/0.6.3/file/code-inspect.vscode-flowr-0.6.3.vsix", 
-  destfile = "positron-r-flowr.vsix", 
-  method = "curl", 
-  mode = "wb", 
+  url = "https://github.gallery.vsassets.io/_apis/public/gallery/publisher/github/extension/copilot/1.388.0/assetbyname/Microsoft.VisualStudio.Services.VSIXPackage",
+  destfile = "github-copilot.vsix",
+  method = "curl",
+  mode = "wb",
   extra = "-L"
 )
 
 download.file(
-  url = "https://github.gallery.vsassets.io/_apis/public/gallery/publisher/github/extension/copilot/1.388.0/assetbyname/Microsoft.VisualStudio.Services.VSIXPackage", 
-  destfile = "github-copilot.vsix", 
-  method = "curl", 
-  mode = "wb", 
-  extra = "-L"
-)
-
-download.file(
-  url = "https://open-vsx.org/vscode/asset/quarto/quarto/1.127.0/Microsoft.VisualStudio.Services.VSIXPackage", 
-  destfile = "quarto.vsix", 
-  method = "curl", 
-  mode = "wb", 
+  url = "https://open-vsx.org/vscode/asset/quarto/quarto/1.127.0/Microsoft.VisualStudio.Services.VSIXPackage",
+  destfile = "quarto.vsix",
+  method = "curl",
+  mode = "wb",
   extra = "-L"
 )
 
