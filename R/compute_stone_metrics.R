@@ -14,7 +14,7 @@
 #' @export
 compute_stone_metrics <- function(channel_dimensions) {
   stone_methods <- c("nrcs", "usace", "abt_johnson", "isbash", "usbr")
-  
+
   channel_dimensions %>%
     dplyr::rowwise() %>%
     dplyr::mutate(
@@ -28,19 +28,24 @@ compute_stone_metrics <- function(channel_dimensions) {
             slope = slope,
             normal_velocity = normal_velocity,
             stone_specific_weight = stone_density * gravity,
-            h2o_specific_weight = 9787,  # Water specific weight
+            h2o_specific_weight = 9787, # Water specific weight
             g = gravity
           )
-          
+
           # Derived metrics
           tibble::tibble(
             method = .x,
             stone_diameter = stone_diameter,
-            stone_weight_kg = (stone_diameter^3 * pi * (stone_density * gravity)) / (6 * gravity),
+            stone_weight_kg = ifelse(
+              is.na(stone_diameter) | stone_density == 0,
+              0,
+              (stone_diameter^3 * pi * (stone_density * gravity)) /
+                (6 * gravity)
+            ),
             mattress_thickness = 2 * stone_diameter,
-            stone_vol_m3 = contingency * (
-              mattress_thickness * (width + depth) * length
-            ) * (1 - porosity)
+            stone_vol_m3 = contingency *
+              (mattress_thickness * (width + depth) * length) *
+              (1 - porosity)
           )
         }
       ))
