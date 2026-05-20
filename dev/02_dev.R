@@ -6,10 +6,15 @@
 # 02_dev.R should be used to keep track of your development during the project.
 # 03_deploy.R should be used once you need to deploy your app.
 #
-#
-###################################
-#### CURRENT FILE: DEV SCRIPT #####
-###################################
+
+# Specify Chat Instructions
+recipes <- reproducibleai::instructions_recipes()
+reproducibleai::use_instructions(recipes$shiny_golem)
+
+## Start new chat prompt text:
+Target repo: `FluvialGeomorph/chutedesign`  
+Read `dev/instructions/CHAT_INSTRUCTIONS.md` and follow the specified instruction modules in order. 
+Task: <describe the task>
 
 # Engineering
 
