@@ -49,6 +49,9 @@ usethis::use_data_raw(name = "create_help_data.R", open = TRUE)
 golem::document_and_reload()
 run_app()
 
+## Check
+devtools::check(vignettes = FALSE, args = c("--no-tests", "--no-examples"))
+
 ## Install Positron Extensions
 latest_version_url <- "https://open-vsx.org/api/posit/shiny/1.3.2/file/posit.shiny-1.3.2.vsix"
 latest_version_filename <- basename(file.path(latest_version_url))

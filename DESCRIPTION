@@ -1,6 +1,6 @@
 Package: chutedesign
 Title: Design a Chute
-Version: 2025.11.25
+Version: 2026.05.21
 Authors@R: c(
     person("Michael", "Dougherty", , "Michael.P.Dougherty@usace.army.mil", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-1465-5927")),
@@ -21,23 +21,29 @@ Imports:
     DT,
     ggplot2,
     golem,
+    htmltools,
+    jsonlite,
     NatParksPalettes,
     paletteer,
+    purrr,
     rgl,
     rlang,
     shiny,
     stringr,
-    tidyr
+    tibble,
+    tidyr,
+    tools
 Suggests: 
     flow,
     knitr,
     rmarkdown,
     spelling,
     testthat (>= 3.0.0)
+VignetteBuilder: 
+    knitr
 Config/testthat/edition: 3
 Encoding: UTF-8
 Language: en-US
 LazyData: true
-RoxygenNote: 7.3.3
 Roxygen: list(markdown = TRUE)
-VignetteBuilder: knitr
+RoxygenNote: 7.3.3

@@ -302,6 +302,7 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
     Scenario results can be explored using the tabs across the top of the app.
     
     * by Width - View results of the scenario where chute widths are varied.
+    * by Length - View results of the scenario where chute lengths are varied.
     * by Slope - View results of the scenario where chute slopes are varied.
     * by Particle Size - View results of the scenario where chute particle sizes are varied.
     "),
