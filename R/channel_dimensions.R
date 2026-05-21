@@ -5,6 +5,7 @@
 #' @export
 #' @importFrom dplyr mutate %>%
 channel_dimensions <- function(channel_df) {
+  .Deprecated("compute_channel_dimensions")
   # Constants
   h2o_specific_weight <- 9787            # N/m^3
   ft_per_m <- 3.2808

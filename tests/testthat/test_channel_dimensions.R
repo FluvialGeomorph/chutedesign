@@ -1,4 +1,5 @@
 test_that("check by_width_df plots", {
+  expect_warning(channel_dimensions(width_df), "deprecated")
   scenario <- create_scenario (
     width               = 60,
     width_start         = 40,
@@ -32,6 +33,7 @@ test_that("check by_width_df plots", {
 })
 
 test_that("check by_slope_df plots", {
+  expect_warning(channel_dimensions(width_df), "deprecated")
   scenario <- create_scenario (
     width               = 60,
     width_start         = 40,
@@ -65,6 +67,7 @@ test_that("check by_slope_df plots", {
 })
 
 test_that("check by_particle_size_df plots", {
+  expect_warning(channel_dimensions(width_df), "deprecated")
   scenario <- create_scenario (
     width               = 60,
     width_start         = 40,

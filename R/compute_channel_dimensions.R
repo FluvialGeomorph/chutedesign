@@ -21,6 +21,7 @@ compute_channel_dimensions <- function(channel_df) {
       unit_discharge = total_discharge / width,
       critical_depth = (unit_discharge^2 / gravity)^(1 / 3),
       critical_velocity = unit_discharge / critical_depth,
+      critical_slope   = (critical_velocity * mannings_n / critical_depth^(2/3))^2,
       mannings_n = 0.034 * (particle_size * ft_per_m)^(1 / 6),
       normal_depth = ((unit_discharge * mannings_n) / sqrt(slope))^(3 / 5),
       normal_velocity = unit_discharge / normal_depth,
