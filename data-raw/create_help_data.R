@@ -11,12 +11,20 @@ library(tibble)
 library(glue)
 
 help_data <- tribble(
-  ~id, ~title, ~popover, ~sidebar, ~placement,
+  ~id,
+  ~title,
+  ~popover,
+  ~sidebar,
+  ~placement,
 
   # Inputs from create_scenario()
-  "width", "Chute width (width)",
-  glue("Total chute width (m). Affects unit discharge (q = Q / width) and hydraulic depth."),
-  glue("
+  "width",
+  "Chute width (width)",
+  glue(
+    "Total chute width (m). Affects unit discharge (q = Q / width) and hydraulic depth."
+  ),
+  glue(
+    "
 **Definition**
 - **Width (m)**: the total horizontal width of the chute used to compute unit discharge and geometry.
 
@@ -25,19 +33,27 @@ help_data <- tribble(
 
 **Guidance**
 - Sweep width ±10–50% depending on layout uncertainty. Test discrete alternative widths if multiple layouts are possible.
-"), 
+"
+  ),
   "right",
 
-  "width_series", "Width series (width_start, width_end, width_by)",
+  "width_series",
+  "Width series (width_start, width_end, width_by)",
   glue("Start / end / step for width sweeps (m) used in scenario generation."),
-  glue("
+  glue(
+    "
 Use these fields to build a sequence of widths to evaluate alternative layouts. Start with a coarse set (3–5 levels) then refine around sensitive ranges. Keep steps consistent with constructable increments (e.g., 0.25–0.5 m).
-"),
+"
+  ),
   "right",
 
-  "length", "Chute length (length)",
-  glue("Longitudinal length of the lined chute (m). Controls stone quantity scaling."),
-  glue("
+  "length",
+  "Chute length (length)",
+  glue(
+    "Longitudinal length of the lined chute (m). Controls stone quantity scaling."
+  ),
+  glue(
+    "
 **Definition**
 - **Length (m)**: longitudinal length of the chute reach used for volume and quantity calculations.
 
@@ -46,17 +62,27 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
 
 **Guidance**
 - Use the construction length for the lined section. Sweep if comparing alternative reach extents.
-"),
+"
+  ),
   "right",
 
-  "length_series", "Length series (length_start, length_end, length_by)",
-  glue("Start / end / step for length sweeps (m). Useful for cost/quantity sensitivity."),
-  glue("Define realistic length increments (e.g., 5–10 m) and use series runs to evaluate how total material needs change with reach length."),
+  "length_series",
+  "Length series (length_start, length_end, length_by)",
+  glue(
+    "Start / end / step for length sweeps (m). Useful for cost/quantity sensitivity."
+  ),
+  glue(
+    "Define realistic length increments (e.g., 5–10 m) and use series runs to evaluate how total material needs change with reach length."
+  ),
   "right",
 
-  "slope", "Chute slope (slope)",
-  glue("Channel bed slope (unitless, e.g. 0.03). Major control on velocity and stone sizing."),
-  glue("
+  "slope",
+  "Chute slope (slope)",
+  glue(
+    "Channel bed slope (unitless, e.g. 0.03). Major control on velocity and stone sizing."
+  ),
+  glue(
+    "
 **Definition**
 - Enter slope as a decimal (e.g. 0.03 = 3%).
 
@@ -65,17 +91,25 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
 
 **Guidance**
 - Sweep plausible site slopes (e.g. 0.01–0.10). Use finer steps near ranges where stone-size predictions change rapidly.
-"),
+"
+  ),
   "right",
 
-  "slope_series", "Slope series (slope_start, slope_end, slope_by)",
-  glue("Start / end / step for slope sweeps. Use closer spacing where sensitivity is high."),
-  glue("Include both mild and steep slopes when a project may span different hydraulic regimes. If slope causes flow regime shift (subcritical ↔ supercritical), interpret results cautiously."),
+  "slope_series",
+  "Slope series (slope_start, slope_end, slope_by)",
+  glue(
+    "Start / end / step for slope sweeps. Use closer spacing where sensitivity is high."
+  ),
+  glue(
+    "Include both mild and steep slopes when a project may span different hydraulic regimes. If slope causes flow regime shift (subcritical ↔ supercritical), interpret results cautiously."
+  ),
   "right",
 
-  "particle_size", "Reference particle size (particle_size)",
+  "particle_size",
+  "Reference particle size (particle_size)",
   glue("Reference particle size (m) used to estimate roughness (Manning's n)."),
-  glue("
+  glue(
+    "
 **Definition**
 - Reference particle size (m) used in the mannings_n estimate and to seed some empirical relations.
 
@@ -84,17 +118,27 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
 
 **Guidance**
 - Sweep or test typical substrate/stone gradation sizes when roughness is not well known.
-"),
+"
+  ),
   "right",
 
-  "particle_size_series", "Particle size series (particle_size_start, particle_size_end, particle_size_by)",
-  glue("Series to test alternative reference particle sizes or available stone gradations."),
-  glue("Use series to evaluate sensitivity to roughness assumptions. Typical human-usable steps depend on the order-of-magnitude of particle sizes (e.g., 10s of mm)."),
+  "particle_size_series",
+  "Particle size series (particle_size_start, particle_size_end, particle_size_by)",
+  glue(
+    "Series to test alternative reference particle sizes or available stone gradations."
+  ),
+  glue(
+    "Use series to evaluate sensitivity to roughness assumptions. Typical human-usable steps depend on the order-of-magnitude of particle sizes (e.g., 10s of mm)."
+  ),
   "right",
 
-  "side_slope", "Side slope (side_slope)",
-  glue("Horizontal run per unit vertical rise (h:v). Controls bank geometry and lined area."),
-  glue("
+  "side_slope",
+  "Side slope (side_slope)",
+  glue(
+    "Horizontal run per unit vertical rise (h:v). Controls bank geometry and lined area."
+  ),
+  glue(
+    "
 **Definition**
 - side_slope is the horizontal to vertical ratio (e.g., 1 for 1H:1V). The code converts this to a side angle for geometry.
 
@@ -103,12 +147,17 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
 
 **Guidance**
 - Test flatter and steeper bank slopes if bank geometry is uncertain or if constructability constraints apply.
-"),
+"
+  ),
   "right",
 
-  "total_discharge", "Total discharge (total_discharge)",
-  glue("Design or analysis discharge (m^3/s). Primary hydraulic driver of q, depths, velocities."),
-  glue("
+  "total_discharge",
+  "Total discharge (total_discharge)",
+  glue(
+    "Design or analysis discharge (m^3/s). Primary hydraulic driver of q, depths, velocities."
+  ),
+  glue(
+    "
 **Definition**
 - total_discharge (m^3/s): flow through the chute used to compute unit discharge q, depths, velocities, shear, and stream power.
 
@@ -117,12 +166,17 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
 
 **Guidance**
 - Sweep design storm magnitudes, use probabilistic distributions for Monte Carlo analyses, or test multiple return periods.
-"),
+"
+  ),
   "right",
 
-  "stone_density", "Stone density (stone_density)",
-  glue("Bulk rock density (kg/m^3). Used to compute stone specific weight and mass."),
-  glue("
+  "stone_density",
+  "Stone density (stone_density)",
+  glue(
+    "Bulk rock density (kg/m^3). Used to compute stone specific weight and mass."
+  ),
+  glue(
+    "
 **Definition**
 - stone_density (kg/m^3) is used to compute stone_specific_weight = stone_density * gravity.
 
@@ -131,12 +185,17 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
 
 **Guidance**
 - Typical values ~2600–2700 kg/m^3. Test alternate densities for different lithologies (e.g., basalt, limestone).
-"),
+"
+  ),
   "right",
 
-  "contingency", "Contingency factor (contingency)",
-  glue("Multiplier on computed stone volumes to account for wastage, overlap, or ordering increments."),
-  glue("
+  "contingency",
+  "Contingency factor (contingency)",
+  glue(
+    "Multiplier on computed stone volumes to account for wastage, overlap, or ordering increments."
+  ),
+  glue(
+    "
 **Definition**
 - contingency: multiplicative factor applied to stone volume before porosity adjustment to cover placement loss and procurement rounding.
 
@@ -145,12 +204,17 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
 
 **Guidance**
 - Use higher contingency when placement is difficult or supply is variable.
-"),
+"
+  ),
   "right",
 
-  "porosity", "Placed-stone porosity (porosity)",
-  glue("Bulk-placed porosity fraction (unitless) used to convert placed volume to rock volume."),
-  glue("
+  "porosity",
+  "Placed-stone porosity (porosity)",
+  glue(
+    "Bulk-placed porosity fraction (unitless) used to convert placed volume to rock volume."
+  ),
+  glue(
+    "
 **Definition**
 - porosity: fraction of voids in the placed mattress (typical 0.35–0.45 for riprap).
 
@@ -159,135 +223,229 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
 
 **Guidance**
 - Adjust based on placement method and compaction; document assumptions.
-"),
+"
+  ),
   "right",
 
-  "water_density", "Water density (water_density)",
-  glue("Water density (kg/m^3) used in applied stream power and related computations."),
-  glue("Use the standard value near 1000 kg/m^3 unless temperature/salinity justify adjustments."),
+  "water_density",
+  "Water density (water_density)",
+  glue(
+    "Water density (kg/m^3) used in applied stream power and related computations."
+  ),
+  glue(
+    "Use the standard value near 1000 kg/m^3 unless temperature/salinity justify adjustments."
+  ),
   "right",
 
-  "gravity", "Gravity (gravity)",
-  glue("Acceleration due to gravity (m/s^2). Used in depth, velocity, and mass calculations."),
-  glue("Use 9.81 m/s^2 for site-level design unless a different value is required for specific analyses."),
+  "gravity",
+  "Gravity (gravity)",
+  glue(
+    "Acceleration due to gravity (m/s^2). Used in depth, velocity, and mass calculations."
+  ),
+  glue(
+    "Use 9.81 m/s^2 for site-level design unless a different value is required for specific analyses."
+  ),
   "right",
-
 
   # Outputs & intermediate variables from channel_dimensions()
-  "stone_specific_weight", "Stone specific weight",
-  glue("stone_specific_weight = stone_density * gravity (N/m^3). Converts density to unit weight."),
-  glue("Used to compute specific_gravity and in mass and stability formulas. Keep units consistent across inputs."),
+  "stone_specific_weight",
+  "Stone specific weight",
+  glue(
+    "stone_specific_weight = stone_density * gravity (N/m^3). Converts density to unit weight."
+  ),
+  glue(
+    "Used to compute specific_gravity and in mass and stability formulas. Keep units consistent across inputs."
+  ),
   "right",
 
-  "specific_gravity", "Specific gravity (specific_gravity)",
-  glue("Dimensionless ratio of stone to water specific weight (approx. Gs ~ 2.65)."),
-  glue("Many stability and empirical stone-size relations depend on the relative submerged density. Verify consistent units when comparing methods."),
+  "specific_gravity",
+  "Specific gravity (specific_gravity)",
+  glue(
+    "Dimensionless ratio of stone to water specific weight (approx. Gs ~ 2.65)."
+  ),
+  glue(
+    "Many stability and empirical stone-size relations depend on the relative submerged density. Verify consistent units when comparing methods."
+  ),
   "right",
 
-  "side_angle", "Side angle (side_angle)",
-  glue("Bank side angle in degrees derived from side_slope; used to compute sloped bank length."),
-  glue("side_angle = atan(1 / side_slope) converted to degrees. Influences length_left_bank and total mattress area."),
+  "side_angle",
+  "Side angle (side_angle)",
+  glue(
+    "Bank side angle in degrees derived from side_slope; used to compute sloped bank length."
+  ),
+  glue(
+    "side_angle = atan(1 / side_slope) converted to degrees. Influences length_left_bank and total mattress area."
+  ),
   "right",
 
-  "unit_discharge", "Unit discharge (unit_discharge)",
-  glue("q = total_discharge / width (m^2/s). The primary hydraulic input for many stone-size relations."),
-  glue("
+  "unit_discharge",
+  "Unit discharge (unit_discharge)",
+  glue(
+    "q = total_discharge / width (m^2/s). The primary hydraulic input for many stone-size relations."
+  ),
+  glue(
+    "
 **Why it matters**
 - Most empirical stone-size formulae (NRCS, USACE, etc.) are sensitive to q. Changing width or Q influences q directly and therefore stone-size predictions.
 
 **Guidance**
 - Inspect how q changes across scenarios and use it as a primary explanatory variable when interpreting results.
-"),
+"
+  ),
   "right",
 
-  "mannings_n", "Manning's n (mannings_n)",
-  glue("Estimated roughness using particle_size: mannings_n = 0.034 * (particle_size * ft_per_m)^(1/6)."),
-  glue("n affects normal_depth and normal_velocity; test alternative n (or particle_size) values when roughness is uncertain."),
+  "mannings_n",
+  "Manning's n (mannings_n)",
+  glue(
+    "Estimated roughness using particle_size: mannings_n = 0.034 * (particle_size * ft_per_m)^(1/6)."
+  ),
+  glue(
+    "n affects normal_depth and normal_velocity; test alternative n (or particle_size) values when roughness is uncertain."
+  ),
   "right",
 
-  "critical_depth", "Critical depth (critical_depth)",
+  "critical_depth",
+  "Critical depth (critical_depth)",
   glue("Depth at which specific energy is minimized for q: (q^2 / g)^(1/3)."),
-  glue("Compare critical_depth to normal_depth to identify flow regime; proximity to critical depth indicates possible regime transitions that affect stability behavior."),
+  glue(
+    "Compare critical_depth to normal_depth to identify flow regime; proximity to critical depth indicates possible regime transitions that affect stability behavior."
+  ),
   "right",
 
-  "normal_depth", "Normal depth (normal_depth)",
-  glue("Depth computed from Manning's equation for given q, n, and slope: ((q * n) / sqrt(S))^(3/5)."),
-  glue("Normal_depth sets hydraulic radius and, together with velocity, determines shear stress and stream power — key inputs to stone-size formulas."),
+  "normal_depth",
+  "Normal depth (normal_depth)",
+  glue(
+    "Depth computed from Manning's equation for given q, n, and slope: ((q * n) / sqrt(S))^(3/5)."
+  ),
+  glue(
+    "Normal_depth sets hydraulic radius and, together with velocity, determines shear stress and stream power — key inputs to stone-size formulas."
+  ),
   "right",
 
-  "normal_velocity", "Normal velocity (normal_velocity)",
-  glue("Velocity computed as q / normal_depth (m/s). Direct driver of shear stress and several empirical stone-size relations."),
-  glue("Higher velocities generally yield larger predicted stone sizes; track velocity changes across sweeps."),
+  "normal_velocity",
+  "Normal velocity (normal_velocity)",
+  glue(
+    "Velocity computed as q / normal_depth (m/s). Direct driver of shear stress and several empirical stone-size relations."
+  ),
+  glue(
+    "Higher velocities generally yield larger predicted stone sizes; track velocity changes across sweeps."
+  ),
   "right",
 
-  "froude", "Froude number (froude)",
-  glue("Dimensionless flow regime indicator: Fr = V / sqrt(g * depth). Values >1 indicate supercritical flow."),
-  glue("Interpretation: Fr < 1 subcritical, Fr > 1 supercritical. Different regime behaviors may require separate checks or alternate design approaches."),
+  "froude",
+  "Froude number (froude)",
+  glue(
+    "Dimensionless flow regime indicator: Fr = V / sqrt(g * depth). Values >1 indicate supercritical flow."
+  ),
+  glue(
+    "Interpretation: Fr < 1 subcritical, Fr > 1 supercritical. Different regime behaviors may require separate checks or alternate design approaches."
+  ),
   "right",
 
-  "shear_stress", "Shear stress (shear_stress)",
-  glue("Bed shear stress computed in the code as h2o_specific_weight * normal_velocity * slope (N/m^2)."),
-  glue("Shear is a direct measure of the driving force on bed material and is used to compute applied stream power and to contextualize stone stability."),
+  "shear_stress",
+  "Shear stress (shear_stress)",
+  glue(
+    "Bed shear stress computed in the code as h2o_specific_weight * normal_velocity * slope (N/m^2)."
+  ),
+  glue(
+    "Shear is a direct measure of the driving force on bed material and is used to compute applied stream power and to contextualize stone stability."
+  ),
   "right",
 
-  "avail_stream_power", "Available stream power (avail_stream_power)",
-  glue("Specific stream power (kW/m) computed as (h2o_specific_weight * q * slope) / 1000."),
-  glue("Useful energy-based metric for comparing regimes and as an input to empirical relations."),
+  "avail_stream_power",
+  "Available stream power (avail_stream_power)",
+  glue(
+    "Specific stream power (kW/m) computed as (h2o_specific_weight * q * slope) / 1000."
+  ),
+  glue(
+    "Useful energy-based metric for comparing regimes and as an input to empirical relations."
+  ),
   "right",
 
-  "applied_stream_power", "Applied stream power (applied_stream_power)",
-  glue("Alternative applied stream power metric computed in the code: (7.853 * wd * (shear_stress / wd)^(3/2)) / 1000."),
-  glue("Provides an alternate representation of bed-applied energy; compare with avail_stream_power when diagnosing differences between methods."),
+  "applied_stream_power",
+  "Applied stream power (applied_stream_power)",
+  glue(
+    "Alternative applied stream power metric computed in the code: (7.853 * wd * (shear_stress / wd)^(3/2)) / 1000."
+  ),
+  glue(
+    "Provides an alternate representation of bed-applied energy; compare with avail_stream_power when diagnosing differences between methods."
+  ),
   "right",
 
-  "stone_size_methods", "Empirical stone-size methods (nrcs/usace/abt_johnson/isbash/usbr)",
-  glue("The app computes several candidate stone diameters using different empirical relations (stone_size_nrcs, stone_size_usace, stone_size_abt_johnson, stone_size_isbash, stone_size_usbr)."),
-  glue("
+  "stone_size_methods",
+  "Empirical stone-size methods (nrcs/usace/abt_johnson/isbash/usbr)",
+  glue(
+    "The app computes several candidate stone diameters using different empirical relations (stone_size_nrcs, stone_size_usace, stone_size_abt_johnson, stone_size_isbash, stone_size_usbr)."
+  ),
+  glue(
+    "
 **Why it matters**
 - Different empirical relations use different combinations of q, velocity, slope, and specific gravity and will produce a range of recommended sizes.
 
 **Guidance**
 - Compare all method outputs. Use the spread to inform risk-based design and consider selecting a percentile (e.g., 90–95th) or applying an adoption multiplier.
-"),
+"
+  ),
   "right",
 
-  "adopted_stone_diameter", "Adopted stone diameter (adopted_stone_diameter)",
-  glue("Final adopted stone diameter (m). In code default is stone_size_nrcs * 1.3."),
-  glue("
+  "adopted_stone_diameter",
+  "Adopted stone diameter (adopted_stone_diameter)",
+  glue(
+    "Final adopted stone diameter (m). In code default is stone_size_nrcs * 1.3."
+  ),
+  glue(
+    "
 **Definition**
 - adopted_stone_diameter = stone_size_nrcs * 1.3 (by default in code).
 
 **Why it matters**
 - This diameter drives mattress thickness, stone mass, and ordering sizes. Sensitivity to the adoption multiplier should be evaluated as part of scenario testing.
-"),
+"
+  ),
   "right",
 
-  "adopted_stone_weight", "Adopted stone weight (kg, lbs, tons)",
-  glue("Mass computed using adopted diameter and stone specific weight. Useful for procurement and handling."),
-  glue("Verify that adopted stone weight matches supplier gradations and on-site handling equipment capacities before finalizing design."),
+  "adopted_stone_weight",
+  "Adopted stone weight (kg, lbs, tons)",
+  glue(
+    "Mass computed using adopted diameter and stone specific weight. Useful for procurement and handling."
+  ),
+  glue(
+    "Verify that adopted stone weight matches supplier gradations and on-site handling equipment capacities before finalizing design."
+  ),
   "right",
 
-  "mattress_thickness", "Mattress thickness (m)",
-  glue("Placed stone layer thickness; code sets mattress_thickness = adopted_stone_diameter * 2."),
-  glue("Thickness affects required stone volume per area and therefore total ordering. Consider constructability and bedding when choosing thickness."),
+  "mattress_thickness",
+  "Mattress thickness (m)",
+  glue(
+    "Placed stone layer thickness; code sets mattress_thickness = adopted_stone_diameter * 2."
+  ),
+  glue(
+    "Thickness affects required stone volume per area and therefore total ordering. Consider constructability and bedding when choosing thickness."
+  ),
   "right",
 
-  "stone_vol_m3", "Stone volume (stone_vol_m3)",
-  glue("Computed placed rock volume (m^3) after applying contingency and porosity in code: contingency * mattress_thickness * (length_left_bank + width) * length * (1 - porosity)."),
-  glue("
+  "stone_vol_m3",
+  "Stone volume (stone_vol_m3)",
+  glue(
+    "Computed placed rock volume (m^3) after applying contingency and porosity in code: contingency * mattress_thickness * (length_left_bank + width) * length * (1 - porosity)."
+  ),
+  glue(
+    "
 **Why it matters**
 - This is the final ordering/estimate volume. stone_vol_m3 is sensitive to adopted_stone_diameter, porosity, contingency, width, and length.
 
 **Guidance**
 - When running sensitivity, export stone_vol_m3 and the contributing components so the source of variation is clear (e.g., geometry vs. adopted diameter).
-"),
+"
+  ),
   "right",
 
-
-# App tab documentation
-  "getting_started", "Intro tab - app overview",
+  # App tab documentation
+  "getting_started",
+  "Intro tab - app overview",
   glue("Overview of the app, workflow, and key assumptions."),
-  glue("# Getting Started
+  glue(
+    "# Getting Started
 
     ## Purpose
     This app helps estimate the stone sizes required for chutes of various dimensions.
@@ -305,12 +463,15 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
     * by Length - View results of the scenario where chute lengths are varied.
     * by Slope - View results of the scenario where chute slopes are varied.
     * by Particle Size - View results of the scenario where chute particle sizes are varied.
-    "),
+    "
+  ),
   "right",
 
-  "tab_intro", "Intro tab — app overview",
+  "tab_intro",
+  "Intro tab — app overview",
   glue("Overview of the app, workflow, and key assumptions."),
-  glue("
+  glue(
+    "
 **Purpose**
 - High-level description of the app: build scenarios, compute chute hydraulics, evaluate empirical stone-sizing methods, and estimate material quantities.
 
@@ -329,12 +490,17 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
 **Practical tips**
 - Document chosen inputs and the rationale for adopted design values.
 - Export results for reporting and peer review.
-"),
+"
+  ),
   "left",
 
-  "tab_by_width", "By Width tab — sensitivity to chute width",
-  glue("Explore how changing chute width affects hydraulics, stone sizing, and volumes."),
-  glue("
+  "tab_by_width",
+  "By Width tab — sensitivity to chute width",
+  glue(
+    "Explore how changing chute width affects hydraulics, stone sizing, and volumes."
+  ),
+  glue(
+    "
 **What this tab does**
 - Runs the scenario sequence varying *width* (using width_start, width_end, width_by) while holding other inputs fixed.
 - Reports changes in unit_discharge (q), normal_depth, velocity, computed stone sizes (all methods), adopted diameter, stone mass, and stone volume.
@@ -355,12 +521,52 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
 
 **Design guidance**
 - Use this tab to compare alternative chute layouts. When size jumps rapidly with small width changes, reassess layout or perform finer sweeps in the sensitive interval.
-"),
+"
+  ),
   "right",
 
-  "tab_by_slope", "By Slope tab — sensitivity to chute slope",
-  glue("Explore how changing slope affects flow energy, velocities, shear, and stone size recommendations."),
-  glue("
+  "tab_by_length",
+  "By Length tab — sensitivity to chute length",
+  glue(
+    "Explore how changing chute length affects stone quantities, volumes, and material estimates."
+  ),
+  glue(
+    "
+**What this tab does**
+- Runs the scenario sequence varying *length* (using length_start, length_end, length_by) while holding other inputs fixed.
+- Reports changes in stone quantities (mattress volume, stone volume, stone mass) as chute length varies. Hydraulic outputs (unit_discharge, normal_depth, velocity, stone-size predictions) are held constant across the length sweep because length does not affect the hydraulic calculations.
+
+**Key outputs to inspect**
+- stone_vol_m3: total placed rock volume scales directly with length; this is the primary output of interest in a length sweep.
+- stone_vol_cuyd, stone_vol_metric_ton, stone_vol_us_ton: procurement and cost-estimating quantities.
+- number_stones: total count of stones required; useful for logistics planning.
+- adopted_stone_diameter and mattress_thickness: confirm these remain stable across the sweep (they should, since hydraulics are unchanged).
+
+**How to interpret**
+- Expect a linear relationship: stone_vol_m3 and derived mass quantities scale proportionally with length.
+- If cost per unit length is relatively constant, use this tab to compare alternative reach extents and their associated procurement costs.
+- Non-linearity in the table (if present) would indicate an error in inputs; use the table view to verify.
+
+**Recommended plots and checks**
+- Line plots of stone_vol_m3 and stone_vol_us_ton vs length for straightforward quantity scaling.
+- Confirm adopted_stone_diameter and normal_velocity are flat across the sweep (hydraulics should not vary with length).
+- Use the table to export length-scaled quantities for cost estimating or bid documents.
+
+**Design guidance**
+- Use this tab to evaluate the procurement and construction cost implications of alternative reach lengths (e.g., shorter lined section vs. longer protection).
+- When comparing design alternatives that differ primarily in lined length, hold all other inputs constant and compare stone_vol_us_ton and number_stones directly.
+- Document the design length and the basis for that choice (e.g., geomorphic survey limits, scour extent, project boundary) alongside the quantity outputs.
+"
+  ),
+  "right",
+
+  "tab_by_slope",
+  "By Slope tab — sensitivity to chute slope",
+  glue(
+    "Explore how changing slope affects flow energy, velocities, shear, and stone size recommendations."
+  ),
+  glue(
+    "
 **What this tab does**
 - Varies slope (via slope_start, slope_end, slope_by) and computes hydraulics and empirical stone-size outputs for each slope value.
 
@@ -380,12 +586,17 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
 
 **Design guidance**
 - Use the slope tab to evaluate whether a proposed slope is feasible with locally available rock sizes and placement methods. If recommended stones exceed handling capacity, consider slope reduction, protective measures, or engineered structures.
-"),
+"
+  ),
   "right",
 
-  "tab_by_particle_size", "By Particle Size tab — sensitivity to reference particle/roughness",
-  glue("Explore how assumptions about particle size (and the resulting Manning's n) affect hydraulics and stone-size outputs."),
-  glue("
+  "tab_by_particle_size",
+  "By Particle Size tab — sensitivity to reference particle/roughness",
+  glue(
+    "Explore how assumptions about particle size (and the resulting Manning's n) affect hydraulics and stone-size outputs."
+  ),
+  glue(
+    "
 **What this tab does**
 - Varies the reference particle_size (particle_size_start, particle_size_end, particle_size_by) used to estimate mannings_n and recomputes normal_depth, velocity, and stone-size estimates.
 
@@ -404,14 +615,18 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
 
 **Design guidance**
 - Use this tab to bound uncertainty from roughness assumptions and to prioritize field measurements. If stone sizing is insensitive to particle_size, focus measurement efforts elsewhere; if sensitive, invest in better roughness characterization.
-"),
+"
+  ),
   "right",
 
-
   # Plots
-  "plot_stone_size_method_plot", "Stone size methods plot",
-  glue("Line plot comparing stone-size estimates from each empirical method. Useful for comparing method sensitivity and trends with the x-axis variable."),
-  glue("
+  "plot_stone_size_method_plot",
+  "Stone size methods plot",
+  glue(
+    "Line plot comparing stone-size estimates from each empirical method. Useful for comparing method sensitivity and trends with the x-axis variable."
+  ),
+  glue(
+    "
 **Function & inputs**
 - Produced by plot_stone_size_method(channel_dims, x_axis). `x_axis` may be one of: `width`, `slope`, `particle_size`.
 
@@ -427,12 +642,17 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
 **Practical tips**
 - Overlay the adopted stone diameter (from channel_dims$adopted_stone_diameter) in your own debug plots to see where the app's adoption rule sits relative to the methods.
 - When the spread is large, consider additional checks (e.g., hydraulic modeling or site-specific tests).
-"),
+"
+  ),
   "right",
 
-  "plot_channel_flow_plot", "Hydraulic parameters faceted plot",
-  glue("Faceted plot of hydraulic variables (unit discharge, depths, velocities, Froude, shear, stream power) vs the chosen x-axis. Helps diagnose hydraulic drivers of stone-size changes."),
-  glue("
+  "plot_channel_flow_plot",
+  "Hydraulic parameters faceted plot",
+  glue(
+    "Faceted plot of hydraulic variables (unit discharge, depths, velocities, Froude, shear, stream power) vs the chosen x-axis. Helps diagnose hydraulic drivers of stone-size changes."
+  ),
+  glue(
+    "
 **Function & inputs**
 - Produced by plot_channel_flow(channel_dims, x_axis). `x_axis` may be `width`, `slope`, or `particle_size`.
 
@@ -447,12 +667,17 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
 **Practical tips**
 - Inspect Manning's n panel when varying particle_size to confirm the expected roughness effect.
 - Use the shear and stream power panels to justify conservative choices for adopted stone diameter when energy metrics increase rapidly.
-"),
+"
+  ),
   "left",
 
-  "plot_stone_quantities_plot", "Stone quantities & mass plot",
-  glue("Plot(s) showing mattress thickness, stone volume (m^3), and stone weight (kg / lbs / tons) vs the chosen x-axis. Useful for procurement and constructability checks."),
-  glue("
+  "plot_stone_quantities_plot",
+  "Stone quantities & mass plot",
+  glue(
+    "Plot(s) showing mattress thickness, stone volume (m^3), and stone weight (kg / lbs / tons) vs the chosen x-axis. Useful for procurement and constructability checks."
+  ),
+  glue(
+    "
 **Typical content**
 - Visualizes the geometric and inventory outputs derived from adopted stone diameter and channel geometry:
   - mattress_thickness (m),
@@ -467,14 +692,18 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
 **Practical tips**
 - If adopted stone mass exceeds handling capabilities, consider design changes (reduce slope, increase width) or staged placement strategies.
 - Export tabular results for vendor quotations; plots are best used in combination with numeric tables for ordering.
-"),
+"
+  ),
   "right",
 
-
   # Channel-dimensions for scenario sweeps
-  "scenario_by_width_channel_dims", "Channel dimensions — by-width scenario outputs",
-  glue("Channel-dimensions dataframe produced when sweeping `width` (from by_width_df -> channel_dimensions). Contains hydraulics, method outputs, and volume/weight estimates for each width value."),
-  glue("
+  "scenario_by_width_channel_dims",
+  "Channel dimensions — by-width scenario outputs",
+  glue(
+    "Channel-dimensions dataframe produced when sweeping `width` (from by_width_df -> channel_dimensions). Contains hydraulics, method outputs, and volume/weight estimates for each width value."
+  ),
+  glue(
+    "
 **What this object is**
 - The channel_dimensions output produced by passing the by_width_df scenario to channel_dimensions(). Each row corresponds to a width value in the sweep and includes computed hydraulics (q, depths, velocities, Froude, shear, stream power), empirical stone-size estimates, adopted stone diameter and mass, and volume/quantity computations.
 
@@ -493,12 +722,17 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
 
 **Reporting**
 - Use summary tables and plots (stone size by method, hydraulic facets, quantities) to support design decisions and procurement estimates.
-"),
+"
+  ),
   "left",
 
-  "scenario_by_slope_channel_dims", "Channel dimensions — by-slope scenario outputs",
-  glue("Channel-dimensions dataframe produced when sweeping `slope` (from by_slope_df -> channel_dimensions). Contains hydraulics, method outputs, and volume/weight estimates for each slope value."),
-  glue("
+  "scenario_by_slope_channel_dims",
+  "Channel dimensions — by-slope scenario outputs",
+  glue(
+    "Channel-dimensions dataframe produced when sweeping `slope` (from by_slope_df -> channel_dimensions). Contains hydraulics, method outputs, and volume/weight estimates for each slope value."
+  ),
+  glue(
+    "
 **What this object is**
 - The channel_dimensions output produced by passing the by_slope_df scenario to channel_dimensions(). Each row corresponds to a slope value and contains the same set of hydraulic and material outputs as other scenario sweeps.
 
@@ -515,12 +749,17 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
 
 **Reporting**
 - Use slope-sweep outputs to evaluate feasibility and to set conservative design choices when supplier or handling limits constrain stone selection.
-"),
+"
+  ),
   "left",
 
-  "scenario_by_particle_size_channel_dims", "Channel dimensions — by-particle_size scenario outputs",
-  glue("Channel-dimensions dataframe produced when sweeping `particle_size` (from by_particle_size_df -> channel_dimensions). Used to evaluate roughness and gradation effects."),
-  glue("
+  "scenario_by_particle_size_channel_dims",
+  "Channel dimensions — by-particle_size scenario outputs",
+  glue(
+    "Channel-dimensions dataframe produced when sweeping `particle_size` (from by_particle_size_df -> channel_dimensions). Used to evaluate roughness and gradation effects."
+  ),
+  glue(
+    "
 **What this object is**
 - The channel_dimensions output produced by passing by_particle_size_df into channel_dimensions(). Each row corresponds to a particle_size value (used to estimate Manning's n) and includes hydraulic variables, stone-sizing method outputs, and quantities.
 
@@ -537,9 +776,9 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
 
 **Reporting**
 - Present roughness sensitivity results alongside hydraulic and quantity outputs so decision-makers understand whether more site characterization is warranted.
-"),
+"
+  ),
   "left"
-
 )
 
 # Save data to package
