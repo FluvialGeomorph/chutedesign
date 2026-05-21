@@ -46,13 +46,26 @@ app_server <- function(input, output, session) {
     slope_df         <- by_slope_df(scenario)
     particle_size_df <- by_particle_size_df(scenario)
 
-    ## Calculate channel dimensions
-    width_dims         <- channel_dimensions(width_df)
-    length_dims        <- channel_dimensions(length_df)
-    slope_dims         <- channel_dimensions(slope_df)
-    particle_size_dims <- channel_dimensions(particle_size_df)
+    ## Step 1: Compute channel flow parameters and geometry (wide, one row per point)
+    width_dims         <- compute_channel_dimensions(width_df)
+    length_dims        <- compute_channel_dimensions(length_df)
+    slope_dims         <- compute_channel_dimensions(slope_df)
+    particle_size_dims <- compute_channel_dimensions(particle_size_df)
 
-    calc_colnames <- width_dims %>%
+    ## Step 2: Compute stone size metrics by method (long, one row per point per method)
+    width_stone         <- compute_stone_metrics(width_dims)
+    length_stone        <- compute_stone_metrics(length_dims)
+    slope_stone         <- compute_stone_metrics(slope_dims)
+    particle_size_stone <- compute_stone_metrics(particle_size_dims)
+
+    ## Step 3: Compute adopted stone dimensions and quantities (wide, one row per point)
+    width_adopted         <- compute_adopted_stone(width_dims, width_stone)
+    length_adopted        <- compute_adopted_stone(length_dims, length_stone)
+    slope_adopted         <- compute_adopted_stone(slope_dims, slope_stone)
+    particle_size_adopted <- compute_adopted_stone(particle_size_dims, particle_size_stone)
+
+    ## Column names for table formatting (computed columns only)
+    calc_colnames <- width_adopted %>%
       select((ncol(width_df) + 1):ncol(.)) %>%
       colnames()
 
@@ -60,16 +73,16 @@ app_server <- function(input, output, session) {
 
     ## by Width
     output$width_stone_size <- renderPlot({
-      plot_stone_size_method(width_dims, x_axis = "width")
+      plot_stone_size_method(width_stone, x_axis = "width")
     })
     output$width_channel_flow <- renderPlot({
       plot_channel_flow(width_dims, x_axis = "width")
     })
     output$width_stone_quants <- renderPlot({
-      plot_stone_quantities(width_dims, x_axis = "width")
+      plot_stone_quantities(width_adopted, x_axis = "width")
     })
     output$width_table <- renderDT({
-      datatable(width_dims,
+      datatable(width_adopted,
                 extensions = 'Buttons',
                 options = list(searching = FALSE,
                                dom = 'Bfrtip',
@@ -80,16 +93,16 @@ app_server <- function(input, output, session) {
 
     ## by Length
     output$length_stone_size <- renderPlot({
-      plot_stone_size_method(length_dims, x_axis = "length")
+      plot_stone_size_method(length_stone, x_axis = "length")
     })
     output$length_channel_flow <- renderPlot({
       plot_channel_flow(length_dims, x_axis = "length")
     })
     output$length_stone_quants <- renderPlot({
-      plot_stone_quantities(length_dims, x_axis = "length")
+      plot_stone_quantities(length_adopted, x_axis = "length")
     })
     output$length_table <- renderDT({
-      datatable(length_dims,
+      datatable(length_adopted,
                 extensions = 'Buttons',
                 options = list(searching = FALSE,
                                dom = 'Bfrtip',
@@ -100,16 +113,16 @@ app_server <- function(input, output, session) {
 
     ## by Slope
     output$slope_stone_size <- renderPlot({
-      plot_stone_size_method(slope_dims, x_axis = "slope")
+      plot_stone_size_method(slope_stone, x_axis = "slope")
     })
     output$slope_channel_flow <- renderPlot({
       plot_channel_flow(slope_dims, x_axis = "slope")
     })
     output$slope_stone_quants <- renderPlot({
-      plot_stone_quantities(slope_dims, x_axis = "slope")
+      plot_stone_quantities(slope_adopted, x_axis = "slope")
     })
     output$slope_table <- renderDT({
-      datatable(slope_dims,
+      datatable(slope_adopted,
                 extensions = 'Buttons',
                 options = list(searching = FALSE,
                                dom = 'Bfrtip',
@@ -120,16 +133,16 @@ app_server <- function(input, output, session) {
 
     ## by Particle Size
     output$particle_size_stone_size <- renderPlot({
-      plot_stone_size_method(particle_size_dims, x_axis = "particle_size")
+      plot_stone_size_method(particle_size_stone, x_axis = "particle_size")
     })
     output$particle_size_channel_flow <- renderPlot({
       plot_channel_flow(particle_size_dims, x_axis = "particle_size")
     })
     output$particle_size_stone_quants <- renderPlot({
-      plot_stone_quantities(particle_size_dims, x_axis = "particle_size")
+      plot_stone_quantities(particle_size_adopted, x_axis = "particle_size")
     })
     output$particle_size_table <- renderDT({
-      datatable(particle_size_dims,
+      datatable(particle_size_adopted,
                 extensions = 'Buttons',
                 options = list(searching = FALSE,
                                dom = 'Bfrtip',

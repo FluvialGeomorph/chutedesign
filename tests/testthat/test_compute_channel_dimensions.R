@@ -1,5 +1,5 @@
 test_that("compute_channel_dimensions integrates with by_width_df", {
-  scenario <- create_scenario (
+  scenario <- create_scenario(
     width               = 60,
     width_start         = 40,
     width_end           = 200,
@@ -24,34 +24,60 @@ test_that("compute_channel_dimensions integrates with by_width_df", {
     water_density       = 998,
     gravity             = 9.787
   )
-  channel_df <- by_width_df(scenario)
+  channel_df        <- by_width_df(scenario)
   channel_dimensions <- compute_channel_dimensions(channel_df)
-  
-  # Ensure essential columns exist
-  expect_true("unit_discharge" %in% colnames(channel_dimensions))
-  expect_true("critical_depth" %in% colnames(channel_dimensions))
-  expect_true("froude" %in% colnames(channel_dimensions))
 
-  # Validate output dimensions
+  # --- Flow parameter columns ---
+  flow_cols <- c(
+    "unit_discharge", "mannings_n",
+    "critical_depth", "critical_velocity", "critical_slope",
+    "normal_depth", "normal_velocity",
+    "froude", "shear_stress",
+    "avail_stream_power", "applied_stream_power"
+  )
+  for (col in flow_cols) {
+    expect_true(col %in% colnames(channel_dimensions),
+                label = paste("flow column present:", col))
+  }
+
+  # --- Geometry columns ---
+  geom_cols <- c("side_angle", "depth", "length_side_horz", "length_left_bank")
+  for (col in geom_cols) {
+    expect_true(col %in% colnames(channel_dimensions),
+                label = paste("geometry column present:", col))
+  }
+
+  # --- Output dimensions ---
   expect_gt(nrow(channel_dimensions), 0)
 
-  # Validate specific calculations against expected values
-  expect_equal(channel_dimensions$unit_discharge[1], 
-               channel_dimensions$total_discharge[1] / channel_dimensions$width[1])
+  # --- Spot-check calculations ---
+  expect_equal(
+    channel_dimensions$unit_discharge[1],
+    channel_dimensions$total_discharge[1] / channel_dimensions$width[1]
+  )
   expect_lt(channel_dimensions$froude[1], 1)
 
-  # Edge case: very small or large width
-  channel_df_small_width <- channel_df %>% dplyr::mutate(width = 0.0)
-  channel_dimensions_small_width <- compute_channel_dimensions(channel_df_small_width)
-  
-  expect_true(all(is.infinite(channel_dimensions_small_width$unit_discharge)))
-  expect_true(all(is.nan(channel_dimensions_small_width$froude)))
+  # depth = 2 * normal_depth
+  expect_equal(channel_dimensions$depth, channel_dimensions$normal_depth * 2)
 
+  # length_left_bank is positive and greater than width
+  expect_true(all(channel_dimensions$length_left_bank > 0))
+
+  # critical_slope is positive
+  expect_true(all(channel_dimensions$critical_slope > 0))
+
+  # --- Edge case: zero width produces Inf unit_discharge ---
+  channel_df_zero_width <- channel_df %>% dplyr::mutate(width = 0.0)
+  channel_dims_zero     <- compute_channel_dimensions(channel_df_zero_width)
+  expect_true(all(is.infinite(channel_dims_zero$unit_discharge)))
+  expect_true(all(is.nan(channel_dims_zero$froude)))
+
+  # --- Edge case: large width produces small but positive unit_discharge ---
   channel_df_large_width <- channel_df %>% dplyr::mutate(width = 1e6)
-  channel_dimensions_large_width <- compute_channel_dimensions(channel_df_large_width)
-  expect_gt(max(channel_dimensions_large_width$unit_discharge, na.rm = TRUE), 0)
+  channel_dims_large     <- compute_channel_dimensions(channel_df_large_width)
+  expect_gt(max(channel_dims_large$unit_discharge, na.rm = TRUE), 0)
 
-  # Test for missing columns
+  # --- Missing column raises error ---
   invalid_df <- channel_df %>% dplyr::select(-slope)
   expect_error(compute_channel_dimensions(invalid_df), "object 'slope' not found")
 })
