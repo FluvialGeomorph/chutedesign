@@ -1,5 +1,4 @@
 test_that("check by_width_df plots", {
-  expect_warning(channel_dimensions(width_df), "deprecated")
   scenario <- create_scenario (
     width               = 60,
     width_start         = 40,
@@ -26,6 +25,7 @@ test_that("check by_width_df plots", {
     gravity             = 9.787
   )
   channel_df <- by_width_df(scenario)
+  expect_warning(channel_dimensions(channel_df), "deprecated")
   width_dims <- channel_dimensions(channel_df)
   expect_s3_class(width_dims, "data.frame")
   expect_equal(ncol(width_dims), 44)
@@ -33,7 +33,6 @@ test_that("check by_width_df plots", {
 })
 
 test_that("check by_slope_df plots", {
-  expect_warning(channel_dimensions(width_df), "deprecated")
   scenario <- create_scenario (
     width               = 60,
     width_start         = 40,
@@ -60,6 +59,7 @@ test_that("check by_slope_df plots", {
     gravity             = 9.787
   )
   channel_df <- by_slope_df(scenario)
+  expect_warning(channel_dimensions(channel_df), "deprecated")
   slope_dims <- channel_dimensions(channel_df)
   expect_s3_class(slope_dims, "data.frame")
   expect_equal(ncol(slope_dims), 44)
@@ -67,7 +67,6 @@ test_that("check by_slope_df plots", {
 })
 
 test_that("check by_particle_size_df plots", {
-  expect_warning(channel_dimensions(width_df), "deprecated")
   scenario <- create_scenario (
     width               = 60,
     width_start         = 40,
@@ -94,6 +93,7 @@ test_that("check by_particle_size_df plots", {
     gravity             = 9.787
   )
   channel_df <- by_particle_size_df(scenario)
+  expect_warning(channel_dimensions(channel_df), "deprecated")
   particle_size_dims <- channel_dimensions(channel_df)
   expect_s3_class(particle_size_dims, "data.frame")
   expect_equal(ncol(particle_size_dims), 44)
