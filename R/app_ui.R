@@ -353,7 +353,7 @@ app_ui <- function(request) {
                     help_overlay(
                       main    = DTOutput("particle_size_table"),
                       help_ui = popover(bs_icon("info-circle"), 
-                                        uiOutput("scenario_by_particle_channel_dims"))
+                                        uiOutput("scenario_by_particle_size_channel_dims"))
                     )
                   )
                 )

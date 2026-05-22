@@ -276,11 +276,17 @@ app_server <- function(input, output, session) {
     )
   })
 
-  # Help entries for scenario/channel_dimensions outputs
+    # Help entries for scenario/channel_dimensions outputs
   output$scenario_by_width_channel_dims <- renderUI({
     tagList(
       markdown(filter(chutedesign::help_data, id == "scenario_by_width_channel_dims")$popover),
       markdown(filter(chutedesign::help_data, id == "scenario_by_width_channel_dims")$sidebar)
+    )
+  })
+  output$scenario_by_length_channel_dims <- renderUI({
+    tagList(
+      markdown(filter(chutedesign::help_data, id == "scenario_by_length_channel_dims")$popover),
+      markdown(filter(chutedesign::help_data, id == "scenario_by_length_channel_dims")$sidebar)
     )
   })
   output$scenario_by_slope_channel_dims <- renderUI({

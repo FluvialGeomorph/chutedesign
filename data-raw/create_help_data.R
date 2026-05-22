@@ -726,6 +726,38 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
   ),
   "left",
 
+  "scenario_by_length_channel_dims",
+  "Channel dimensions — by-length scenario outputs",
+  glue(
+    "Channel-dimensions dataframe produced when sweeping `length` (from by_length_df -> compute_channel_dimensions -> compute_adopted_stone). Contains hydraulics, adopted stone metrics, and quantity estimates for each length value."
+  ),
+  glue(
+    "
+**What this object is**
+- The output dataframe produced by passing the by_length_df scenario through the current app pipeline: `compute_channel_dimensions()`, `compute_stone_metrics()`, and `compute_adopted_stone()`.
+- Each row corresponds to a length value in the sweep and contains hydraulic outputs, adopted stone dimensions, and total quantity estimates.
+
+**Key columns to inspect**
+- `length`, `unit_discharge`, `normal_depth`, `normal_velocity`, `froude`
+- `adopted_stone_diameter`, `adopted_stone_weight_kg`, `mattress_thickness`
+- `stone_vol_m3`, `stone_vol_cuyd`, `stone_vol_metric_ton`, `stone_vol_us_ton`, `number_stones`
+
+**How to interpret across the sweep**
+- Length primarily affects total quantities, not hydraulics. For a fixed width, slope, discharge, and roughness, hydraulic outputs and adopted stone size should remain essentially constant across the sweep.
+- `stone_vol_m3`, `stone_vol_us_ton`, and `number_stones` should increase approximately linearly with length.
+
+**Checks**
+- Confirm that hydraulic variables (`unit_discharge`, `normal_velocity`, `froude`) are stable across the length sweep.
+- If adopted stone diameter changes across length alone, inspect upstream assumptions or calculations because this would generally be unexpected.
+- Verify unit consistency (m, m^3/s, kg/m^3).
+
+**Reporting**
+- Use the by-length outputs to compare material requirements and procurement implications for alternative protection extents.
+- Export the table for estimating, bid support, and documenting the selected design length.
+"
+  ),
+  "left",
+
   "scenario_by_slope_channel_dims",
   "Channel dimensions — by-slope scenario outputs",
   glue(
@@ -783,3 +815,6 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
 
 # Save data to package
 usethis::use_data(help_data, internal = FALSE, overwrite = TRUE)
+# Ensure the data is available at runtime
+devtools::install()
+

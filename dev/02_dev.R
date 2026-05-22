@@ -16,6 +16,11 @@ Target repo: `FluvialGeomorph/chutedesign`
 Read `dev/instructions/CHAT_INSTRUCTIONS.md` and follow the specified instruction modules in order. 
 Task: <describe the task>
 
+## Update Chat History
+reproducibleai::extract_copilot_chat(file.path(
+  Sys.getenv("USERPROFILE"), "Downloads", "copilot_export.zip")
+)
+  
 # Engineering
 
 ## Dependencies ----
