@@ -199,17 +199,17 @@ app_ui <- function(request) {
                     help_overlay(
                       main    = plotOutput("width_stone_size"),
                       help_ui = popover(bs_icon("info-circle"), 
-                                        uiOutput("plot_stone_size_method_plot"))
+                                        uiOutput("plot_stone_size_method_plot_width"))
                     ),
                     help_overlay(
                       main    = plotOutput("width_channel_flow"),
                       help_ui = popover(bs_icon("info-circle"), 
-                                        uiOutput("plot_channel_flow_plot"))
+                                        uiOutput("plot_channel_flow_plot_width"))
                     ),
                     help_overlay(
                       main    = plotOutput("width_stone_quants"),
                       help_ui = popover(bs_icon("info-circle"), 
-                                        uiOutput("plot_stone_quantities_plot"))
+                                        uiOutput("plot_stone_quantities_plot_width"))
                     )
                   ),
                   accordion_panel(
@@ -246,15 +246,15 @@ app_ui <- function(request) {
                     title = "Plots",
                     help_overlay(
                       main    = plotOutput("length_stone_size"),
-                      help_ui = popover(bs_icon("info-circle"), uiOutput("plot_stone_size_method_plot"))
+                      help_ui = popover(bs_icon("info-circle"), uiOutput("plot_stone_size_method_plot_length"))
                     ),
                     help_overlay(
                       main    = plotOutput("length_channel_flow"),
-                      help_ui = popover(bs_icon("info-circle"), uiOutput("plot_channel_flow_plot"))
+                      help_ui = popover(bs_icon("info-circle"), uiOutput("plot_channel_flow_plot_length"))
                     ),
                     help_overlay(
                       main    = plotOutput("length_stone_quants"),
-                      help_ui = popover(bs_icon("info-circle"), uiOutput("plot_stone_quantities_plot"))
+                      help_ui = popover(bs_icon("info-circle"), uiOutput("plot_stone_quantities_plot_length"))
                     )
                   ),
                   accordion_panel(
@@ -291,17 +291,17 @@ app_ui <- function(request) {
                     help_overlay(
                       main    = plotOutput("slope_stone_size"),
                       help_ui = popover(bs_icon("info-circle"), 
-                                        uiOutput("plot_stone_size_method_plot"))
+                                        uiOutput("plot_stone_size_method_plot_slope"))
                     ),
                     help_overlay(
                       main    = plotOutput("slope_channel_flow"),
                       help_ui = popover(bs_icon("info-circle"), 
-                                        uiOutput("plot_channel_flow_plot"))
+                                        uiOutput("plot_channel_flow_plot_slope"))
                     ),
                     help_overlay(
                       main    = plotOutput("slope_stone_quants"),
                       help_ui = popover(bs_icon("info-circle"), 
-                                        uiOutput("plot_stone_quantities_plot"))
+                                        uiOutput("plot_stone_quantities_plot_slope"))
                     )
                   ),
                   accordion_panel(
@@ -339,17 +339,17 @@ app_ui <- function(request) {
                     help_overlay(
                       main    = plotOutput("particle_size_stone_size"),
                       help_ui = popover(bs_icon("info-circle"), 
-                                        uiOutput("plot_stone_size_method_plot"))
+                                        uiOutput("plot_stone_size_method_plot_particle_size"))
                     ),
                     help_overlay(
                       main    = plotOutput("particle_size_channel_flow"),
                       help_ui = popover(bs_icon("info-circle"), 
-                                        uiOutput("plot_channel_flow_plot"))
+                                        uiOutput("plot_channel_flow_plot_particle_size"))
                     ),
                     help_overlay(
                       main    = plotOutput("particle_size_stone_quants"),
                       help_ui = popover(bs_icon("info-circle"), 
-                                        uiOutput("plot_stone_quantities_plot"))
+                                        uiOutput("plot_stone_quantities_plot_particle_size"))
                     )
                   ),
                   accordion_panel(

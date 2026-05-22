@@ -256,20 +256,80 @@ app_server <- function(input, output, session) {
     )
   })
 
-  # Help entries for plot outputs
-  output$plot_stone_size_method_plot <- renderUI({
+    # Help entries for plot outputs — by Width
+  output$plot_stone_size_method_plot_width <- renderUI({
     tagList(
       markdown(filter(chutedesign::help_data, id == "plot_stone_size_method_plot")$popover),
       markdown(filter(chutedesign::help_data, id == "plot_stone_size_method_plot")$sidebar)
     )
   })
-  output$plot_channel_flow_plot <- renderUI({
+  output$plot_channel_flow_plot_width <- renderUI({
     tagList(
       markdown(filter(chutedesign::help_data, id == "plot_channel_flow_plot")$popover),
       markdown(filter(chutedesign::help_data, id == "plot_channel_flow_plot")$sidebar)
     )
   })
-  output$plot_stone_quantities_plot <- renderUI({
+  output$plot_stone_quantities_plot_width <- renderUI({
+    tagList(
+      markdown(filter(chutedesign::help_data, id == "plot_stone_quantities_plot")$popover),
+      markdown(filter(chutedesign::help_data, id == "plot_stone_quantities_plot")$sidebar)
+    )
+  })
+
+  # Help entries for plot outputs — by Length
+  output$plot_stone_size_method_plot_length <- renderUI({
+    tagList(
+      markdown(filter(chutedesign::help_data, id == "plot_stone_size_method_plot")$popover),
+      markdown(filter(chutedesign::help_data, id == "plot_stone_size_method_plot")$sidebar)
+    )
+  })
+  output$plot_channel_flow_plot_length <- renderUI({
+    tagList(
+      markdown(filter(chutedesign::help_data, id == "plot_channel_flow_plot")$popover),
+      markdown(filter(chutedesign::help_data, id == "plot_channel_flow_plot")$sidebar)
+    )
+  })
+  output$plot_stone_quantities_plot_length <- renderUI({
+    tagList(
+      markdown(filter(chutedesign::help_data, id == "plot_stone_quantities_plot")$popover),
+      markdown(filter(chutedesign::help_data, id == "plot_stone_quantities_plot")$sidebar)
+    )
+  })
+
+  # Help entries for plot outputs — by Slope
+  output$plot_stone_size_method_plot_slope <- renderUI({
+    tagList(
+      markdown(filter(chutedesign::help_data, id == "plot_stone_size_method_plot")$popover),
+      markdown(filter(chutedesign::help_data, id == "plot_stone_size_method_plot")$sidebar)
+    )
+  })
+  output$plot_channel_flow_plot_slope <- renderUI({
+    tagList(
+      markdown(filter(chutedesign::help_data, id == "plot_channel_flow_plot")$popover),
+      markdown(filter(chutedesign::help_data, id == "plot_channel_flow_plot")$sidebar)
+    )
+  })
+  output$plot_stone_quantities_plot_slope <- renderUI({
+    tagList(
+      markdown(filter(chutedesign::help_data, id == "plot_stone_quantities_plot")$popover),
+      markdown(filter(chutedesign::help_data, id == "plot_stone_quantities_plot")$sidebar)
+    )
+  })
+
+  # Help entries for plot outputs — by Particle Size
+  output$plot_stone_size_method_plot_particle_size <- renderUI({
+    tagList(
+      markdown(filter(chutedesign::help_data, id == "plot_stone_size_method_plot")$popover),
+      markdown(filter(chutedesign::help_data, id == "plot_stone_size_method_plot")$sidebar)
+    )
+  })
+  output$plot_channel_flow_plot_particle_size <- renderUI({
+    tagList(
+      markdown(filter(chutedesign::help_data, id == "plot_channel_flow_plot")$popover),
+      markdown(filter(chutedesign::help_data, id == "plot_channel_flow_plot")$sidebar)
+    )
+  })
+  output$plot_stone_quantities_plot_particle_size <- renderUI({
     tagList(
       markdown(filter(chutedesign::help_data, id == "plot_stone_quantities_plot")$popover),
       markdown(filter(chutedesign::help_data, id == "plot_stone_quantities_plot")$sidebar)
