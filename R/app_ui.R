@@ -194,7 +194,7 @@ app_ui <- function(request) {
                   id = "by_width_results",
                   open = c("Plots", "Data"),
                   accordion_panel(
-                    id = "by_width_results",
+                    id = "by_width_plots",
                     title = "Plots",
                     help_overlay(
                       main    = plotOutput("width_stone_size"),
@@ -213,6 +213,7 @@ app_ui <- function(request) {
                     )
                   ),
                   accordion_panel(
+                    id = "by_width_data",
                     title = "Data",
                     help_overlay(
                       main    = DTOutput("width_table"),
@@ -241,6 +242,7 @@ app_ui <- function(request) {
                   id = "by_length_results",
                   open = c("Plots", "Data"),
                   accordion_panel(
+                    id = "by_length_plots",
                     title = "Plots",
                     help_overlay(
                       main    = plotOutput("length_stone_size"),
@@ -256,6 +258,7 @@ app_ui <- function(request) {
                     )
                   ),
                   accordion_panel(
+                    id = "by_length_data",
                     title = "Data",
                     help_overlay(
                       main    = DTOutput("length_table"),
@@ -272,7 +275,7 @@ app_ui <- function(request) {
                 fillable = TRUE,
                 class = "p-0",
                 sidebar = sidebar(
-                  id = "by_width_help",
+                  id = "by_slope_help",
                   title = "Help",
                   position = "right",
                   width = 300,
@@ -283,7 +286,7 @@ app_ui <- function(request) {
                   id = "by_slope_results",
                   open = c("Plots", "Data"),
                   accordion_panel(
-                    id = "by_slope_results",
+                    id = "by_slope_plots",
                     title = "Plots",
                     help_overlay(
                       main    = plotOutput("slope_stone_size"),
@@ -302,6 +305,7 @@ app_ui <- function(request) {
                     )
                   ),
                   accordion_panel(
+                    id = "by_slope_data",
                     title = "Data",
                     help_overlay(
                       main    = DTOutput("slope_table"),
@@ -319,7 +323,7 @@ app_ui <- function(request) {
                 fillable = TRUE,
                 class = "p-0",
                 sidebar = sidebar(
-                  id = "by_width_help",
+                  id = "by_particle_size_help",
                   title = "Help",
                   position = "right",
                   width = 300,
@@ -330,7 +334,7 @@ app_ui <- function(request) {
                   id = "by_particle_size_results",
                   open = c("Plots", "Data"),
                   accordion_panel(
-                    id = "by_particle_size_results",
+                    id = "by_particle_size_plots",
                     title = "Plots",
                     help_overlay(
                       main    = plotOutput("particle_size_stone_size"),
@@ -349,6 +353,7 @@ app_ui <- function(request) {
                     )
                   ),
                   accordion_panel(
+                    id = "by_particle_size_data",
                     title = "Data",
                     help_overlay(
                       main    = DTOutput("particle_size_table"),
