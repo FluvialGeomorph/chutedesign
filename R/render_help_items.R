@@ -9,7 +9,7 @@
 #' `compose_help_items()` in `shiny::renderUI()` so the same composition logic
 #' can be reused both inside and outside reactive Shiny outputs.
 #'
-#' @importFrom shiny renderUI
+#' @importFrom shiny renderUI withMathJax
 #' @export
 render_help_items <- function(
     ids = NULL,
@@ -27,20 +27,22 @@ render_help_items <- function(
     deduplicate = FALSE
 ) {
   shiny::renderUI({
-    compose_help_items(
-      ids = ids,
-      ...,
-      data = data,
-      data_name = data_name,
-      package = package,
-      fields = fields,
-      include_title = include_title,
-      title_field = title_field,
-      title_tag = title_tag,
-      separator = separator,
-      container = container,
-      on_missing = on_missing,
-      deduplicate = deduplicate
+    shiny::withMathJax(
+      compose_help_items(
+        ids = ids,
+        ...,
+        data = data,
+        data_name = data_name,
+        package = package,
+        fields = fields,
+        include_title = include_title,
+        title_field = title_field,
+        title_tag = title_tag,
+        separator = separator,
+        container = container,
+        on_missing = on_missing,
+        deduplicate = deduplicate
+      )
     )
   })
 }

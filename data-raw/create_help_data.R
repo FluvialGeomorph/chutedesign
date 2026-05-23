@@ -259,18 +259,29 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
     "side_angle = atan(1 / side_slope) converted to degrees. Influences length_left_bank and total mattress area."
   ),
 
-  "unit_discharge",
+    "unit_discharge",
   "Unit discharge (unit_discharge)",
   glue(
-    "q = total_discharge / width (m^2/s). The primary hydraulic input for many stone-size relations."
+    "Unit discharge is given by $q = \\frac{{Q}}{{B}}$ (m^2/s), where total discharge is distributed across chute width."
   ),
   glue(
     "
+**Definition**
+- Unit discharge is
+
+$$
+q = \\frac{{Q}}{{B}}
+$$
+
+where:
+- $Q$ is total discharge
+- $B$ is chute width
+
 **Why it matters**
-- Most empirical stone-size formulae (NRCS, USACE, etc.) are sensitive to q. Changing width or Q influences q directly and therefore stone-size predictions.
+- Most empirical stone-size formulae (NRCS, USACE, etc.) are sensitive to $q$. Changing width or discharge changes $q$ directly and therefore influences stone-size predictions.
 
 **Guidance**
-- Inspect how q changes across scenarios and use it as a primary explanatory variable when interpreting results.
+- Inspect how $q$ changes across scenarios and use it as a primary explanatory variable when interpreting results.
 "
   ),
 
