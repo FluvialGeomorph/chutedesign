@@ -308,7 +308,8 @@ app_server <- function(input, output, session) {
     ),
     data_name = "help_data",
     package = "chutedesign",
-    fields = c("summary", "detail")
+    fields = c("summary", "detail"),
+    include_title = TRUE
   )
 
   output$plot_channel_flow_plot_length <- render_help_items(
@@ -328,7 +329,8 @@ app_server <- function(input, output, session) {
     ),
     data_name = "help_data",
     package = "chutedesign",
-    fields = c("summary", "detail")
+    fields = c("summary", "detail"),
+    include_title = TRUE
   )
 
   output$plot_channel_flow_plot_slope <- render_help_items(
@@ -348,7 +350,8 @@ app_server <- function(input, output, session) {
     ),
     data_name = "help_data",
     package = "chutedesign",
-    fields = c("summary", "detail")
+    fields = c("summary", "detail"),
+    include_title = TRUE
   )
 
   output$plot_channel_flow_plot_particle_size <- render_help_items(
@@ -368,7 +371,8 @@ app_server <- function(input, output, session) {
     ),
     data_name = "help_data",
     package = "chutedesign",
-    fields = c("summary", "detail")
+    fields = c("summary", "detail"),
+    include_title = TRUE
   )
 
   ## Help - plot stone size method plot
@@ -379,7 +383,8 @@ app_server <- function(input, output, session) {
     ),
     data_name = "help_data",
     package = "chutedesign",
-    fields = c("summary", "detail")
+    fields = c("summary", "detail"),
+    include_title = TRUE
   )
 
   output$plot_stone_size_method_plot_length <- render_help_items(
@@ -389,7 +394,8 @@ app_server <- function(input, output, session) {
     ),
     data_name = "help_data",
     package = "chutedesign",
-    fields = c("summary", "detail")
+    fields = c("summary", "detail"),
+    include_title = TRUE
   )
 
   output$plot_stone_size_method_plot_slope <- render_help_items(
@@ -399,7 +405,8 @@ app_server <- function(input, output, session) {
     ),
     data_name = "help_data",
     package = "chutedesign",
-    fields = c("summary", "detail")
+    fields = c("summary", "detail"),
+    include_title = TRUE
   )
 
   output$plot_stone_size_method_plot_particle_size <- render_help_items(
@@ -409,7 +416,8 @@ app_server <- function(input, output, session) {
     ),
     data_name = "help_data",
     package = "chutedesign",
-    fields = c("summary", "detail")
+    fields = c("summary", "detail"),
+    include_title = TRUE
   )
 
   ## Help - plot stone quantities
@@ -423,7 +431,8 @@ app_server <- function(input, output, session) {
     ),
     data_name = "help_data",
     package = "chutedesign",
-    fields = c("summary", "detail")
+    fields = c("summary", "detail"),
+    include_title = TRUE
   )
 
   output$plot_stone_quantities_plot_length <- render_help_items(
@@ -436,7 +445,8 @@ app_server <- function(input, output, session) {
     ),
     data_name = "help_data",
     package = "chutedesign",
-    fields = c("summary", "detail")
+    fields = c("summary", "detail"),
+    include_title = TRUE
   )
 
   output$plot_stone_quantities_plot_slope <- render_help_items(
@@ -449,7 +459,8 @@ app_server <- function(input, output, session) {
     ),
     data_name = "help_data",
     package = "chutedesign",
-    fields = c("summary", "detail")
+    fields = c("summary", "detail"),
+    include_title = TRUE
   )
 
   output$plot_stone_quantities_plot_particle_size <- render_help_items(
@@ -462,7 +473,8 @@ app_server <- function(input, output, session) {
     ),
     data_name = "help_data",
     package = "chutedesign",
-    fields = c("summary", "detail")
+    fields = c("summary", "detail"),
+    include_title = TRUE
   )
 
   ## Help entries for Data scenario/channel_dimensions outputs
@@ -471,6 +483,7 @@ app_server <- function(input, output, session) {
     data_name = "help_data",
     package = "chutedesign",
     fields = c("summary", "detail"),
+    include_title = TRUE,
     separator = NULL
   )
 
@@ -479,6 +492,7 @@ app_server <- function(input, output, session) {
     data_name = "help_data",
     package = "chutedesign",
     fields = c("summary", "detail"),
+    include_title = TRUE,
     separator = NULL
   )
 
@@ -487,6 +501,7 @@ app_server <- function(input, output, session) {
     data_name = "help_data",
     package = "chutedesign",
     fields = c("summary", "detail"),
+    include_title = TRUE,
     separator = NULL
   )
 
@@ -495,6 +510,7 @@ app_server <- function(input, output, session) {
     data_name = "help_data",
     package = "chutedesign",
     fields = c("summary", "detail"),
+    include_title = TRUE,
     separator = NULL
   )
 }

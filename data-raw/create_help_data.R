@@ -45,7 +45,7 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
   ),
 
   "length",
-  "Chute length (length)",
+  "Chute length (`length`)",
   glue(
     "Longitudinal length of the lined chute (m). Controls stone quantity scaling."
   ),
@@ -63,7 +63,7 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
   ),
 
   "length_series",
-  "Length series (length_start, length_end, length_by)",
+  "Length series (`length_start`, `length_end`, `length_by`)",
   glue(
     "Start / end / step for length sweeps (m). Useful for cost/quantity sensitivity."
   ),
@@ -72,7 +72,7 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
   ),
 
   "slope",
-  "Chute slope (slope)",
+  "Chute slope (`slope`)",
   glue(
     "Channel bed slope (unitless, e.g. 0.03). Major control on velocity and stone sizing."
   ),
@@ -90,7 +90,7 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
   ),
 
   "slope_series",
-  "Slope series (slope_start, slope_end, slope_by)",
+  "Slope series (`slope_start`, `slope_end`, `slope_by`)",
   glue(
     "Start / end / step for slope sweeps. Use closer spacing where sensitivity is high."
   ),
@@ -99,7 +99,7 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
   ),
 
   "particle_size",
-  "Reference particle size (particle_size)",
+  "Reference particle size (`particle_size`)",
   glue("Reference particle size (m) used to estimate roughness (Manning's n)."),
   glue(
     "
@@ -115,7 +115,7 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
   ),
 
   "particle_size_series",
-  "Particle size series (particle_size_start, particle_size_end, particle_size_by)",
+  "Particle size series (`particle_size_start`, `particle_size_end`, `particle_size_by`)",
   glue(
     "Series to test alternative reference particle sizes or available stone gradations."
   ),
@@ -124,7 +124,7 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
   ),
 
   "side_slope",
-  "Side slope (side_slope)",
+  "Side slope (`side_slope`)",
   glue(
     "Horizontal run per unit vertical rise (h:v). Controls bank geometry and lined area."
   ),
@@ -142,7 +142,7 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
   ),
 
   "total_discharge",
-  "Total discharge (total_discharge)",
+  "Total discharge (`total_discharge`)",
   glue(
     "Design or analysis discharge (m^3/s). Primary hydraulic driver of q, depths, velocities."
   ),
@@ -160,7 +160,7 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
   ),
 
   "stone_density",
-  "Stone density (stone_density)",
+  "Stone density (`stone_density`)",
   glue(
     "Bulk rock density (kg/m^3). Used to compute stone specific weight and mass."
   ),
@@ -178,7 +178,7 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
   ),
 
   "contingency",
-  "Contingency factor (contingency)",
+  "Contingency factor (`contingency`)",
   glue(
     "Multiplier on computed stone volumes to account for wastage, overlap, or ordering increments."
   ),
@@ -196,7 +196,7 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
   ),
 
   "porosity",
-  "Placed-stone porosity (porosity)",
+  "Placed-stone porosity (`porosity`)",
   glue(
     "Bulk-placed porosity fraction (unitless) used in the implemented stone-volume calculation."
   ),
@@ -217,7 +217,7 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
   ),
 
   "water_density",
-  "Water density (water_density)",
+  "Water density (`water_density`)",
   glue(
     "Water density (kg/m^3) used in applied stream power and related computations."
   ),
@@ -226,7 +226,7 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
   ),
 
   "gravity",
-  "Gravity (gravity)",
+  "Gravity (`gravity`)",
   glue(
     "Acceleration due to gravity (m/s^2). Used in depth, velocity, and mass calculations."
   ),
@@ -236,7 +236,7 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
 
   # Outputs & intermediate variables from channel_dimensions()
   "stone_specific_weight",
-  "Stone specific weight",
+  "Stone specific weight (`stone_specific_weight`)",
   glue(
     "stone_specific_weight = stone_density * gravity (N/m^3). Converts density to unit weight."
   ),
@@ -245,7 +245,7 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
   ),
 
   "specific_gravity",
-  "Specific gravity (specific_gravity)",
+  "Specific gravity (`specific_gravity`)",
   glue(
     "Dimensionless ratio of stone to water specific weight (approx. Gs ~ 2.65)."
   ),
@@ -254,7 +254,7 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
   ),
 
   "side_angle",
-  "Side angle (side_angle)",
+  "Side angle (`side_angle`)",
   glue(
     "Bank side angle in degrees derived from side_slope; used to compute sloped bank length."
   ),
@@ -263,7 +263,7 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
   ),
 
   "unit_discharge",
-  "Unit discharge (unit_discharge)",
+  "Unit discharge (`unit_discharge`)",
   glue(
     "Unit discharge describes how total discharge is distributed across chute width (m^2/s)."
   ),
@@ -289,7 +289,7 @@ where:
   ),
 
   "mannings_n",
-  "Manning's n (mannings_n)",
+  "Manning's n (`mannings_n`)",
   glue(
     "Estimated roughness coefficient used to compute normal depth and velocity."
   ),
@@ -315,7 +315,7 @@ where:
   ),
 
   "critical_depth",
-  "Critical depth (critical_depth)",
+  "Critical depth (`critical_depth`)",
   glue(
     "Depth at which specific energy is minimized for the current unit discharge."
   ),
@@ -342,7 +342,7 @@ where:
   ),
 
   "normal_depth",
-  "Normal depth (normal_depth)",
+  "Normal depth (`normal_depth`)",
   glue(
     "Depth computed from Manning's equation for the current discharge, roughness, and slope."
   ),
@@ -369,7 +369,7 @@ where:
   ),
 
     "normal_velocity",
-  "Normal velocity (normal_velocity)",
+  "Normal velocity (`normal_velocity`)",
   glue(
     "Velocity computed from unit discharge and normal depth (m/s)."
   ),
@@ -396,7 +396,7 @@ where:
   ),
 
   "critical_velocity",
-  "Critical velocity (critical_velocity)",
+  "Critical velocity (`critical_velocity`)",
   glue(
     "Velocity corresponding to critical depth for the current unit discharge (m/s)."
   ),
@@ -423,7 +423,7 @@ where:
   ),
 
   "critical_slope",
-  "Critical slope (critical_slope)",
+  "Critical slope (`critical_slope`)",
   glue(
     "Slope associated with critical-flow conditions for the current discharge, roughness, and critical depth."
   ),
@@ -452,7 +452,7 @@ where:
   ),
 
   "froude",
-  "Froude number (froude)",
+  "Froude number (`froude`)",
   glue(
     "Dimensionless indicator of flow regime."
   ),
@@ -483,7 +483,7 @@ where:
   ),
 
   "shear_stress",
-  "Shear stress (shear_stress)",
+  "Shear stress (`shear_stress`)",
   glue(
     "Hydraulic forcing metric computed in the app from water specific weight, normal velocity, and slope (N/m^2)."
   ),
@@ -512,7 +512,7 @@ where:
   ),
 
   "avail_stream_power",
-  "Available stream power (avail_stream_power)",
+  "Available stream power (`avail_stream_power`)",
   glue(
     "Specific stream power used as an energy-based hydraulic metric (kW/m)."
   ),
@@ -539,7 +539,7 @@ where:
   ),
 
   "applied_stream_power",
-  "Applied stream power (applied_stream_power)",
+  "Applied stream power (`applied_stream_power`)",
   glue(
     "Alternative stream power metric representing bed-applied energy (kW/m)."
   ),
@@ -565,7 +565,7 @@ where:
   ),
 
   "stone_size_methods",
-  "Empirical stone-size methods (nrcs/usace/abt_johnson/isbash/usbr)",
+  "Empirical stone-size methods",
   glue(
     "The app computes candidate stone diameters for several empirical methods and stores them in long format."
   ),
@@ -598,7 +598,7 @@ where:
   ),
 
   "adopted_stone_diameter",
-  "Adopted stone diameter (adopted_stone_diameter)",
+  "Adopted stone diameter (`adopted_stone_diameter`)",
   glue(
     "Final adopted stone diameter (m), taken from the selected empirical method."
   ),
@@ -619,7 +619,7 @@ where:
   ),
 
   "adopted_stone_weight",
-  "Adopted stone weight (kg, lbs, tons)",
+  "Adopted stone weight (`adopted_stone_weight`)",
   glue(
     "Mass of the adopted stone computed from adopted diameter and stone unit weight."
   ),
@@ -649,7 +649,7 @@ where:
   ),
 
   "stone_vol_m3",
-  "Stone volume (stone_vol_m3)",
+  "Stone volume (`stone_vol_m3`)",
   glue(
     "Computed placed rock volume after applying geometry, contingency, and porosity adjustments (m^3)."
   ),
@@ -659,7 +659,7 @@ where:
 - Stone volume is computed as
 
 $$
-V_{{stone}} = contingency \\cdot mattress\\_thickness \\cdot (length\\_left\\_bank + width) \\cdot length \\cdot (1 - porosity)
+V_{{stone}} = contingency \\cdot mattress\\\\_thickness \\cdot (length\\\\_left\\\\_bank + width) \\cdot length \\cdot (1 - porosity)
 $$
 
 where:
@@ -678,7 +678,7 @@ where:
   ),
     
   "mattress_thickness",
-  "Mattress thickness (m)",
+  "Mattress thickness (`mattress_thickness`)",
   glue(
     "Placed stone layer thickness derived from adopted stone diameter."
   ),
@@ -705,7 +705,7 @@ where:
 
   # App tab documentation
   "getting_started",
-  "Intro tab - app overview",
+  "Intro Tab - app overview",
   glue("Overview of the app, workflow, and key assumptions."),
   glue(
     "# Getting Started
@@ -877,7 +877,7 @@ where:
   ),
 
   # Plots
-    "plot_stone_size_method_plot",
+  "plot_stone_size_method_plot",
   "Stone size methods plot",
   glue(
     "Line plot comparing stone-diameter estimates from each empirical method across the selected x-axis variable."
