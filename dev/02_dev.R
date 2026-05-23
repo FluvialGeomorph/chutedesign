@@ -48,7 +48,7 @@ attachment::att_amend_desc()
 
 ## Add internal datasets ----
 ## If you have data in your package
-usethis::use_data_raw(name = "create_help_data.R", open = TRUE)
+# usethis::use_data_raw(name = "create_help_data.R", open = TRUE)
 
 ## Run application locally
 golem::document_and_reload()
