@@ -21,7 +21,7 @@ plot_channel_flow <- function(channel_dims, x_axis) {
   # Human-readable labels
   param_labels <- c(
     unit_discharge = "Unit Discharge (m\u00B2/s)",
-    mannings_n = "Mannings's n",
+    mannings_n = "Manning's n",
     critical_depth = "Critical Depth (m)",
     critical_velocity = "Critical Velocity (m/s)",
     critical_slope = "Critical Slope (m/m)",
