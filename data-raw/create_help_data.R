@@ -259,7 +259,7 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
     "side_angle = atan(1 / side_slope) converted to degrees. Influences length_left_bank and total mattress area."
   ),
 
-     "unit_discharge",
+  "unit_discharge",
   "Unit discharge (unit_discharge)",
   glue(
     "Unit discharge describes how total discharge is distributed across chute width (m^2/s)."
@@ -288,111 +288,275 @@ where:
   "mannings_n",
   "Manning's n (mannings_n)",
   glue(
-    "Estimated roughness using particle_size: mannings_n = 0.034 * (particle_size * ft_per_m)^(1/6)."
+    "Estimated roughness coefficient used to compute normal depth and velocity."
   ),
   glue(
-    "n affects normal_depth and normal_velocity; test alternative n (or particle_size) values when roughness is uncertain."
+    "
+**Definition**
+- In the app, Manning's `n` is estimated as
+
+$$
+n = 0.034 \\cdot (particle\\_size \\cdot ft\\_per\\_m)^{{1/6}}
+$$
+
+where:
+- `particle_size` is the reference particle size in meters
+- `ft_per_m` converts meters to feet
+
+**Why it matters**
+- Roughness affects normal depth and normal velocity. Uncertainty in `n` propagates through hydraulic calculations and stone-size predictions.
+
+**Guidance**
+- Test alternative roughness assumptions when substrate size or field roughness is uncertain.
+"
   ),
 
   "critical_depth",
   "Critical depth (critical_depth)",
-  glue("Depth at which specific energy is minimized for q: (q^2 / g)^(1/3)."),
   glue(
-    "Compare critical_depth to normal_depth to identify flow regime; proximity to critical depth indicates possible regime transitions that affect stability behavior."
+    "Depth at which specific energy is minimized for the current unit discharge."
+  ),
+  glue(
+    "
+**Definition**
+- Critical depth is
+
+$$
+y_c = \\left( \\frac{{q^2}}{{g}} \\right)^{{1/3}}
+$$
+
+where:
+- `q` is unit discharge
+- `g` is gravitational acceleration
+
+**Why it matters**
+- Critical depth helps identify the transition between subcritical and supercritical flow.
+- Comparing critical depth to normal depth helps interpret hydraulic regime and the stability context for stone sizing.
+
+**Guidance**
+- Review critical depth alongside normal depth and Froude number when diagnosing whether the chute is operating near a regime threshold.
+"
   ),
 
   "normal_depth",
   "Normal depth (normal_depth)",
   glue(
-    "Depth computed from Manning's equation for given q, n, and slope: ((q * n) / sqrt(S))^(3/5)."
+    "Depth computed from Manning's equation for the current discharge, roughness, and slope."
   ),
   glue(
-    "Normal_depth sets hydraulic radius and, together with velocity, determines shear stress and stream power — key inputs to stone-size formulas."
+    "
+**Definition**
+- Normal depth is computed as
+
+$$
+y_n = \\left( \\frac{{q \\cdot n}}{{\\sqrt{{S}}}} \\right)^{{3/5}}
+$$
+
+where:
+- `q` is unit discharge
+- `n` is Manning's roughness
+- `S` is slope
+
+**Why it matters**
+- Normal depth sets hydraulic radius and, together with velocity, determines shear stress and stream power — key inputs to stone-size formulas.
+
+**Guidance**
+- Compare normal depth to critical depth to assess regime behavior across scenarios.
+"
   ),
 
-  "normal_velocity",
+    "normal_velocity",
   "Normal velocity (normal_velocity)",
   glue(
-    "Velocity computed as q / normal_depth (m/s). Direct driver of shear stress and several empirical stone-size relations."
+    "Velocity computed from unit discharge and normal depth (m/s)."
   ),
   glue(
-    "Higher velocities generally yield larger predicted stone sizes; track velocity changes across sweeps."
+    "
+**Definition**
+- Normal velocity is
+
+$$
+V_n = \\frac{{q}}{{y_n}}
+$$
+
+where:
+- `q` is unit discharge
+- `y_n` is normal depth
+
+**Why it matters**
+- Velocity is a direct driver of shear stress and several empirical stone-size relations.
+- Higher velocities generally yield larger predicted stone sizes.
+
+**Guidance**
+- Track how normal velocity changes across sweeps and compare it to critical velocity when assessing hydraulic sensitivity.
+"
   ),
 
   "critical_velocity",
   "Critical velocity (critical_velocity)",
   glue(
-    "Velocity corresponding to critical depth, computed as unit_discharge / critical_depth (m/s)."
+    "Velocity corresponding to critical depth for the current unit discharge (m/s)."
   ),
   glue(
     "
 **Definition**
-- critical_velocity is the flow velocity associated with critical depth for the current unit discharge.
+- Critical velocity is
+
+$$
+V_c = \\frac{{q}}{{y_c}}
+$$
+
+where:
+- `q` is unit discharge
+- `y_c` is critical depth
 
 **Why it matters**
-- Comparing critical_velocity to normal_velocity helps interpret how close the chute flow is to critical-flow conditions.
+- Comparing critical velocity to normal velocity helps interpret how close the chute flow is to critical-flow conditions.
 - Near-critical conditions can indicate hydraulic sensitivity, especially where small design changes may shift regime behavior.
 
 **Guidance**
-- Review critical_velocity alongside normal_velocity and Froude number when diagnosing whether the chute is approaching a flow transition.
-- If normal_velocity is close to critical_velocity across a sensitivity sweep, consider whether additional hydraulic analysis is warranted.
+- Review critical velocity alongside normal velocity and Froude number when diagnosing whether the chute is approaching a flow transition.
 "
   ),
 
   "critical_slope",
   "Critical slope (critical_slope)",
   glue(
-    "Slope associated with critical-flow conditions, computed from critical_velocity, Manning's n, and critical_depth."
+    "Slope associated with critical-flow conditions for the current discharge, roughness, and critical depth."
   ),
   glue(
     "
 **Definition**
-- critical_slope is the bed slope that would correspond to critical-flow conditions for the current unit discharge, roughness, and critical depth.
+- Critical slope is computed as
+
+$$
+S_c = \\left( \\frac{{V_c \\cdot n}}{{y_c^{{2/3}}}} \\right)^2
+$$
+
+where:
+- `V_c` is critical velocity
+- `n` is Manning's roughness
+- `y_c` is critical depth
 
 **Why it matters**
-- Comparing design slope to critical_slope helps assess whether the chute tends toward mild, steep, or near-critical hydraulic behavior.
-- This can help explain changes in normal depth, velocity, and regime-sensitive stability metrics.
+- Comparing design slope to critical slope helps assess whether the chute tends toward mild, steep, or near-critical hydraulic behavior.
+- This comparison can help explain changes in normal depth, velocity, and regime-sensitive stability metrics.
 
 **Guidance**
-- Compare the input design slope to critical_slope when interpreting sensitivity results.
-- If design slope is near critical_slope, use caution when making simplified comparisons across scenarios because small changes may alter hydraulic behavior.
+- Compare the design slope to critical slope when interpreting sensitivity results.
+- If design slope is near critical slope, use caution when comparing scenarios because small changes may alter hydraulic behavior.
 "
   ),
 
   "froude",
   "Froude number (froude)",
   glue(
-    "Dimensionless flow regime indicator: Fr = V / sqrt(g * depth). Values >1 indicate supercritical flow."
+    "Dimensionless indicator of flow regime."
   ),
   glue(
-    "Interpretation: Fr < 1 subcritical, Fr > 1 supercritical. Different regime behaviors may require separate checks or alternate design approaches."
+    "
+**Definition**
+- Froude number is
+
+$$
+Fr = \\frac{{V}}{{\\sqrt{{g \\cdot y}}}}
+$$
+
+where:
+- `V` is flow velocity
+- `g` is gravitational acceleration
+- `y` is flow depth
+
+**Why it matters**
+- Froude number indicates whether flow is subcritical or supercritical.
+- Values near 1 suggest regime transition and may signal sensitivity in hydraulic behavior.
+
+**Guidance**
+- Interpret approximately as:
+  - `Fr < 1`: subcritical
+  - `Fr > 1`: supercritical
+- Watch for threshold crossings across sensitivity sweeps.
+"
   ),
 
   "shear_stress",
   "Shear stress (shear_stress)",
   glue(
-    "Bed shear stress computed in the code as h2o_specific_weight * normal_velocity * slope (N/m^2)."
+    "Bed shear stress representing the driving force applied to bed material (N/m^2)."
   ),
   glue(
-    "Shear is a direct measure of the driving force on bed material and is used to compute applied stream power and to contextualize stone stability."
+    "
+**Definition**
+- In the app, shear stress is computed as
+
+$$
+\\tau = \\gamma_w \\cdot V_n \\cdot S
+$$
+
+where:
+- `γ_w` is water specific weight
+- `V_n` is normal velocity
+- `S` is slope
+
+**Why it matters**
+- Shear stress is a direct measure of the force available to mobilize material and is useful for interpreting stability and stream power.
+
+**Guidance**
+- Compare shear stress trends across scenarios to understand why predicted stone sizes increase or decrease.
+"
   ),
 
   "avail_stream_power",
   "Available stream power (avail_stream_power)",
   glue(
-    "Specific stream power (kW/m) computed as (h2o_specific_weight * q * slope) / 1000."
+    "Specific stream power used as an energy-based hydraulic metric (kW/m)."
   ),
   glue(
-    "Useful energy-based metric for comparing regimes and as an input to empirical relations."
+    "
+**Definition**
+- Available stream power is computed as
+
+$$
+\\omega = \\frac{{\\gamma_w \\cdot q \\cdot S}}{{1000}}
+$$
+
+where:
+- `γ_w` is water specific weight
+- `q` is unit discharge
+- `S` is slope
+
+**Why it matters**
+- Stream power is a compact energy-based measure of the capacity of flow to do geomorphic work and mobilize material.
+
+**Guidance**
+- Use available stream power to compare energy conditions across scenarios and to contextualize differences among stone-size methods.
+"
   ),
 
   "applied_stream_power",
   "Applied stream power (applied_stream_power)",
   glue(
-    "Alternative applied stream power metric computed in the code: (7.853 * wd * (shear_stress / wd)^(3/2)) / 1000."
+    "Alternative stream power metric representing bed-applied energy (kW/m)."
   ),
   glue(
-    "Provides an alternate representation of bed-applied energy; compare with avail_stream_power when diagnosing differences between methods."
+    "
+**Definition**
+- In the app, applied stream power is computed as
+
+$$
+\\omega_a = \\frac{{7.853 \\cdot wd \\cdot (\\tau / wd)^{{3/2}}}}{{1000}}
+$$
+
+where:
+- `wd` is water density
+- `τ` is shear stress
+
+**Why it matters**
+- Applied stream power provides an alternate representation of hydraulic energy acting on the bed and can help explain differences between methods or scenarios.
+
+**Guidance**
+- Compare applied stream power with available stream power when diagnosing changes in hydraulic forcing across the sweep.
+"
   ),
 
   "stone_size_methods",
@@ -446,15 +610,29 @@ where:
   "stone_vol_m3",
   "Stone volume (stone_vol_m3)",
   glue(
-    "Computed placed rock volume (m^3) after applying contingency and porosity in code: contingency * mattress_thickness * (length_left_bank + width) * length * (1 - porosity)."
+    "Computed placed rock volume after applying geometry, contingency, and porosity adjustments (m^3)."
   ),
   glue(
     "
+**Definition**
+- Stone volume is computed as
+
+$$
+V_{{stone}} = contingency \\cdot mattress\\_thickness \\cdot (length\\_left\\_bank + width) \\cdot length \\cdot (1 - porosity)
+$$
+
+where:
+- `contingency` is the volume adjustment factor
+- `mattress_thickness` is the adopted placed thickness
+- `length_left_bank + width` represents effective lined width
+- `length` is chute length
+- `porosity` accounts for void space in placed stone
+
 **Why it matters**
-- This is the final ordering/estimate volume. stone_vol_m3 is sensitive to adopted_stone_diameter, porosity, contingency, width, and length.
+- This is the final ordering and estimating volume. It is sensitive to geometry, adopted stone size, contingency, and porosity.
 
 **Guidance**
-- When running sensitivity, export stone_vol_m3 and the contributing components so the source of variation is clear (e.g., geometry vs. adopted diameter).
+- When running sensitivity analyses, compare stone volume alongside the contributing variables so the source of variation is clear.
 "
   ),
 
