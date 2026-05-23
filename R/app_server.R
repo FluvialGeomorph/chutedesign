@@ -290,104 +290,179 @@ app_server <- function(input, output, session) {
     separator = NULL
   )
 
-  ## Help entries for plot outputs — by Width
-  output$plot_stone_size_method_plot_width <- render_help_items(
-    ids = "plot_stone_size_method_plot",
+  ## Help - plot channel flow plot
+    output$plot_channel_flow_plot_width <- render_help_items(
+    ids = c(
+      "plot_channel_flow_plot",
+      "unit_discharge",
+      "mannings_n",
+      "critical_depth",
+      "critical_velocity",
+      "critical_slope",
+      "normal_depth",
+      "normal_velocity",
+      "froude",
+      "shear_stress",
+      "avail_stream_power",
+      "applied_stream_power"
+    ),
     data_name = "help_data",
     package = "chutedesign",
-    fields = c("summary", "detail"),
-    separator = NULL
-  )
-
-  output$plot_channel_flow_plot_width <- render_help_items(
-    ids = "plot_channel_flow_plot",
-    data_name = "help_data",
-    package = "chutedesign",
-    fields = c("summary", "detail"),
-    separator = NULL
-  )
-
-  output$plot_stone_quantities_plot_width <- render_help_items(
-    ids = "plot_stone_quantities_plot",
-    data_name = "help_data",
-    package = "chutedesign",
-    fields = c("summary", "detail"),
-    separator = NULL
-  )
-
-  ## Help entries for plot outputs — by Length
-  output$plot_stone_size_method_plot_length <- render_help_items(
-    ids = "plot_stone_size_method_plot",
-    data_name = "help_data",
-    package = "chutedesign",
-    fields = c("summary", "detail"),
-    separator = NULL
+    fields = c("summary", "detail")
   )
 
   output$plot_channel_flow_plot_length <- render_help_items(
-    ids = "plot_channel_flow_plot",
+    ids = c(
+      "plot_channel_flow_plot",
+      "unit_discharge",
+      "mannings_n",
+      "critical_depth",
+      "critical_velocity",
+      "critical_slope",
+      "normal_depth",
+      "normal_velocity",
+      "froude",
+      "shear_stress",
+      "avail_stream_power",
+      "applied_stream_power"
+    ),
     data_name = "help_data",
     package = "chutedesign",
-    fields = c("summary", "detail"),
-    separator = NULL
-  )
-
-  output$plot_stone_quantities_plot_length <- render_help_items(
-    ids = "plot_stone_quantities_plot",
-    data_name = "help_data",
-    package = "chutedesign",
-    fields = c("summary", "detail"),
-    separator = NULL
-  )
-
-  ## Help entries for plot outputs — by Slope
-  output$plot_stone_size_method_plot_slope <- render_help_items(
-    ids = "plot_stone_size_method_plot",
-    data_name = "help_data",
-    package = "chutedesign",
-    fields = c("summary", "detail"),
-    separator = NULL
+    fields = c("summary", "detail")
   )
 
   output$plot_channel_flow_plot_slope <- render_help_items(
-    ids = "plot_channel_flow_plot",
+    ids = c(
+      "plot_channel_flow_plot",
+      "unit_discharge",
+      "mannings_n",
+      "critical_depth",
+      "critical_velocity",
+      "critical_slope",
+      "normal_depth",
+      "normal_velocity",
+      "froude",
+      "shear_stress",
+      "avail_stream_power",
+      "applied_stream_power"
+    ),
     data_name = "help_data",
     package = "chutedesign",
-    fields = c("summary", "detail"),
-    separator = NULL
-  )
-
-  output$plot_stone_quantities_plot_slope <- render_help_items(
-    ids = "plot_stone_quantities_plot",
-    data_name = "help_data",
-    package = "chutedesign",
-    fields = c("summary", "detail"),
-    separator = NULL
-  )
-
-  ## Help entries for plot outputs — by Particle Size
-  output$plot_stone_size_method_plot_particle_size <- render_help_items(
-    ids = "plot_stone_size_method_plot",
-    data_name = "help_data",
-    package = "chutedesign",
-    fields = c("summary", "detail"),
-    separator = NULL
+    fields = c("summary", "detail")
   )
 
   output$plot_channel_flow_plot_particle_size <- render_help_items(
-    ids = "plot_channel_flow_plot",
+    ids = c(
+      "plot_channel_flow_plot",
+      "unit_discharge",
+      "mannings_n",
+      "critical_depth",
+      "critical_velocity",
+      "critical_slope",
+      "normal_depth",
+      "normal_velocity",
+      "froude",
+      "shear_stress",
+      "avail_stream_power",
+      "applied_stream_power"
+    ),
     data_name = "help_data",
     package = "chutedesign",
-    fields = c("summary", "detail"),
-    separator = NULL
+    fields = c("summary", "detail")
+  )
+
+  ## Help - plot stone size method plot
+    output$plot_stone_size_method_plot_width <- render_help_items(
+    ids = c(
+      "plot_stone_size_method_plot",
+      "stone_size_methods"
+    ),
+    data_name = "help_data",
+    package = "chutedesign",
+    fields = c("summary", "detail")
+  )
+
+  output$plot_stone_size_method_plot_length <- render_help_items(
+    ids = c(
+      "plot_stone_size_method_plot",
+      "stone_size_methods"
+    ),
+    data_name = "help_data",
+    package = "chutedesign",
+    fields = c("summary", "detail")
+  )
+
+  output$plot_stone_size_method_plot_slope <- render_help_items(
+    ids = c(
+      "plot_stone_size_method_plot",
+      "stone_size_methods"
+    ),
+    data_name = "help_data",
+    package = "chutedesign",
+    fields = c("summary", "detail")
+  )
+
+  output$plot_stone_size_method_plot_particle_size <- render_help_items(
+    ids = c(
+      "plot_stone_size_method_plot",
+      "stone_size_methods"
+    ),
+    data_name = "help_data",
+    package = "chutedesign",
+    fields = c("summary", "detail")
+  )
+
+  ## Help - plot stone quantities
+    output$plot_stone_quantities_plot_width <- render_help_items(
+    ids = c(
+      "plot_stone_quantities_plot",
+      "adopted_stone_diameter",
+      "adopted_stone_weight",
+      "mattress_thickness",
+      "stone_vol_m3"
+    ),
+    data_name = "help_data",
+    package = "chutedesign",
+    fields = c("summary", "detail")
+  )
+
+  output$plot_stone_quantities_plot_length <- render_help_items(
+    ids = c(
+      "plot_stone_quantities_plot",
+      "adopted_stone_diameter",
+      "adopted_stone_weight",
+      "mattress_thickness",
+      "stone_vol_m3"
+    ),
+    data_name = "help_data",
+    package = "chutedesign",
+    fields = c("summary", "detail")
+  )
+
+  output$plot_stone_quantities_plot_slope <- render_help_items(
+    ids = c(
+      "plot_stone_quantities_plot",
+      "adopted_stone_diameter",
+      "adopted_stone_weight",
+      "mattress_thickness",
+      "stone_vol_m3"
+    ),
+    data_name = "help_data",
+    package = "chutedesign",
+    fields = c("summary", "detail")
   )
 
   output$plot_stone_quantities_plot_particle_size <- render_help_items(
-    ids = "plot_stone_quantities_plot",
+    ids = c(
+      "plot_stone_quantities_plot",
+      "adopted_stone_diameter",
+      "adopted_stone_weight",
+      "mattress_thickness",
+      "stone_vol_m3"
+    ),
     data_name = "help_data",
     package = "chutedesign",
-    fields = c("summary", "detail"),
-    separator = NULL
+    fields = c("summary", "detail")
   )
 
   ## Help entries for Data scenario/channel_dimensions outputs

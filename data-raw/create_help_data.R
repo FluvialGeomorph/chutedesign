@@ -308,6 +308,46 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
     "Higher velocities generally yield larger predicted stone sizes; track velocity changes across sweeps."
   ),
 
+  "critical_velocity",
+  "Critical velocity (critical_velocity)",
+  glue(
+    "Velocity corresponding to critical depth, computed as unit_discharge / critical_depth (m/s)."
+  ),
+  glue(
+    "
+**Definition**
+- critical_velocity is the flow velocity associated with critical depth for the current unit discharge.
+
+**Why it matters**
+- Comparing critical_velocity to normal_velocity helps interpret how close the chute flow is to critical-flow conditions.
+- Near-critical conditions can indicate hydraulic sensitivity, especially where small design changes may shift regime behavior.
+
+**Guidance**
+- Review critical_velocity alongside normal_velocity and Froude number when diagnosing whether the chute is approaching a flow transition.
+- If normal_velocity is close to critical_velocity across a sensitivity sweep, consider whether additional hydraulic analysis is warranted.
+"
+  ),
+
+  "critical_slope",
+  "Critical slope (critical_slope)",
+  glue(
+    "Slope associated with critical-flow conditions, computed from critical_velocity, Manning's n, and critical_depth."
+  ),
+  glue(
+    "
+**Definition**
+- critical_slope is the bed slope that would correspond to critical-flow conditions for the current unit discharge, roughness, and critical depth.
+
+**Why it matters**
+- Comparing design slope to critical_slope helps assess whether the chute tends toward mild, steep, or near-critical hydraulic behavior.
+- This can help explain changes in normal depth, velocity, and regime-sensitive stability metrics.
+
+**Guidance**
+- Compare the input design slope to critical_slope when interpreting sensitivity results.
+- If design slope is near critical_slope, use caution when making simplified comparisons across scenarios because small changes may alter hydraulic behavior.
+"
+  ),
+
   "froude",
   "Froude number (froude)",
   glue(
@@ -771,4 +811,3 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
 usethis::use_data(help_data, internal = FALSE, overwrite = TRUE)
 # Ensure the data is available at runtime
 devtools::install()
-
