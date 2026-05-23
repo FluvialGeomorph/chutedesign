@@ -1,6 +1,6 @@
 # Script: data-raw/create_help_data.R
 # Purpose: build help_data (data.frame) for package data according to R-pkgs guidance
-# This script constructs help_data with columns: id, title, popover, sidebar, placement
+# This script constructs help_data with columns: id, title, summary, detail
 # Text is stored using glue::glue so Markdown can be rendered in the app.
 #
 # After running this script in the package development environment, save the data
@@ -13,9 +13,8 @@ library(glue)
 help_data <- tribble(
   ~id,
   ~title,
-  ~popover,
-  ~sidebar,
-  ~placement,
+  ~summary,
+  ~detail,
 
   # Inputs from create_scenario()
   "width",
@@ -35,7 +34,6 @@ help_data <- tribble(
 - Sweep width ±10–50% depending on layout uncertainty. Test discrete alternative widths if multiple layouts are possible.
 "
   ),
-  "right",
 
   "width_series",
   "Width series (width_start, width_end, width_by)",
@@ -45,7 +43,6 @@ help_data <- tribble(
 Use these fields to build a sequence of widths to evaluate alternative layouts. Start with a coarse set (3–5 levels) then refine around sensitive ranges. Keep steps consistent with constructable increments (e.g., 0.25–0.5 m).
 "
   ),
-  "right",
 
   "length",
   "Chute length (length)",
@@ -64,7 +61,6 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
 - Use the construction length for the lined section. Sweep if comparing alternative reach extents.
 "
   ),
-  "right",
 
   "length_series",
   "Length series (length_start, length_end, length_by)",
@@ -74,7 +70,6 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
   glue(
     "Define realistic length increments (e.g., 5–10 m) and use series runs to evaluate how total material needs change with reach length."
   ),
-  "right",
 
   "slope",
   "Chute slope (slope)",
@@ -93,7 +88,6 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
 - Sweep plausible site slopes (e.g. 0.01–0.10). Use finer steps near ranges where stone-size predictions change rapidly.
 "
   ),
-  "right",
 
   "slope_series",
   "Slope series (slope_start, slope_end, slope_by)",
@@ -103,7 +97,6 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
   glue(
     "Include both mild and steep slopes when a project may span different hydraulic regimes. If slope causes flow regime shift (subcritical ↔ supercritical), interpret results cautiously."
   ),
-  "right",
 
   "particle_size",
   "Reference particle size (particle_size)",
@@ -120,7 +113,6 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
 - Sweep or test typical substrate/stone gradation sizes when roughness is not well known.
 "
   ),
-  "right",
 
   "particle_size_series",
   "Particle size series (particle_size_start, particle_size_end, particle_size_by)",
@@ -130,7 +122,6 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
   glue(
     "Use series to evaluate sensitivity to roughness assumptions. Typical human-usable steps depend on the order-of-magnitude of particle sizes (e.g., 10s of mm)."
   ),
-  "right",
 
   "side_slope",
   "Side slope (side_slope)",
@@ -149,7 +140,6 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
 - Test flatter and steeper bank slopes if bank geometry is uncertain or if constructability constraints apply.
 "
   ),
-  "right",
 
   "total_discharge",
   "Total discharge (total_discharge)",
@@ -168,7 +158,6 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
 - Sweep design storm magnitudes, use probabilistic distributions for Monte Carlo analyses, or test multiple return periods.
 "
   ),
-  "right",
 
   "stone_density",
   "Stone density (stone_density)",
@@ -187,7 +176,6 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
 - Typical values ~2600–2700 kg/m^3. Test alternate densities for different lithologies (e.g., basalt, limestone).
 "
   ),
-  "right",
 
   "contingency",
   "Contingency factor (contingency)",
@@ -206,7 +194,6 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
 - Use higher contingency when placement is difficult or supply is variable.
 "
   ),
-  "right",
 
   "porosity",
   "Placed-stone porosity (porosity)",
@@ -225,7 +212,6 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
 - Adjust based on placement method and compaction; document assumptions.
 "
   ),
-  "right",
 
   "water_density",
   "Water density (water_density)",
@@ -235,7 +221,6 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
   glue(
     "Use the standard value near 1000 kg/m^3 unless temperature/salinity justify adjustments."
   ),
-  "right",
 
   "gravity",
   "Gravity (gravity)",
@@ -245,7 +230,6 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
   glue(
     "Use 9.81 m/s^2 for site-level design unless a different value is required for specific analyses."
   ),
-  "right",
 
   # Outputs & intermediate variables from channel_dimensions()
   "stone_specific_weight",
@@ -256,7 +240,6 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
   glue(
     "Used to compute specific_gravity and in mass and stability formulas. Keep units consistent across inputs."
   ),
-  "right",
 
   "specific_gravity",
   "Specific gravity (specific_gravity)",
@@ -266,7 +249,6 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
   glue(
     "Many stability and empirical stone-size relations depend on the relative submerged density. Verify consistent units when comparing methods."
   ),
-  "right",
 
   "side_angle",
   "Side angle (side_angle)",
@@ -276,7 +258,6 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
   glue(
     "side_angle = atan(1 / side_slope) converted to degrees. Influences length_left_bank and total mattress area."
   ),
-  "right",
 
   "unit_discharge",
   "Unit discharge (unit_discharge)",
@@ -292,7 +273,6 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
 - Inspect how q changes across scenarios and use it as a primary explanatory variable when interpreting results.
 "
   ),
-  "right",
 
   "mannings_n",
   "Manning's n (mannings_n)",
@@ -302,7 +282,6 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
   glue(
     "n affects normal_depth and normal_velocity; test alternative n (or particle_size) values when roughness is uncertain."
   ),
-  "right",
 
   "critical_depth",
   "Critical depth (critical_depth)",
@@ -310,7 +289,6 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
   glue(
     "Compare critical_depth to normal_depth to identify flow regime; proximity to critical depth indicates possible regime transitions that affect stability behavior."
   ),
-  "right",
 
   "normal_depth",
   "Normal depth (normal_depth)",
@@ -320,7 +298,6 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
   glue(
     "Normal_depth sets hydraulic radius and, together with velocity, determines shear stress and stream power — key inputs to stone-size formulas."
   ),
-  "right",
 
   "normal_velocity",
   "Normal velocity (normal_velocity)",
@@ -330,7 +307,6 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
   glue(
     "Higher velocities generally yield larger predicted stone sizes; track velocity changes across sweeps."
   ),
-  "right",
 
   "froude",
   "Froude number (froude)",
@@ -340,7 +316,6 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
   glue(
     "Interpretation: Fr < 1 subcritical, Fr > 1 supercritical. Different regime behaviors may require separate checks or alternate design approaches."
   ),
-  "right",
 
   "shear_stress",
   "Shear stress (shear_stress)",
@@ -350,7 +325,6 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
   glue(
     "Shear is a direct measure of the driving force on bed material and is used to compute applied stream power and to contextualize stone stability."
   ),
-  "right",
 
   "avail_stream_power",
   "Available stream power (avail_stream_power)",
@@ -360,7 +334,6 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
   glue(
     "Useful energy-based metric for comparing regimes and as an input to empirical relations."
   ),
-  "right",
 
   "applied_stream_power",
   "Applied stream power (applied_stream_power)",
@@ -370,7 +343,6 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
   glue(
     "Provides an alternate representation of bed-applied energy; compare with avail_stream_power when diagnosing differences between methods."
   ),
-  "right",
 
   "stone_size_methods",
   "Empirical stone-size methods (nrcs/usace/abt_johnson/isbash/usbr)",
@@ -386,7 +358,6 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
 - Compare all method outputs. Use the spread to inform risk-based design and consider selecting a percentile (e.g., 90–95th) or applying an adoption multiplier.
 "
   ),
-  "right",
 
   "adopted_stone_diameter",
   "Adopted stone diameter (adopted_stone_diameter)",
@@ -402,7 +373,6 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
 - This diameter drives mattress thickness, stone mass, and ordering sizes. Sensitivity to the adoption multiplier should be evaluated as part of scenario testing.
 "
   ),
-  "right",
 
   "adopted_stone_weight",
   "Adopted stone weight (kg, lbs, tons)",
@@ -412,7 +382,6 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
   glue(
     "Verify that adopted stone weight matches supplier gradations and on-site handling equipment capacities before finalizing design."
   ),
-  "right",
 
   "mattress_thickness",
   "Mattress thickness (m)",
@@ -422,7 +391,6 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
   glue(
     "Thickness affects required stone volume per area and therefore total ordering. Consider constructability and bedding when choosing thickness."
   ),
-  "right",
 
   "stone_vol_m3",
   "Stone volume (stone_vol_m3)",
@@ -438,7 +406,6 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
 - When running sensitivity, export stone_vol_m3 and the contributing components so the source of variation is clear (e.g., geometry vs. adopted diameter).
 "
   ),
-  "right",
 
   # App tab documentation
   "getting_started",
@@ -465,7 +432,6 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
     * by Particle Size - View results of the scenario where chute particle sizes are varied.
     "
   ),
-  "right",
 
   "tab_intro",
   "Intro tab — app overview",
@@ -492,7 +458,6 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
 - Export results for reporting and peer review.
 "
   ),
-  "left",
 
   "tab_by_width",
   "By Width tab — sensitivity to chute width",
@@ -523,7 +488,6 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
 - Use this tab to compare alternative chute layouts. When size jumps rapidly with small width changes, reassess layout or perform finer sweeps in the sensitive interval.
 "
   ),
-  "right",
 
   "tab_by_length",
   "By Length tab — sensitivity to chute length",
@@ -558,7 +522,6 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
 - Document the design length and the basis for that choice (e.g., geomorphic survey limits, scour extent, project boundary) alongside the quantity outputs.
 "
   ),
-  "right",
 
   "tab_by_slope",
   "By Slope tab — sensitivity to chute slope",
@@ -588,7 +551,6 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
 - Use the slope tab to evaluate whether a proposed slope is feasible with locally available rock sizes and placement methods. If recommended stones exceed handling capacity, consider slope reduction, protective measures, or engineered structures.
 "
   ),
-  "right",
 
   "tab_by_particle_size",
   "By Particle Size tab — sensitivity to reference particle/roughness",
@@ -617,7 +579,6 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
 - Use this tab to bound uncertainty from roughness assumptions and to prioritize field measurements. If stone sizing is insensitive to particle_size, focus measurement efforts elsewhere; if sensitive, invest in better roughness characterization.
 "
   ),
-  "right",
 
   # Plots
   "plot_stone_size_method_plot",
@@ -644,7 +605,6 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
 - When the spread is large, consider additional checks (e.g., hydraulic modeling or site-specific tests).
 "
   ),
-  "right",
 
   "plot_channel_flow_plot",
   "Hydraulic parameters faceted plot",
@@ -669,7 +629,6 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
 - Use the shear and stream power panels to justify conservative choices for adopted stone diameter when energy metrics increase rapidly.
 "
   ),
-  "left",
 
   "plot_stone_quantities_plot",
   "Stone quantities & mass plot",
@@ -694,7 +653,6 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
 - Export tabular results for vendor quotations; plots are best used in combination with numeric tables for ordering.
 "
   ),
-  "right",
 
   # Channel-dimensions for scenario sweeps
   "scenario_by_width_channel_dims",
@@ -724,7 +682,6 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
 - Use summary tables and plots (stone size by method, hydraulic facets, quantities) to support design decisions and procurement estimates.
 "
   ),
-  "left",
 
   "scenario_by_length_channel_dims",
   "Channel dimensions — by-length scenario outputs",
@@ -756,7 +713,6 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
 - Export the table for estimating, bid support, and documenting the selected design length.
 "
   ),
-  "left",
 
   "scenario_by_slope_channel_dims",
   "Channel dimensions — by-slope scenario outputs",
@@ -783,7 +739,6 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
 - Use slope-sweep outputs to evaluate feasibility and to set conservative design choices when supplier or handling limits constrain stone selection.
 "
   ),
-  "left",
 
   "scenario_by_particle_size_channel_dims",
   "Channel dimensions — by-particle_size scenario outputs",
@@ -809,8 +764,7 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
 **Reporting**
 - Present roughness sensitivity results alongside hydraulic and quantity outputs so decision-makers understand whether more site characterization is warranted.
 "
-  ),
-  "left"
+  )
 )
 
 # Save data to package

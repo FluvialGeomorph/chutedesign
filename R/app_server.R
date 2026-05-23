@@ -155,7 +155,8 @@ app_server <- function(input, output, session) {
     nav_select(id = "results", selected = "by Width", session)
   })
 
-  # Render help text
+  # Help Content
+  ## Tab right sidebar help
   output$getting_started <- renderUI({
     markdown(filter(chutedesign::help_data, id == "getting_started")$sidebar)
   })
@@ -190,7 +191,7 @@ app_server <- function(input, output, session) {
     )
   })
 
-  # 
+  ## Enter Dimensions right sidebar help
   output$width_series <- renderUI({
     tagList(
       markdown(filter(chutedesign::help_data, id == "width_series")$popover),
@@ -258,7 +259,7 @@ app_server <- function(input, output, session) {
     )
   })
 
-    # Help entries for plot outputs — by Width
+  ## Help entries for plot outputs — by Width
   output$plot_stone_size_method_plot_width <- renderUI({
     tagList(
       markdown(filter(chutedesign::help_data, id == "plot_stone_size_method_plot")$popover),
@@ -278,7 +279,7 @@ app_server <- function(input, output, session) {
     )
   })
 
-  # Help entries for plot outputs — by Length
+  ## Help entries for plot outputs — by Length
   output$plot_stone_size_method_plot_length <- renderUI({
     tagList(
       markdown(filter(chutedesign::help_data, id == "plot_stone_size_method_plot")$popover),
@@ -298,7 +299,7 @@ app_server <- function(input, output, session) {
     )
   })
 
-  # Help entries for plot outputs — by Slope
+  ## Help entries for plot outputs — by Slope
   output$plot_stone_size_method_plot_slope <- renderUI({
     tagList(
       markdown(filter(chutedesign::help_data, id == "plot_stone_size_method_plot")$popover),
@@ -318,7 +319,7 @@ app_server <- function(input, output, session) {
     )
   })
 
-  # Help entries for plot outputs — by Particle Size
+  ## Help entries for plot outputs — by Particle Size
   output$plot_stone_size_method_plot_particle_size <- renderUI({
     tagList(
       markdown(filter(chutedesign::help_data, id == "plot_stone_size_method_plot")$popover),
@@ -338,7 +339,7 @@ app_server <- function(input, output, session) {
     )
   })
 
-    # Help entries for scenario/channel_dimensions outputs
+  ## Help entries for Data scenario/channel_dimensions outputs
   output$scenario_by_width_channel_dims <- renderUI({
     tagList(
       markdown(filter(chutedesign::help_data, id == "scenario_by_width_channel_dims")$popover),
