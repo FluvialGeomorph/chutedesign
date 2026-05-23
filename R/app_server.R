@@ -189,6 +189,8 @@ app_server <- function(input, output, session) {
       markdown(filter(chutedesign::help_data, id == "tab_by_particle_size")$sidebar)
     )
   })
+
+  # 
   output$width_series <- renderUI({
     tagList(
       markdown(filter(chutedesign::help_data, id == "width_series")$popover),

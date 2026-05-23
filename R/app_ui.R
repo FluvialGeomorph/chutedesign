@@ -14,15 +14,18 @@ app_ui <- function(request) {
 
     page_navbar(
       title = "Chute Design",
-      id = "main",
+      id = "chute_design",
       theme = bs_theme(bootswatch = "flatly", version = 5),
       nav_panel(
         title = "Design a Chute",
+        id = "design_a_chute",
         layout_sidebar(
           border_radius = FALSE,
           fillable = TRUE,
           class = "p-0",
           sidebar = sidebar(
+            title = "Enter Dimensions",
+            id = "enter_dimensions",
             width = 500,
             actionButton("calculate_dimensions", "Calculate Dimensions"),
             card(
