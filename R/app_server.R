@@ -421,13 +421,14 @@ app_server <- function(input, output, session) {
   )
 
   ## Help - plot stone quantities
-    output$plot_stone_quantities_plot_width <- render_help_items(
+  output$plot_stone_quantities_plot_width <- render_help_items(
     ids = c(
       "plot_stone_quantities_plot",
       "adopted_stone_diameter",
-      "adopted_stone_weight",
       "mattress_thickness",
-      "stone_vol_m3"
+      "adopted_stone_weight_us_ton",
+      "stone_vol_us_ton",
+      "number_stones"
     ),
     data_name = "help_data",
     package = "chutedesign",
@@ -439,9 +440,10 @@ app_server <- function(input, output, session) {
     ids = c(
       "plot_stone_quantities_plot",
       "adopted_stone_diameter",
-      "adopted_stone_weight",
       "mattress_thickness",
-      "stone_vol_m3"
+      "adopted_stone_weight_us_ton",
+      "stone_vol_us_ton",
+      "number_stones"
     ),
     data_name = "help_data",
     package = "chutedesign",
@@ -453,9 +455,10 @@ app_server <- function(input, output, session) {
     ids = c(
       "plot_stone_quantities_plot",
       "adopted_stone_diameter",
-      "adopted_stone_weight",
       "mattress_thickness",
-      "stone_vol_m3"
+      "adopted_stone_weight_us_ton",
+      "stone_vol_us_ton",
+      "number_stones"
     ),
     data_name = "help_data",
     package = "chutedesign",
@@ -467,9 +470,10 @@ app_server <- function(input, output, session) {
     ids = c(
       "plot_stone_quantities_plot",
       "adopted_stone_diameter",
-      "adopted_stone_weight",
       "mattress_thickness",
-      "stone_vol_m3"
+      "adopted_stone_weight_us_ton",
+      "stone_vol_us_ton",
+      "number_stones"
     ),
     data_name = "help_data",
     package = "chutedesign",

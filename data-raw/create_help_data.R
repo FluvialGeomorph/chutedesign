@@ -761,9 +761,9 @@ where:
   ),
 
   "number_stones",
-  "Number of stones (number_stones)",
+  "Number of stones (`number_stones`)",
   glue(
-    "Estimated count of adopted stones required based on total metric tonnage and per-stone weight."
+    "Estimated count of adopted stones required based on total US tonnage and per-stone US-ton weight."
   ),
   glue(
     "
@@ -771,20 +771,20 @@ where:
 - In the app, number of stones is computed as
 
 $$
-N = \\frac{{stone\\_vol\\_metric\\_ton}}{{adopted\\_stone\\_weight\\_ton}}
+N = \\frac{{stone\\\\_vol\\\\_us\\\\_ton}}{{adopted\\\\_stone\\\\_weight\\\\_us\\\\_ton}}
 $$
 
 where:
-- `stone_vol_metric_ton` is the total required stone quantity in metric tons
-- `adopted_stone_weight_us_ton` is the per-stone weight in US tons, as currently implemented
+- `stone_vol_us_ton` is the total required stone quantity in US tons
+- `adopted_stone_weight_us_ton` is the per-stone weight in US tons
 
 **Why it matters**
 - Stone count is useful for constructability, logistics, and installation planning.
 - It provides a more intuitive sense of procurement scale than volume alone.
 
 **Guidance**
-- Interpret this as an approximate count derived from the app's current unit-conversion pipeline.
-- Use it for planning-level comparisons rather than as a precise procurement count.
+- Use this value for planning-level comparisons and logistics discussions.
+- Review it together with `stone_vol_us_ton` and `adopted_stone_weight_us_ton` when assessing constructability.
 "
   ),
 
