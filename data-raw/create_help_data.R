@@ -729,29 +729,52 @@ where:
     "
   ),
 
-  "tab_intro",
-  "Intro tab — app overview",
-  glue("Overview of the app, workflow, and key assumptions."),
+    "tab_intro",
+  "Intro tab — how to use and interpret the app",
+  glue(
+    "Guidance for using the app workflow, interpreting results, and understanding the scope of the tool."
+  ),
   glue(
     "
-**Purpose**
-- High-level description of the app: build scenarios, compute chute hydraulics, evaluate empirical stone-sizing methods, and estimate material quantities.
+**Recommended workflow**
+1. Enter a plausible base scenario in the left sidebar.
+2. Define a reasonable sweep for one variable at a time:
+   - width
+   - length
+   - slope
+   - particle size
+3. Click `Calculate Dimensions`.
+4. Review outputs tab-by-tab:
+   - use the hydraulic plot to understand what is driving change,
+   - use the method plot to compare empirical stone-sizing equations,
+   - use the quantities plot and table to assess procurement and constructability impacts.
+5. Compare alternatives and identify ranges where outputs are especially sensitive to small input changes.
 
-**What you'll find**
-- A short walkthrough of the typical workflow: (1) set scenario inputs (width, length, slope, discharge, material properties), (2) run sensitivity scenarios, (3) inspect method outputs and adopted stone size, (4) review quantities and export results.
+**How to interpret results**
+- The app is most useful for **screening**, **sensitivity analysis**, and **preliminary design comparison**.
+- Do not focus only on the final adopted stone size. Also examine:
+  - hydraulic response (`normal_depth`, `normal_velocity`, `froude`)
+  - method spread across empirical stone-size equations
+  - downstream effects on thickness, per-stone weight, and total quantity
+- Large jumps in recommended size or quantity often indicate a threshold in the hydraulics or in the adopted-stone calculation.
 
-**Assumptions & units**
-- Inputs assume SI units (m, m^3/s, kg/m^3, unitless slopes). Gravity and water density are used in calculations—keep these consistent across scenarios.
-- The app uses empirical stone-size relations and simplified hydraulics (Manning's equation based normal depth). Use the outputs for screening and preliminary design; augment with site-specific hydraulic modeling as needed.
+**What each results tab helps answer**
+- **by Width**: How do layout width choices affect hydraulics and stone size?
+- **by Length**: How do protection extents affect total quantity and procurement?
+- **by Slope**: How sensitive is the design to grade and flow energy?
+- **by Particle Size**: How much do roughness assumptions influence the design?
 
-**How to use**
-- Start here to learn the app structure and recommended order of operations.
-- Use the example scenarios to see expected outputs and interpretation.
-- Check the 'By Width', 'By Slope', and 'By Particle Size' tabs for focused sensitivity analyses.
+**Important assumptions and limitations**
+- Inputs and outputs use SI-based engineering quantities unless otherwise labeled.
+- Hydraulic calculations are simplified and based on the formulas implemented in the package.
+- Stone-size recommendations are empirical and should be treated as design support tools, not as a substitute for engineering judgment.
+- If results suggest near-critical flow, strong method divergence, or impractically large stones, additional hydraulic analysis may be warranted.
 
 **Practical tips**
-- Document chosen inputs and the rationale for adopted design values.
-- Export results for reporting and peer review.
+- Start with broad sweeps, then narrow the range around sensitive values.
+- Export tables when comparing alternatives for design review or estimating.
+- Record which empirical method is being adopted and why.
+- When presenting results, pair the selected design point with the surrounding sensitivity context rather than reporting a single stone size in isolation.
 "
   ),
 
