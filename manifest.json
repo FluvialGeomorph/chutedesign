@@ -449,22 +449,37 @@
       "description": {
         "Package": "chutedesign",
         "Title": "Design a Chute",
-        "Version": "2026.05.22",
-        "Authors@R": "c(\nperson(\"Michael\", \"Dougherty\", , \"Michael.P.Dougherty@usace.army.mil\", role = c(\"aut\", \"cre\"),\ncomment = c(ORCID = \"0000-0002-1465-5927\")),\nperson(\"Christopher\", \"Haring\", , \"Christopher.P.Haring@usace.army.mil\", role = \"aut\")\n)",
-        "Description": "Assists USACE engineers in making hydraulic calculation\nrequired to design a chute.",
+        "Version": "2026.05.24",
+        "Authors@R": "c(\n    person(\"Michael\", \"Dougherty\", , \"Michael.P.Dougherty@usace.army.mil\", role = c(\"aut\", \"cre\"),\n           comment = c(ORCID = \"0000-0002-1465-5927\")),\n    person(\"Christopher\", \"Haring\", , \"Christopher.P.Haring@usace.army.mil\", role = \"aut\")\n  )",
+        "Description": "Assists USACE engineers in making hydraulic calculation\n    required to design a chute.",
         "License": "CC0",
         "URL": "https://github.com/FluvialGeomorph/chutedesign",
         "BugReports": "https://github.com/FluvialGeomorph/chutedesign/issues",
         "Depends": "R (>= 3.5)",
-        "Imports": "bsicons,\nbslib,\nconfig,\ndplyr,\nDT,\nggplot2,\ngolem,\nhtmltools,\njsonlite,\nNatParksPalettes,\npaletteer,\npurrr,\nrgl,\nrlang,\nshiny,\nstringr,\ntibble,\ntidyr,\ntools,\nutils",
-        "Suggests": "flow,\nknitr,\nrmarkdown,\nspelling,\ntestthat (>= 3.0.0)",
+        "Imports": "bsicons, bslib, config, dplyr, DT, ggplot2, golem, htmltools,\njsonlite, NatParksPalettes, paletteer, purrr, rgl, rlang,\nshiny, stringr, tibble, tidyr, tools, utils",
+        "Suggests": "flow, knitr, rmarkdown, spelling, testthat (>= 3.0.0)",
         "VignetteBuilder": "knitr",
         "Config/testthat/edition": "3",
         "Encoding": "UTF-8",
         "Language": "en-US",
         "LazyData": "true",
         "Roxygen": "list(markdown = TRUE)",
-        "RoxygenNote": "7.3.3"
+        "RoxygenNote": "7.3.3",
+        "RemoteType": "github",
+        "RemoteHost": "api.github.com",
+        "RemoteRepo": "chutedesign",
+        "RemoteUsername": "FluvialGeomorph",
+        "RemoteRef": "HEAD",
+        "RemoteSha": "10f136720570c286998911760bfdbafe2ff39b5e",
+        "GithubRepo": "chutedesign",
+        "GithubUsername": "FluvialGeomorph",
+        "GithubRef": "HEAD",
+        "GithubSHA1": "10f136720570c286998911760bfdbafe2ff39b5e",
+        "NeedsCompilation": "no",
+        "Packaged": "2026-05-24 15:08:39 UTC; B5PMMMPD",
+        "Author": "Michael Dougherty [aut, cre] (ORCID:\n    <https://orcid.org/0000-0002-1465-5927>),\n  Christopher Haring [aut]",
+        "Maintainer": "Michael Dougherty <Michael.P.Dougherty@usace.army.mil>",
+        "Built": "R 4.5.0; ; 2026-05-24 15:08:39 UTC; windows"
       }
     },
     "cli": {
@@ -3611,7 +3626,7 @@
       "checksum": "6d3ac44ce336ff84c45020958160813d"
     },
     "DESCRIPTION": {
-      "checksum": "4581165ce4fe624fac2b80e96daee989"
+      "checksum": "4371ee6130fae7718a5f76204e258337"
     },
     "inst/app/www/custom.css": {
       "checksum": "a33b144e05fe8f1c3deb1b5aa6a60ce1"
