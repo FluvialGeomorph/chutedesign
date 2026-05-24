@@ -887,7 +887,7 @@ where:
     "
   ),
 
-    "tab_intro",
+  "tab_intro",
   "Intro tab — how to use and interpret the app",
   glue(
     "Guidance for using the app workflow, interpreting results, and understanding the scope of the tool."
@@ -939,121 +939,104 @@ where:
   "tab_by_width",
   "By Width tab — sensitivity to chute width",
   glue(
-    "Explore how changing chute width affects hydraulics, stone sizing, and volumes."
+    "Use this tab to compare how alternative chute widths affect hydraulics, adopted stone size, and total quantity."
   ),
   glue(
     "
-**What this tab does**
-- Runs the scenario sequence varying *width* (using width_start, width_end, width_by) while holding other inputs fixed.
-- Reports changes in unit_discharge (q), normal_depth, velocity, computed stone sizes (all methods), adopted diameter, stone mass, and stone volume.
+**What this tab helps answer**
+- How sensitive is the design to chute width?
+- Do narrower or wider layouts materially change hydraulic conditions or procurement needs?
 
-**Key outputs to inspect**
-- q (unit discharge) vs width: primary explanatory variable for stone-size variation.
-- Adopted stone diameter and method spread: examine how different empirical methods diverge as width changes.
-- stone_vol_m3: how total material needs change with width (useful for cost & procurement).
+**What to focus on**
+- `unit_discharge`: width directly changes how discharge is distributed.
+- hydraulic response: especially depth, velocity, and Froude behavior.
+- adopted stone size: whether width changes drive larger recommended stones.
+- total quantity: whether changing width materially affects total volume or tonnage.
 
-**How to interpret**
-- Expect inverse relationship: narrower widths → larger q → larger predicted stone sizes and possibly larger stone volume per unit length.
-- If method outputs spread widely across widths, consider conservative percentiles (e.g., 90–95th) or adoption multipliers and document reasoning.
+**What patterns matter**
+- Narrower widths usually increase unit discharge and hydraulic forcing.
+- Sharp jumps in adopted size or quantity may indicate a sensitive design range worth studying more closely.
 
-**Recommended plots and checks**
-- Line plots of D (D50/D84/adopted) vs width.
-- Line plots of stone_vol_m3 vs width and stacked bars for method outputs if applicable.
-- Check Froude number and critical_depth to ensure flow regime remains consistent across widths (regime changes may invalidate simple comparisons).
-
-**Design guidance**
-- Use this tab to compare alternative chute layouts. When size jumps rapidly with small width changes, reassess layout or perform finer sweeps in the sensitive interval.
+**How to use this tab**
+- Use broad width sweeps first to locate sensitive ranges.
+- Then refine the sweep where outputs change quickly or where layout tradeoffs matter most.
 "
   ),
 
   "tab_by_length",
   "By Length tab — sensitivity to chute length",
   glue(
-    "Explore how changing chute length affects stone quantities, volumes, and material estimates."
+    "Use this tab to compare how alternative protection lengths affect total quantity, procurement, and construction scale."
   ),
   glue(
     "
-**What this tab does**
-- Runs the scenario sequence varying *length* (using length_start, length_end, length_by) while holding other inputs fixed.
-- Reports changes in stone quantities (mattress volume, stone volume, stone mass) as chute length varies. Hydraulic outputs (unit_discharge, normal_depth, velocity, stone-size predictions) are held constant across the length sweep because length does not affect the hydraulic calculations.
+**What this tab helps answer**
+- How much do material quantities change if the lined reach is shorter or longer?
+- What are the procurement implications of alternative chute lengths?
 
-**Key outputs to inspect**
-- stone_vol_m3: total placed rock volume scales directly with length; this is the primary output of interest in a length sweep.
-- stone_vol_cuyd, stone_vol_metric_ton, stone_vol_us_ton: procurement and cost-estimating quantities.
-- number_stones: total count of stones required; useful for logistics planning.
-- adopted_stone_diameter and mattress_thickness: confirm these remain stable across the sweep (they should, since hydraulics are unchanged).
+**What to focus on**
+- total quantity outputs such as volume, tons, and stone count
+- whether adopted size and hydraulic outputs remain stable under a pure length sweep
 
-**How to interpret**
-- Expect a linear relationship: stone_vol_m3 and derived mass quantities scale proportionally with length.
-- If cost per unit length is relatively constant, use this tab to compare alternative reach extents and their associated procurement costs.
-- Non-linearity in the table (if present) would indicate an error in inputs; use the table view to verify.
+**What patterns matter**
+- For fixed width, slope, discharge, and roughness, hydraulic behavior and adopted stone size should remain essentially unchanged.
+- Total quantity should scale approximately with length.
 
-**Recommended plots and checks**
-- Line plots of stone_vol_m3 and stone_vol_us_ton vs length for straightforward quantity scaling.
-- Confirm adopted_stone_diameter and normal_velocity are flat across the sweep (hydraulics should not vary with length).
-- Use the table to export length-scaled quantities for cost estimating or bid documents.
-
-**Design guidance**
-- Use this tab to evaluate the procurement and construction cost implications of alternative reach lengths (e.g., shorter lined section vs. longer protection).
-- When comparing design alternatives that differ primarily in lined length, hold all other inputs constant and compare stone_vol_us_ton and number_stones directly.
-- Document the design length and the basis for that choice (e.g., geomorphic survey limits, scour extent, project boundary) alongside the quantity outputs.
+**How to use this tab**
+- Use this tab when comparing alternative protection extents or estimate scenarios.
+- If adopted size changes in a length-only sweep, treat that as a signal to inspect inputs or upstream calculations.
 "
   ),
 
   "tab_by_slope",
   "By Slope tab — sensitivity to chute slope",
   glue(
-    "Explore how changing slope affects flow energy, velocities, shear, and stone size recommendations."
+    "Use this tab to evaluate how changes in chute slope affect flow energy, hydraulic forcing, and adopted stone size."
   ),
   glue(
     "
-**What this tab does**
-- Varies slope (via slope_start, slope_end, slope_by) and computes hydraulics and empirical stone-size outputs for each slope value.
+**What this tab helps answer**
+- How sensitive is the design to slope?
+- At what slopes do hydraulic conditions or stone requirements become difficult or impractical?
 
-**Key outputs to inspect**
-- normal_velocity, shear_stress, avail_stream_power/applied_stream_power, stone_size_* methods, and adopted_stone_diameter.
-- Note changes in mattress_thickness and stone_vol_m3 as adopted diameter changes.
+**What to focus on**
+- velocity, shear, and stream-power trends
+- regime-sensitive behavior such as Froude and depth relationships
+- adopted stone size and downstream quantity impacts
 
-**How to interpret**
-- Increasing slope generally increases velocity and shear, typically producing larger predicted stone sizes.
-- Watch for non-linear responses: some empirical relations scale with slope exponents and can cause rapid increases in recommended size at higher slopes.
-- If slope changes cause normal_depth to approach critical_depth, flow regime considerations become important and design may require additional hydraulic analysis (e.g., jump controls, stilling basins).
+**What patterns matter**
+- Increasing slope typically increases hydraulic forcing and recommended stone size.
+- Nonlinear increases may indicate ranges where design feasibility changes quickly.
 
-**Recommended plots and checks**
-- Line or log-scale plots of stone size vs slope.
-- Plot shear_stress and stream power vs slope to understand energy drivers.
-- Compare method outputs across slope and consider selecting design percentiles informed by the spread.
-
-**Design guidance**
-- Use the slope tab to evaluate whether a proposed slope is feasible with locally available rock sizes and placement methods. If recommended stones exceed handling capacity, consider slope reduction, protective measures, or engineered structures.
+**How to use this tab**
+- Use this tab to assess whether a proposed grade is compatible with available rock size, handling limits, and constructability.
+- Pay special attention to steep ranges where small slope changes produce large design consequences.
 "
   ),
 
   "tab_by_particle_size",
-  "By Particle Size tab — sensitivity to reference particle/roughness",
+  "By Particle Size tab — sensitivity to reference particle size and roughness",
   glue(
-    "Explore how assumptions about particle size (and the resulting Manning's n) affect hydraulics and stone-size outputs."
+    "Use this tab to evaluate how roughness assumptions affect hydraulics, stone sizing, and quantity outcomes."
   ),
   glue(
     "
-**What this tab does**
-- Varies the reference particle_size (particle_size_start, particle_size_end, particle_size_by) used to estimate mannings_n and recomputes normal_depth, velocity, and stone-size estimates.
+**What this tab helps answer**
+- How sensitive are results to the assumed reference particle size used in the roughness estimate?
+- Is roughness uncertainty materially affecting the design?
 
-**Key outputs to inspect**
-- mannings_n, normal_depth, normal_velocity, stone_size_* methods, and stone_vol_m3.
-- Differences in depth and velocity caused by roughness changes (and how that propagates to stone sizing).
+**What to focus on**
+- Manning's `n`
+- changes in depth and velocity
+- adopted stone size and total quantity response
 
-**How to interpret**
-- Larger particle_size → larger estimated roughness (through the code's n relation) → typically deeper normal_depth and lower velocity for a fixed q, which may reduce predicted stone sizes.
-- This tab isolates the effect of roughness/gradations; large changes here indicate that field-measured roughness or substrate characterization is important.
+**What patterns matter**
+- Larger reference particle size generally increases estimated roughness.
+- Roughness changes can alter hydraulic response enough to affect downstream stone-sizing decisions.
 
-**Recommended plots and checks**
-- Plot mannings_n and normal_depth vs particle_size to visualize the hydraulic effect.
-- Plot adopted_stone_diameter and stone_vol_m3 vs particle_size to see practical procurement impacts.
-- If available, compare to measured field roughness or perform sensitivity using alternative n values directly.
-
-**Design guidance**
-- Use this tab to bound uncertainty from roughness assumptions and to prioritize field measurements. If stone sizing is insensitive to particle_size, focus measurement efforts elsewhere; if sensitive, invest in better roughness characterization.
+**How to use this tab**
+- Use this tab to judge whether additional field roughness characterization would meaningfully improve design confidence.
+- If results are insensitive to particle-size assumptions, effort may be better spent refining other inputs.
 "
   ),
 
@@ -1061,100 +1044,77 @@ where:
   "plot_stone_size_method_plot",
   "Stone size methods plot",
   glue(
-    "Line plot comparing stone-diameter estimates from each empirical method across the selected x-axis variable."
+    "Comparison plot showing how empirical stone-size methods differ across the selected sensitivity axis."
   ),
   glue(
     "
-**Function & inputs**
-- Produced by `plot_stone_size_method(stone_metrics, x_axis)`.
-- `x_axis` may be one of:
-  - `width`
-  - `length`
-  - `slope`
-  - `particle_size`
+**What this plot is for**
+- This plot shows how the different empirical sizing methods respond to the same scenario sweep.
+- It is most useful for understanding method spread and uncertainty.
 
-**What you see**
-- Each empirical method (`nrcs`, `usace`, `abt_johnson`, `isbash`, `usbr`) is shown as a separate colored line.
-- The y-axis is `stone_diameter` in meters.
+**How to read it**
+- Compare the lines at each x-value to see where methods agree closely and where they diverge.
+- Larger spread indicates greater sensitivity to method choice.
 
-**How to interpret**
-- Compare method spread at each x value to understand uncertainty across empirical methods.
-- Identify where particular methods diverge strongly; those ranges indicate where method choice matters most.
+**What to look for**
+- ranges where one or more methods separate strongly from the others
+- whether method spread remains narrow or grows as conditions become more severe
 
-**Practical tips**
-- Use this plot together with the adopted-stone and quantity outputs to understand how method choice propagates into design and procurement decisions.
+**How to use it**
+- Use this plot to support method selection, conservative design choices, and communication of uncertainty.
+- The detailed entries in this popover explain the method family at a higher level.
 "
   ),
 
   "plot_channel_flow_plot",
   "Hydraulic parameters faceted plot",
   glue(
-    "Faceted plot of computed hydraulic variables versus the selected x-axis variable."
+    "Overview plot showing how key hydraulic variables change across the selected sensitivity axis."
   ),
   glue(
     "
-**Function & inputs**
-- Produced by `plot_channel_flow(channel_dims, x_axis)`.
-- `x_axis` may be one of:
-  - `width`
-  - `length`
-  - `slope`
-  - `particle_size`
+**What this plot is for**
+- This plot helps explain *why* stone-size or quantity outputs are changing.
+- It provides the hydraulic context behind the empirical sizing results.
 
-**What you see**
-- A faceted plot showing:
-  - `unit_discharge`
-  - `mannings_n`
-  - `critical_depth`
-  - `critical_velocity`
-  - `critical_slope`
-  - `normal_depth`
-  - `normal_velocity`
-  - `froude`
-  - `shear_stress`
-  - `avail_stream_power`
-  - `applied_stream_power`
+**How to read it**
+- Scan across panels to see which variables shift most strongly as the input changes.
+- Use the pattern across depth, velocity, Froude behavior, shear, and stream power to diagnose the controlling hydraulic response.
 
-**How to interpret**
-- Use the faceted layout to identify which hydraulic variables change in tandem with stone-size predictions.
-- Watch for regime-sensitive ranges where normal depth approaches critical depth or Froude approaches 1.
+**What to look for**
+- regime-sensitive behavior
+- rapid increases in hydraulic forcing
+- ranges where small input changes produce large hydraulic changes
 
-**Practical tips**
-- This plot is especially useful for diagnosing why stone-size predictions change across a sensitivity sweep.
-- Interpret stream-power and shear panels according to the formulas implemented in the app.
+**How to use it**
+- Use this plot together with the stone-size methods plot and the quantities plot.
+- The detailed entries in this popover explain each hydraulic variable individually.
 "
   ),
 
   "plot_stone_quantities_plot",
   "Stone quantities & mass plot",
   glue(
-    "Faceted plot of adopted stone size, thickness, per-stone weight, total stone quantity, and stone count versus the selected x-axis variable."
+    "Procurement-oriented plot showing how adopted stone size translates into thickness, per-stone weight, total quantity, and stone count."
   ),
   glue(
     "
-**Function & inputs**
-- Produced by `plot_stone_quantities(channel_dims, x_axis)`.
-- `x_axis` may be one of:
-  - `width`
-  - `length`
-  - `slope`
-  - `particle_size`
+**What this plot is for**
+- This plot translates hydraulic/design outputs into practical material and construction metrics.
+- It helps connect adopted stone size to procurement and constructability.
 
-**What you see**
-- A faceted plot showing:
-  - `adopted_stone_diameter`
-  - `mattress_thickness`
-  - `adopted_stone_weight_us_ton`
-  - `stone_vol_us_ton`
-  - `number_stones`
+**How to read it**
+- Review how per-stone weight, total quantity, and stone count change across the sensitivity sweep.
+- Compare these trends to understand whether a design change mainly affects handling, total quantity, or both.
 
-**How to interpret**
-- These panels translate hydraulic/design outputs into procurement and constructability metrics.
-- Rapid jumps in per-stone weight, total US tons, or number of stones often reflect strong sensitivity in adopted stone diameter.
+**What to look for**
+- sharp increases in per-stone weight
+- rapid growth in total US tons or stone count
+- ranges where procurement or constructability may become difficult
 
-**Practical tips**
-- Use this plot together with the table output when preparing estimates, supplier discussions, or constructability checks.
-- When comparing alternatives, review both per-stone weight and total quantity because the controlling procurement issue may differ between scenarios.
+**How to use it**
+- Use this plot when comparing alternatives for estimating, supplier discussions, and construction planning.
+- The detailed entries in this popover explain the individual quantity variables.
 "
   ),
 
