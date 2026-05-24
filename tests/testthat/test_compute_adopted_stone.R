@@ -31,7 +31,7 @@ expected_adopted_cols <- c(
   "adopted_stone_diameter",
   "adopted_stone_weight_kg",
   "adopted_stone_weight_lbs",
-  "adopted_stone_weight_ton",
+  "adopted_stone_weight_us_ton",
   "mattress_thickness",
   "stone_vol_m3",
   "stone_vol_cuyd",
@@ -159,4 +159,32 @@ test_that("compute_adopted_stone uses data-driven contingency, not hardcoded", {
   # Doubling contingency should double stone_vol_m3
   expect_equal(adopted_2x$stone_vol_m3, adopted_base$stone_vol_m3 * 2,
                tolerance = 1e-10)
+})
+
+test_that("compute_adopted_stone returns adopted_stone_weight_us_ton", {
+  channel_dims <- tibble::tibble(
+    id = 1,
+    stone_density = 2650,
+    gravity = 9.81,
+    contingency = 1.3,
+    porosity = 0.3,
+    length_left_bank = 10,
+    width = 20,
+    length = 100
+  )
+
+  stone_metrics <- tibble::tibble(
+    id = 1,
+    method = "nrcs",
+    stone_diameter = 1
+  )
+
+  result <- compute_adopted_stone(
+    channel_dims = channel_dims,
+    stone_metrics = stone_metrics,
+    method = "nrcs"
+  )
+
+  expect_true("adopted_stone_weight_us_ton" %in% names(result))
+  expect_false("adopted_stone_weight_ton" %in% names(result))
 })

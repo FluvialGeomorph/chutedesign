@@ -22,7 +22,7 @@ test_that("compose_help_items can load a single help item from package data", {
   expect_s3_class(ui, "shiny.tag.list")
 
   rendered <- as.character(ui)
-  expect_true(any(grepl("Overview of the app, workflow, and key assumptions.", rendered, fixed = TRUE)))
+  expect_true(any(grepl("Guidance for using the app workflow", rendered, fixed = TRUE)))
 })
 
 test_that("compose_help_items errors clearly when package data is missing", {

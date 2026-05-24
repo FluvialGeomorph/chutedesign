@@ -398,7 +398,34 @@ where:
 "
   ),
 
-    "normal_velocity",
+  "unit_discharge",
+  "Unit discharge (unit_discharge)",
+  glue(
+    "Unit discharge describes how total discharge is distributed across chute width (m^2/s)."
+  ),
+  glue(
+    "
+**Definition**
+- Unit discharge is
+
+$$
+q = \\frac{{Q}}{{B}}
+$$
+
+where:
+- `Q` is total discharge
+- `B` is chute width
+
+**Why it matters**
+- Most empirical stone-size formulae used in the app are sensitive to unit discharge.
+- Changing width or total discharge changes `q` directly and therefore influences downstream hydraulic conditions and stone-size predictions.
+
+**Guidance**
+- Inspect unit discharge across sensitivity sweeps and use it as a primary explanatory variable when interpreting changes in depth, velocity, and adopted stone size.
+"
+  ),
+
+  "normal_velocity",
   "Normal velocity (`normal_velocity`)",
   glue(
     "Velocity computed from unit discharge and normal depth (m/s)."
@@ -749,7 +776,7 @@ $$
 
 where:
 - `stone_vol_metric_ton` is the total required stone quantity in metric tons
-- `adopted_stone_weight_ton` is the per-stone weight in US tons, as currently implemented
+- `adopted_stone_weight_us_ton` is the per-stone weight in US tons, as currently implemented
 
 **Why it matters**
 - Stone count is useful for constructability, logistics, and installation planning.
@@ -776,7 +803,7 @@ where:
 
 **Guidance**
 - Use this quantity when comparing alternatives for procurement and budgeting.
-- Review together with `adopted_stone_weight_ton` and `number_stones` for a fuller picture of supply and handling implications.
+- Review together with `adopted_stone_weight_us_ton` and `number_stones` for a fuller picture of supply and handling implications.
 "
   ),
 
@@ -816,8 +843,8 @@ where:
 "
   ),
 
-  "adopted_stone_weight_ton",
-  "Adopted stone weight (adopted_stone_weight_ton)",
+  "adopted_stone_weight_us_ton",
+  "Adopted stone weight (adopted_stone_weight_us_ton)",
   glue(
     "Per-stone adopted weight expressed in US tons."
   ),
@@ -1117,7 +1144,7 @@ where:
 - A faceted plot showing:
   - `adopted_stone_diameter`
   - `mattress_thickness`
-  - `adopted_stone_weight_ton`
+  - `adopted_stone_weight_us_ton`
   - `stone_vol_us_ton`
   - `number_stones`
 

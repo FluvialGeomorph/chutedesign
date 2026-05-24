@@ -24,7 +24,7 @@ adopted. One of \code{"nrcs"}, \code{"usace"}, \code{"abt_johnson"}, \code{"isba
 A \code{tibble} (wide format) with one row per scenario point, containing
 all columns from \code{channel_dims} plus the following adopted-stone columns:
 \code{adopted_stone_diameter}, \code{adopted_stone_weight_kg},
-\code{adopted_stone_weight_lbs}, \code{adopted_stone_weight_ton} (US tons),
+\code{adopted_stone_weight_lbs}, \code{adopted_stone_weight_us_ton},
 \code{mattress_thickness}, \code{stone_vol_m3}, \code{stone_vol_cuyd},
 \code{stone_vol_metric_ton}, \code{stone_vol_us_ton}, \code{number_stones}.
 }

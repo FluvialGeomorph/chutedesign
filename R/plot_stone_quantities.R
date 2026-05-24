@@ -23,7 +23,7 @@ plot_stone_quantities <- function(channel_dims, x_axis) {
   param_labels <- c(
     adopted_stone_diameter = "Median Stone Diameter (m)",
     mattress_thickness = "Mattress Thickness (m)",
-    adopted_stone_weight_ton = "Median Stone Weight (US ton)",
+    adopted_stone_weight_us_ton = "Median Stone Weight (US ton)",
     stone_vol_us_ton = "Stone Volume (US ton)",
     number_stones = "Number of Stones (count)"
     )
@@ -33,7 +33,7 @@ plot_stone_quantities <- function(channel_dims, x_axis) {
     select({{x_axis}},
            adopted_stone_diameter,
            mattress_thickness,
-           adopted_stone_weight_ton,
+           adopted_stone_weight_us_ton,
            stone_vol_us_ton,
            number_stones) %>%
     pivot_longer(

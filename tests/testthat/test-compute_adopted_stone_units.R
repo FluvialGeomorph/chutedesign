@@ -24,6 +24,6 @@ test_that("compute_adopted_stone computes number_stones using consistent ton uni
 
   expect_equal(
     result$number_stones,
-    result$stone_vol_us_ton / result$adopted_stone_weight_ton
+    result$stone_vol_us_ton / result$adopted_stone_weight_us_ton
   )
 })

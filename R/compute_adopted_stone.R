@@ -17,7 +17,7 @@
 #' @return A `tibble` (wide format) with one row per scenario point, containing
 #'   all columns from `channel_dims` plus the following adopted-stone columns:
 #'   `adopted_stone_diameter`, `adopted_stone_weight_kg`,
-#'   `adopted_stone_weight_lbs`, `adopted_stone_weight_ton` (US tons),
+#'   `adopted_stone_weight_lbs`, `adopted_stone_weight_us_ton`,
 #'   `mattress_thickness`, `stone_vol_m3`, `stone_vol_cuyd`,
 #'   `stone_vol_metric_ton`, `stone_vol_us_ton`, `number_stones`.
 #'
@@ -66,11 +66,11 @@ compute_adopted_stone <- function(channel_dims, stone_metrics, method = "nrcs") 
       stone_specific_weight    = stone_density * gravity,
 
       # Adopted stone dimensions
-      adopted_stone_weight_kg  = (adopted_stone_diameter^3 * pi * stone_specific_weight) /
+      adopted_stone_weight_kg     = (adopted_stone_diameter^3 * pi * stone_specific_weight) /
                                    (6 * gravity),
-      adopted_stone_weight_lbs = adopted_stone_weight_kg * 2.20462,
-      adopted_stone_weight_ton = adopted_stone_weight_lbs / 2000,
-      mattress_thickness       = adopted_stone_diameter * 2,
+      adopted_stone_weight_lbs    = adopted_stone_weight_kg * 2.20462,
+      adopted_stone_weight_us_ton = adopted_stone_weight_lbs / 2000,
+      mattress_thickness          = adopted_stone_diameter * 2,
 
       # Stone quantities
       stone_vol_m3         = contingency *
@@ -79,7 +79,7 @@ compute_adopted_stone <- function(channel_dims, stone_metrics, method = "nrcs") 
       stone_vol_cuyd       = stone_vol_m3 * 1.30795,
       stone_vol_metric_ton = stone_vol_m3 * stone_density / 1000,
       stone_vol_us_ton     = stone_vol_metric_ton * 1.10231,
-      number_stones        = stone_vol_us_ton / adopted_stone_weight_ton
+      number_stones        = stone_vol_us_ton / adopted_stone_weight_us_ton
     ) %>%
     dplyr::select(-stone_specific_weight)
 }

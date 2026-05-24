@@ -25,9 +25,11 @@ test_that("check by_width_df", {
     gravity             = 9.787
   )
   width_df <- by_width_df(scenario)
-  width_dims <- channel_dimensions(width_df)
+  width_dims <- compute_channel_dimensions(width_df)
+  width_stone <- compute_stone_metrics(width_dims)
+  width_adopted <- compute_adopted_stone(width_dims, width_stone)
   x_axis <- "width"
-  plot1 <- plot_stone_quantities(width_dims, x_axis = x_axis)
+  plot1 <- plot_stone_quantities(width_adopted, x_axis = x_axis)
   plot1
   expect_s3_class(plot1, "ggplot")
 })
@@ -59,9 +61,11 @@ test_that("check by_length_df", {
     gravity             = 9.787
   )
   length_df <- by_length_df(scenario)
-  channel_dims <- channel_dimensions(length_df)
+  length_dims <- compute_channel_dimensions(length_df)
+  length_stone <- compute_stone_metrics(length_dims)
+  length_adopted <- compute_adopted_stone(length_dims, length_stone)
   x_axis <- "length"
-  plot1 <- plot_stone_quantities(channel_dims, x_axis = x_axis)
+  plot1 <- plot_stone_quantities(length_adopted, x_axis = x_axis)
   plot1
   expect_s3_class(plot1, "ggplot")
 })
@@ -93,9 +97,11 @@ test_that("check by_slope_df", {
     gravity             = 9.787
   )
   slope_df <- by_slope_df(scenario)
-  slope_dims <- channel_dimensions(slope_df)
+  slope_dims <- compute_channel_dimensions(slope_df)
+  slope_stone <- compute_stone_metrics(slope_dims)
+  slope_adopted <- compute_adopted_stone(slope_dims, slope_stone)
   x_axis = "slope"
-  plot2 <- plot_stone_quantities(slope_dims, x_axis = x_axis)
+  plot2 <- plot_stone_quantities(slope_adopted, x_axis = x_axis)
   plot2
   expect_s3_class(plot2, "ggplot")
 })
@@ -127,9 +133,11 @@ test_that("check by_particle_size_df", {
     gravity             = 9.787
   )
   particle_size_df <- by_particle_size_df(scenario)
-  particle_size_dims <- channel_dimensions(particle_size_df)
+  particle_size_dims <- compute_channel_dimensions(particle_size_df)
+  particle_size_stone <- compute_stone_metrics(particle_size_dims)
+  particle_size_adopted <- compute_adopted_stone(particle_size_dims, particle_size_stone)
   x_axis = "particle_size"
-  plot3 <- plot_stone_quantities(particle_size_dims, x_axis = x_axis)
+  plot3 <- plot_stone_quantities(particle_size_adopted, x_axis = x_axis)
   plot3
   expect_s3_class(plot3, "ggplot")
 })
