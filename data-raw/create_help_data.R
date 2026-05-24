@@ -225,6 +225,34 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
     "Use the standard value near 1000 kg/m^3 unless temperature/salinity justify adjustments."
   ),
 
+  "specific_gravity",
+  "Specific gravity (`specific_gravity`)",
+  glue(
+    "Relative density of stone compared with water; used in stability-oriented stone-sizing methods."
+  ),
+  glue(
+    "
+**Definition**
+- Specific gravity is the ratio of stone specific weight to water specific weight:
+
+$$
+SG = \\frac{{\\gamma_s}}{{\\gamma_w}}
+$$
+
+where:
+- `γ_s` is stone specific weight
+- `γ_w` is water specific weight
+
+**Why it matters**
+- Relative density affects the resistance of stone to hydraulic forcing.
+- In the current app, this concept is especially important in the Isbash method, which uses the contrast between stone and water density in the denominator of the sizing equation.
+
+**Guidance**
+- Verify consistent units when comparing material assumptions.
+- If alternative lithologies are being considered, changes in specific gravity may affect both predicted stability and procurement characteristics.
+"
+  ),
+
   "gravity",
   "Gravity (`gravity`)",
   glue(
@@ -236,55 +264,57 @@ Use these fields to build a sequence of widths to evaluate alternative layouts. 
 
   # Outputs & intermediate variables from channel_dimensions()
   "stone_specific_weight",
-  "Stone specific weight (`stone_specific_weight`)",
+  "Stone specific weight (stone_specific_weight)",
   glue(
-    "stone_specific_weight = stone_density * gravity (N/m^3). Converts density to unit weight."
-  ),
-  glue(
-    "Used to compute specific_gravity and in mass and stability formulas. Keep units consistent across inputs."
-  ),
-
-  "specific_gravity",
-  "Specific gravity (`specific_gravity`)",
-  glue(
-    "Dimensionless ratio of stone to water specific weight (approx. Gs ~ 2.65)."
-  ),
-  glue(
-    "Many stability and empirical stone-size relations depend on the relative submerged density. Verify consistent units when comparing methods."
-  ),
-
-  "side_angle",
-  "Side angle (`side_angle`)",
-  glue(
-    "Bank side angle in degrees derived from side_slope; used to compute sloped bank length."
-  ),
-  glue(
-    "side_angle = atan(1 / side_slope) converted to degrees. Influences length_left_bank and total mattress area."
-  ),
-
-  "unit_discharge",
-  "Unit discharge (`unit_discharge`)",
-  glue(
-    "Unit discharge describes how total discharge is distributed across chute width (m^2/s)."
+    "Stone unit weight computed from density and gravity (N/m^3)."
   ),
   glue(
     "
 **Definition**
-- Unit discharge is
+- Stone specific weight is computed as
 
 $$
-q = \\frac{{Q}}{{B}}
+\\gamma_s = \\rho_s \\cdot g
 $$
 
 where:
-- `Q` is total discharge
-- `B` is chute width
+- `ρ_s` is stone density
+- `g` is gravitational acceleration
 
 **Why it matters**
-- Most empirical stone-size formulae (NRCS, USACE, etc.) are sensitive to unit discharge. Changing width or discharge changes `q` directly and therefore influences stone-size predictions.
+- This quantity is used in two important places in the app:
+  - to compute relative density for the Isbash stone-sizing method
+  - to compute adopted stone weight from adopted stone diameter
 
 **Guidance**
-- Inspect how unit discharge changes across scenarios and use it as a primary explanatory variable when interpreting results.
+- Keep stone density and gravity units consistent.
+- If comparing alternate rock types, stone specific weight is one of the key parameters linking material properties to both hydraulic sizing and procurement calculations.
+"
+  ),
+
+  "side_angle",
+  "Side angle (side_angle)",
+  glue(
+    "Bank side angle in degrees, derived from the side-slope ratio and used in chute geometry calculations."
+  ),
+  glue(
+    "
+**Definition**
+- Side angle is computed from side slope as
+
+$$
+\\theta = \\tan^{{-1}}\\left( \\frac{{1}}{{side\\\\_slope}} \\right)
+$$
+
+with the result expressed in degrees.
+
+**Why it matters**
+- Side angle is used to derive sloped-bank geometry, including bank length.
+- That geometry contributes to the effective lined area and therefore affects total stone quantity.
+
+**Guidance**
+- Interpret side angle together with `side_slope` and `length_left_bank`.
+- Flatter banks produce different lined geometry and can materially change total quantity estimates even when hydraulic conditions are unchanged.
 "
   ),
 
@@ -703,6 +733,107 @@ where:
 "
   ),
 
+  "number_stones",
+  "Number of stones (number_stones)",
+  glue(
+    "Estimated count of adopted stones required based on total metric tonnage and per-stone weight."
+  ),
+  glue(
+    "
+**Definition**
+- In the app, number of stones is computed as
+
+$$
+N = \\frac{{stone\\_vol\\_metric\\_ton}}{{adopted\\_stone\\_weight\\_ton}}
+$$
+
+where:
+- `stone_vol_metric_ton` is the total required stone quantity in metric tons
+- `adopted_stone_weight_ton` is the per-stone weight in US tons, as currently implemented
+
+**Why it matters**
+- Stone count is useful for constructability, logistics, and installation planning.
+- It provides a more intuitive sense of procurement scale than volume alone.
+
+**Guidance**
+- Interpret this as an approximate count derived from the app's current unit-conversion pipeline.
+- Use it for planning-level comparisons rather than as a precise procurement count.
+"
+  ),
+
+  "stone_vol_us_ton",
+  "Stone quantity (stone_vol_us_ton)",
+  glue(
+    "Total required stone quantity expressed in US tons."
+  ),
+  glue(
+    "
+**Definition**
+- In the app, total stone quantity in US tons is derived from stone volume and stone density through the implemented conversion sequence.
+
+**Why it matters**
+- This is often one of the most decision-relevant outputs for estimating, supplier communication, and contracting.
+
+**Guidance**
+- Use this quantity when comparing alternatives for procurement and budgeting.
+- Review together with `adopted_stone_weight_ton` and `number_stones` for a fuller picture of supply and handling implications.
+"
+  ),
+
+  "stone_vol_metric_ton",
+  "Stone quantity (stone_vol_metric_ton)",
+  glue(
+    "Total required stone quantity expressed in metric tons."
+  ),
+  glue(
+    "
+**Definition**
+- In the app, metric tonnage is computed from stone volume and stone density.
+
+**Why it matters**
+- Metric tonnage is a convenient intermediate quantity linking placed volume to supplier-scale mass estimates.
+
+**Guidance**
+- Use this quantity when working with SI-based estimating workflows or when checking the app's conversion chain across units.
+"
+  ),
+
+  "stone_vol_cuyd",
+  "Stone quantity (stone_vol_cuyd)",
+  glue(
+    "Total required stone quantity expressed in cubic yards."
+  ),
+  glue(
+    "
+**Definition**
+- In the app, cubic-yard quantity is derived from computed stone volume in cubic meters using a fixed conversion factor.
+
+**Why it matters**
+- Cubic yards are often used in estimating, bid documents, and construction communication in US practice.
+
+**Guidance**
+- Use cubic yards when aligning app outputs with contractor-facing quantity formats or legacy estimate templates.
+"
+  ),
+
+  "adopted_stone_weight_ton",
+  "Adopted stone weight (adopted_stone_weight_ton)",
+  glue(
+    "Per-stone adopted weight expressed in US tons."
+  ),
+  glue(
+    "
+**Definition**
+- In the app, adopted stone weight in US tons is derived from the kilogram weight of the adopted stone through the implemented unit conversions.
+
+**Why it matters**
+- This is a practical unit for matching stone size recommendations to supplier gradations, lifting limits, and placement equipment.
+
+**Guidance**
+- Review this value together with `stone_vol_us_ton` and `number_stones` when assessing procurement and constructability.
+"
+  ),
+
   # App tab documentation
   "getting_started",
   "Intro Tab - app overview",
@@ -970,7 +1101,7 @@ where:
   "plot_stone_quantities_plot",
   "Stone quantities & mass plot",
   glue(
-    "Faceted plot of adopted stone size, thickness, weight, total stone quantity, and stone count versus the selected x-axis variable."
+    "Faceted plot of adopted stone size, thickness, per-stone weight, total stone quantity, and stone count versus the selected x-axis variable."
   ),
   glue(
     "
@@ -991,11 +1122,12 @@ where:
   - `number_stones`
 
 **How to interpret**
-- Use these panels to translate hydraulic/design outputs into procurement and constructability metrics.
-- Rapid jumps in stone weight or total US tons across small changes in the x-axis often indicate strong sensitivity in adopted diameter.
+- These panels translate hydraulic/design outputs into procurement and constructability metrics.
+- Rapid jumps in per-stone weight, total US tons, or number of stones often reflect strong sensitivity in adopted stone diameter.
 
 **Practical tips**
 - Use this plot together with the table output when preparing estimates, supplier discussions, or constructability checks.
+- When comparing alternatives, review both per-stone weight and total quantity because the controlling procurement issue may differ between scenarios.
 "
   ),
 
